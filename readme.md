@@ -1,4 +1,4 @@
-**Live Example hosted on Vercel**: 
+**Live Example hosted on Vercel**: https://mude-blog.vercel.app/
 
 1. Clone this repo `git clone https://github.com/ijjk/notion-blog.git`
 1. Configure project with [`vc`](https://vercel.com/download)
