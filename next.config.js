@@ -5,6 +5,8 @@ const {
   BLOG_INDEX_ID,
 } = require('./src/lib/notion/server-constants')
 
+const { BLOG_INDEX_ID_2 } = require('./src/lib/notion/server-constants')
+
 try {
   fs.unlinkSync(path.resolve('.blog_index_data'))
 } catch (_) {
@@ -41,12 +43,18 @@ if (!BLOG_INDEX_ID) {
   )
 }
 
-module.exports = {
+if (!BLOG_INDEX_ID_2) {
+  // We aren't able to build or serve images from Notion without the
+  // NOTION_TOKEN being populated
+  warnOrError(
+    `\nBLOG_INDEX_ID_2 is missing from env, this will result in an error\n` +
+      `Make sure to provide one before starting Next.js`
+  )
+}
 
-  
+module.exports = {
   images: {
-    domains: 
-    ['s3.us-west-2.amazonaws.com'],
+    domains: ['s3.us-west-2.amazonaws.com'],
   },
 
   webpack(cfg, { dev, isServer }) {
