@@ -56,82 +56,91 @@ const Index = ({ posts = [], preview }) => {
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
 
-        {posts.map((post) => {
-          // MUDE LOOP
-          if (post.Project == 'mude') {
-            return (
-              <div className={blogStyles.postPreview} key={post.Slug}>
-                <h3>
-                  <span className={blogStyles.titleContainer}>
-                    {!post.Published && (
-                      <span className={blogStyles.draftBadge}>Draft</span>
-                    )}
-                    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                      <a>{post.Page} →</a>
-                    </Link>
-                  </span>
-                </h3>
+        <div className="mude-cases">
+          {posts.map((post) => {
+            ///////////////////////////////
+            // MUDE LOOP
+            if (post.Project == 'mude') {
+              return (
+                <div className={blogStyles.postPreview} key={post.Slug}>
+                  <h3>
+                    <span className={blogStyles.titleContainer}>
+                      {!post.Published && (
+                        <span className={blogStyles.draftBadge}>Draft</span>
+                      )}
+                      <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                        <a>{post.Page} →</a>
+                      </Link>
+                    </span>
+                  </h3>
 
-                {post.Cover.length > 0 && (
-                  <Image
-                    className="cover"
-                    src={post.Cover}
-                    width={2250}
-                    height={1390}
-                    layout="responsive"
-                  />
-                )}
-                {post.Date && (
-                  <div className="posted">{getDateStr(post.Date)}</div>
-                )}
-                {/* <p>
-                  {(!post.preview || post.preview.length === 0) &&
-                    'No preview available'}
-                  {(post.preview || []).map((block, idx) =>
-                    textBlock(block, true, `${post.Slug}${idx}`)
+                  {post.Cover.length > 0 && (
+                    <Image
+                      className="cover"
+                      src={post.Cover}
+                      width={2250}
+                      height={1390}
+                      layout="responsive"
+                    />
                   )}
-                </p> */}
-              </div>
-            )
-          }
-          // FUTUUR LOOP
-          if (post.Project == 'futuur') {
-            return (
-              <div className={blogStyles.postPreview} key={post.Slug}>
-                <h3>
-                  <span className={blogStyles.titleContainer}>
-                    {!post.Published && (
-                      <span className={blogStyles.draftBadge}>Draft</span>
+                  {post.Date && (
+                    <div className="posted">{getDateStr(post.Date)}</div>
+                  )}
+                  {/* <p>
+                    {(!post.preview || post.preview.length === 0) &&
+                      'No preview available'}
+                    {(post.preview || []).map((block, idx) =>
+                      textBlock(block, true, `${post.Slug}${idx}`)
                     )}
-                    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                      <a>{post.Page} →</a>
-                    </Link>
-                  </span>
-                </h3>
+                  </p> */}
+                </div>
+              )
+            }
+          })}
+        </div>
 
-                {post.Cover.length > 0 && (
-                  <Image
-                    className="cover"
-                    src={post.Cover}
-                    width={2250}
-                    height={1390}
-                    layout="responsive"
-                  />
-                )}
-                {post.Date && (
-                  <div className="posted">{getDateStr(post.Date)}</div>
-                )}
-                {/* <p>
-                  {(!post.preview || post.preview.length === 0) &&
-                    'No preview available'}
-                  {(post.preview || []).map((block, idx) =>
-                    textBlock(block, true, `${post.Slug}${idx}`)
+        <div className="futuur-cases">
+          {posts.map((post) => {
+            ///////////////////////////////
+            // FUTUUR LOOP
+            if (post.Project == 'futuur') {
+              return (
+                <div className={blogStyles.postPreview} key={post.Slug}>
+                  <h3>
+                    <span className={blogStyles.titleContainer}>
+                      {!post.Published && (
+                        <span className={blogStyles.draftBadge}>Draft</span>
+                      )}
+                      <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                        <a>{post.Page} →</a>
+                      </Link>
+                    </span>
+                  </h3>
+
+                  {post.Cover.length > 0 && (
+                    <Image
+                      className="cover"
+                      src={post.Cover}
+                      width={2250}
+                      height={1390}
+                      layout="responsive"
+                    />
                   )}
-                </p> */}
-              </div>
-            )
-          }
-        })}
+                  {post.Date && (
+                    <div className="posted">{getDateStr(post.Date)}</div>
+                  )}
+                  {/* <p>
+                    {(!post.preview || post.preview.length === 0) &&
+                      'No preview available'}
+                    {(post.preview || []).map((block, idx) =>
+                      textBlock(block, true, `${post.Slug}${idx}`)
+                    )}
+                  </p> */}
+                </div>
+              )
+            }
+          })}
+        </div>
       </div>
     </>
   )
