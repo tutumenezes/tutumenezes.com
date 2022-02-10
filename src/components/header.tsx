@@ -6,7 +6,8 @@ import themelight from '../styles/theme.light'
 import styles from '../styles/header.module.css'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
-  { label: 'about', page: '/' },
+  { label: 'About', page: '/' },
+  { label: 'Dark Mode', page: '/' },
 ]
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
@@ -44,19 +45,22 @@ const Header = ({ titlePre = '' }) => {
 
       <ul>
         {navItems.map(({ label, page, link }) => (
-          <li key={label}>
-            {page ? (
+          <li className="nav-list-item" key={label}>
+            {label == 'About' ? (
               <Link href={page}>
                 <a className={pathname === page ? 'active' : undefined}>
                   {label}
                 </a>
               </Link>
             ) : (
-              <ExtLink href={link}>{label}</ExtLink>
+              <Link href={page}>
+                <a className={pathname === page ? 'active' : undefined}>
+                  {label}
+                </a>
+              </Link>
             )}
           </li>
         ))}
-        <li key="dark-mode">dark-mode</li>
       </ul>
     </header>
   )

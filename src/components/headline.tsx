@@ -6,11 +6,11 @@ const Headline = () => (
     <p>
       <span>
         Designer at{' '}
-        <ExtLink className="underlined" href="https://futuur.com/">
+        <ExtLink className="underlined futuur-link" href="https://futuur.com/">
           Futuur
         </ExtLink>{' '}
         &{' '}
-        <ExtLink className="underlined" href="https://mude.fit/">
+        <ExtLink className="underlined mude-link" href="https://mude.fit/">
           Mude
         </ExtLink>
         .

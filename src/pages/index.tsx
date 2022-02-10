@@ -57,50 +57,46 @@ const Index = ({ posts = [], preview }) => {
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
 
-        <div className="mude-cases">
+        <div className="cases-container mude-cases">
           {posts.map((post) => {
             ///////////////////////////////
             // MUDE LOOP
             if (post.Project == 'mude') {
               return (
                 <div className={blogStyles.postPreview} key={post.Slug}>
-                  <h3>
-                    <span className={blogStyles.titleContainer}>
-                      {!post.Published && (
-                        <span className={blogStyles.draftBadge}>Draft</span>
-                      )}
-                      <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                        <a>{post.Page} →</a>
-                      </Link>
-                    </span>
-                  </h3>
-
-                  {post.Cover.length > 0 && (
-                    <Image
-                      className="cover"
-                      src={post.Cover}
-                      width={2250}
-                      height={1390}
-                      layout="responsive"
-                    />
-                  )}
-                  {post.Date && (
-                    <div className="posted">{getDateStr(post.Date)}</div>
-                  )}
-                  {/* <p>
-                    {(!post.preview || post.preview.length === 0) &&
-                      'No preview available'}
-                    {(post.preview || []).map((block, idx) =>
-                      textBlock(block, true, `${post.Slug}${idx}`)
+                  <div>
+                    <h3>
+                      <span className={blogStyles.titleContainer}>
+                        {!post.Published && (
+                          <span className={blogStyles.draftBadge}>Draft</span>
+                        )}
+                        <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                          <a>{post.Page} →</a>
+                        </Link>
+                      </span>
+                    </h3>
+                    {post.Date && (
+                      <div className="posted">{getDateStr(post.Date)}</div>
                     )}
-                  </p> */}
+                  </div>
+                  <div className="cover-container">
+                    {post.Cover.length > 0 && (
+                      <Image
+                        className="cover"
+                        src={post.Cover}
+                        width={2250}
+                        height={1390}
+                        layout="responsive"
+                      />
+                    )}
+                  </div>
                 </div>
               )
             }
           })}
         </div>
 
-        <div className="futuur-cases">
+        <div className="cases-container futuur-cases">
           {posts.map((post) => {
             ///////////////////////////////
             // FUTUUR LOOP
@@ -117,16 +113,6 @@ const Index = ({ posts = [], preview }) => {
                       </Link>
                     </span>
                   </h3>
-
-                  {post.Cover.length > 0 && (
-                    <Image
-                      className="cover"
-                      src={post.Cover}
-                      width={2250}
-                      height={1390}
-                      layout="responsive"
-                    />
-                  )}
                   {post.Date && (
                     <div className="posted">{getDateStr(post.Date)}</div>
                   )}

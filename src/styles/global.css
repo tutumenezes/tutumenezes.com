@@ -4,13 +4,13 @@
   --gap: 1rem;
   --gap-double: 2rem;
 
-  --color-primary: '#5D5FEF';
-  --color-secondary: '#EF5DA8';
-  --color-highemphasis: '#0D0E15';
-  --color-mediumemphasis: '#757575';
-  --color-disabled: '#BDBDBD';
-  --color-mude: '#E71549';
-  --color-futuur: '#1591ED';
+  --color-primary: #5d5fef;
+  --color-secondary: #ef5da8;
+  --color-highemphasis: #0d0e15;
+  --color-mediumemphasis: #757575;
+  --color-disabled: #bdbdbd;
+  --color-mude: #e71549;
+  --color-futuur: #1591ed;
 
   --bg: #fff;
   --fg: #000;
@@ -20,12 +20,12 @@
   --font-sans: aktiv-grotesk, sans-serif;
   --font-serif: utopia-std, serif;
 
-  --font-size-caption: '0.875em';
-  --font-size-text: '1em';
-  --font-size-small: '1.125em';
-  --font-size-medium: '1.5em';
-  --font-size-large: '2em';
-  --font-size-extralarge: '2.75em';
+  --font-size-caption: 0.875em;
+  --font-size-text: 1em;
+  --font-size-small: 1.125em;
+  --font-size-medium: 1.5em;
+  --font-size-large: 2em;
+  --font-size-extralarge: 2.75em;
 }
 
 * {
@@ -361,11 +361,6 @@ code {
   border-bottom: 1px dashed black;
 }
 
-footer {
-  padding: 2em 0;
-  text-align: center;
-}
-
 footer img {
   display: block;
   margin: 0.5rem auto;
@@ -379,10 +374,79 @@ footer span:nth-child(3) a {
   color: inherit;
 }
 
+.futuur-link:hover {
+  color: var(--color-futuur);
+}
+
+.mude-link:hover {
+  color: var(--color-mude);
+}
+
 .mude-cases {
-  border: 1px solid red;
+  display: block;
 }
 
 .futuur-cases {
-  border: 1px solid blue;
+  display: block;
+  margin-top: 128px;
+}
+
+.cases-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.cover-container {
+  position: absolute;
+  margin: auto;
+  right: 0;
+  bottom: 0;
+  top: -5rem;
+}
+
+.cover-container div {
+  width: 345px;
+  height: 361px;
+  top: 0;
+}
+
+footer {
+  display: block;
+  margin-top: 128px;
+  text-align: left;
+}
+
+.footer-container {
+  max-width: 60rem;
+
+  margin: 0 auto;
+}
+
+.social-icon {
+  height: 44px;
+  width: 44px;
+}
+
+.copyright {
+  font-family: var(--sanSerif);
+  font-size: var(--font-size-small);
+  margin-top: 128px;
+  border-top: 1px solid var(--color-disabled);
+  padding-top: 64px;
+}
+
+.social {
+  margin-top: 24px;
+  margin-bottom: 44px;
+}
+
+.social a {
+  margin-left: 16px;
+}
+
+.nav-list-item a {
+  font-family: var(--sanSerif);
+  font-size: var(--font-size-small);
 }

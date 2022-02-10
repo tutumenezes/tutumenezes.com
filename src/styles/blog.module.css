@@ -1,5 +1,7 @@
 .blogIndex {
+  max-width: 60rem;
   padding: 0 5%;
+  margin: 0 auto;
 }
 
 .blogIndex h1 {
@@ -47,6 +49,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--font-size-small);
 }
 .draftBadge {
   border-radius: 16px;
@@ -63,9 +68,9 @@
 }
 
 .postPreview {
-  max-width: 600px;
-  margin: 10px auto;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+  max-width: 100rem;
+  margin: 32px 0px;
+  border-bottom: 1px solid #bdbdbd;
 }
 
 .postPreview:last-child {
@@ -120,7 +125,7 @@
 }
 
 .postPreview :global(.posted) {
-  margin-bottom: 0.5em;
+  margin: var(--gap-half) 0;
 }
 
 .post {
