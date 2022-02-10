@@ -4,19 +4,31 @@ import themelight from '../styles/theme.light'
 const Headline = () => (
   <div className="headline">
     <p>
-      Designer at <ExtLink href="https://futuur.com/">Futuur</ExtLink> &{' '}
-      <ExtLink href="https://mude.fit/">Mude</ExtLink>.
+      <span>
+        Designer at{' '}
+        <ExtLink className="underlined" href="https://futuur.com/">
+          Futuur
+        </ExtLink>{' '}
+        &{' '}
+        <ExtLink className="underlined" href="https://mude.fit/">
+          Mude
+        </ExtLink>
+        .
+      </span>
+      <span>Passionate about the creative process.</span>
     </p>
-    <p>Passionate about the creative process.</p>
     <style jsx>{`
       .headline {
         font-family: ${themelight.fontFamily.serif};
-        font-size: ${themelight.fontSize.small};
-        font-weight: ${themelight.fontWeight.bold};
-        text-align: center;
+        font-size: ${themelight.fontSize.medium};
+        font-weight: ${themelight.fontWeight.regular};
+        margin: 128px auto;
         color: ${themelight.colors.text};
       }
-      p {
+      span {
+        text-align: left;
+        margin: 8px auto;
+        display: block;
       }
     `}</style>
   </div>
