@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Header from '../components/header'
+import Header from './header'
 
 import blogStyles from '../styles/blog.module.css'
 import sharedStyles from '../styles/shared.module.css'
@@ -9,14 +9,9 @@ import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
 import { textBlock } from '../lib/notion/renderers'
 import getNotionUsers from '../lib/notion/getNotionUsers'
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import getBlogIndexFutuur from '../lib/notion/getBlogIndexFutuur'
 
 export async function getStaticProps({ preview }) {
-  const mudeTable = await getBlogIndex()
-  const futuurTable = await getBlogIndexFutuur()
-
-  const postsTable: any = { ...mudeTable, ...futuurTable }
-
+  const postsTable = await getBlogIndex()
   const posts: any[] = Object.keys(postsTable)
     .map((slug) => {
       const post = postsTable[slug]
@@ -41,10 +36,9 @@ export async function getStaticProps({ preview }) {
   }
 }
 
-const Index = ({ posts = [], preview }) => {
+const Cases = ({ posts = [], preview }) => {
   return (
     <>
-      {console.log(posts)}
       <Header titlePre="Blog" />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
@@ -103,4 +97,4 @@ const Index = ({ posts = [], preview }) => {
   )
 }
 
-export default Index
+export default Cases

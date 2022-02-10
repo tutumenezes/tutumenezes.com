@@ -7,15 +7,11 @@ import Image from 'next/image'
 
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
 import { textBlock } from '../lib/notion/renderers'
-import getNotionUsers from '../lib/notion/getNotionUsers'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import getBlogIndexFutuur from '../lib/notion/getBlogIndexFutuur'
 
 export async function getStaticProps({ preview }) {
-  const mudeTable = await getBlogIndex()
-  const futuurTable = await getBlogIndexFutuur()
-
-  const postsTable: any = { ...mudeTable, ...futuurTable }
+  const postsTable = await getBlogIndexFutuur()
 
   const posts: any[] = Object.keys(postsTable)
     .map((slug) => {
@@ -28,6 +24,19 @@ export async function getStaticProps({ preview }) {
     })
     .filter(Boolean)
 
+  const postsTableFutuur = await getBlogIndexFutuur()
+
+  const postsFutuur: any[] = Object.keys(postsTableFutuur)
+    .map((slug) => {
+      const postsFutuur = postsTableFutuur[slug]
+      // remove draft posts in production
+      if (!preview && !postIsPublished(postsTableFutuur)) {
+        return null
+      }
+      return postsFutuur
+    })
+    .filter(Boolean)
+
   const externalImageLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`
   }
@@ -36,15 +45,17 @@ export async function getStaticProps({ preview }) {
     props: {
       preview: preview || false,
       posts,
+      postsFutuur,
     },
     revalidate: 10,
   }
 }
 
-const Index = ({ posts = [], preview }) => {
+//console.log('test');
+
+const Index = ({ postsFutuur = [], preview }) => {
   return (
     <>
-      {console.log(posts)}
       <Header titlePre="Blog" />
       {preview && (
         <div className={blogStyles.previewAlertContainer}>
@@ -60,10 +71,10 @@ const Index = ({ posts = [], preview }) => {
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         <h1>Tutumenezes</h1>
         <h2>Hey Ho Let's go</h2>
-        {posts.length === 0 && (
+        {postsFutuur.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
-        {posts.map((post) => {
+        {postsFutuur.map((post) => {
           return (
             <div className={blogStyles.postPreview} key={post.Slug}>
               <h3>
