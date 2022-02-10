@@ -6,12 +6,7 @@ import styles from '../styles/header.module.css'
 import MudeLogo from '../components/svgs/mudelogo'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
-  { label: 'Para Alunos e Alunas', page: 'https://mude.fit/' },
-  { label: 'Para dar Aulas', page: 'https://mude.fit/para-dar-aulas/' },
-  { label: 'Para Mídia e Patrocínio', page: 'https://mude.fit/para-parcerias/' },
-  { label: 'Blog', page: '/' },
-  { label: 'Projetos', page: 'https://mude.fit/para-dar-aulas/' },
-  { label: 'Contatos', page: 'https://mude.fit/contato/' },
+  { label: 'tutumenezes', page: '/' },
 ]
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
@@ -22,19 +17,18 @@ const Header = ({ titlePre = '' }) => {
   return (
     <header className={styles.header}>
       <Head>
-        <title>{titlePre ? `${titlePre} |` : ''} Blog da Mude </title>
+        <title>{titlePre ? `${titlePre} |` : ''} Tutu Menezes </title>
         <meta
           name="description"
-          content="An example Next.js site using Notion for the blog"
+          content="Tutu Menezes — digital and product designer portfolio"
         />
-        <meta name="og:title" content="Mude Blog" />
+        <meta name="og:title" content="tutumenezes.com" />
         <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:site" content="@mudehq" />
+        <meta name="twitter:site" content="@tutumenezes" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
       <ul>
-        <MudeLogo />
         {navItems.map(({ label, page, link }) => (
           <li key={label}>
             {page ? (

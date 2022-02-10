@@ -57,6 +57,7 @@ const Index = ({ posts = [], preview }) => {
         )}
 
         {posts.map((post) => {
+          // MUDE LOOP
           if (post.Project == 'mude') {
             return (
               <div className={blogStyles.postPreview} key={post.Slug}>
@@ -93,7 +94,7 @@ const Index = ({ posts = [], preview }) => {
               </div>
             )
           }
-
+          // FUTUUR LOOP
           if (post.Project == 'futuur') {
             return (
               <div className={blogStyles.postPreview} key={post.Slug}>
