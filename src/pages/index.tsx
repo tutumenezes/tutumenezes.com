@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Header from '../components/header'
+import Headline from '../components/headline'
 
 import blogStyles from '../styles/blog.module.css'
 import sharedStyles from '../styles/shared.module.css'
@@ -45,58 +46,90 @@ const Index = ({ posts = [], preview }) => {
   return (
     <>
       {console.log(posts)}
+
       <Header titlePre="Blog" />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
+
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        <h1>Tutumenezes</h1>
-        <h2>Hey Ho Let's go</h2>
+        <Headline />
+
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
+
         {posts.map((post) => {
-          return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
-              <h3>
-                <span className={blogStyles.titleContainer}>
-                  {!post.Published && (
-                    <span className={blogStyles.draftBadge}>Draft</span>
-                  )}
-                  <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                    <a>{post.Page} →</a>
-                  </Link>
-                </span>
-              </h3>
-              {post.Cover.length > 0 && (
-                <Image
-                  className="cover"
-                  src={post.Cover}
-                  width={2250}
-                  height={1390}
-                  layout="responsive"
-                />
-              )}
-              {post.Date && (
-                <div className="posted">{getDateStr(post.Date)}</div>
-              )}
-              <p>
-                {(!post.preview || post.preview.length === 0) &&
-                  'No preview available'}
-                {(post.preview || []).map((block, idx) =>
-                  textBlock(block, true, `${post.Slug}${idx}`)
+          if (post.Project == 'mude') {
+            return (
+              <div className={blogStyles.postPreview} key={post.Slug}>
+                <h3>
+                  <span className={blogStyles.titleContainer}>
+                    {!post.Published && (
+                      <span className={blogStyles.draftBadge}>Draft</span>
+                    )}
+                    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                      <a>{post.Page} →</a>
+                    </Link>
+                  </span>
+                </h3>
+
+                {post.Cover.length > 0 && (
+                  <Image
+                    className="cover"
+                    src={post.Cover}
+                    width={2250}
+                    height={1390}
+                    layout="responsive"
+                  />
                 )}
-              </p>
-            </div>
-          )
+                {post.Date && (
+                  <div className="posted">{getDateStr(post.Date)}</div>
+                )}
+                {/* <p>
+                  {(!post.preview || post.preview.length === 0) &&
+                    'No preview available'}
+                  {(post.preview || []).map((block, idx) =>
+                    textBlock(block, true, `${post.Slug}${idx}`)
+                  )}
+                </p> */}
+              </div>
+            )
+          }
+
+          if (post.Project == 'futuur') {
+            return (
+              <div className={blogStyles.postPreview} key={post.Slug}>
+                <h3>
+                  <span className={blogStyles.titleContainer}>
+                    {!post.Published && (
+                      <span className={blogStyles.draftBadge}>Draft</span>
+                    )}
+                    <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                      <a>{post.Page} →</a>
+                    </Link>
+                  </span>
+                </h3>
+
+                {post.Cover.length > 0 && (
+                  <Image
+                    className="cover"
+                    src={post.Cover}
+                    width={2250}
+                    height={1390}
+                    layout="responsive"
+                  />
+                )}
+                {post.Date && (
+                  <div className="posted">{getDateStr(post.Date)}</div>
+                )}
+                {/* <p>
+                  {(!post.preview || post.preview.length === 0) &&
+                    'No preview available'}
+                  {(post.preview || []).map((block, idx) =>
+                    textBlock(block, true, `${post.Slug}${idx}`)
+                  )}
+                </p> */}
+              </div>
+            )
+          }
         })}
       </div>
     </>
