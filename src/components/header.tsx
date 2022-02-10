@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Head from 'next/head'
 import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
+import themelight from '../styles/theme.light'
 import styles from '../styles/header.module.css'
-import MudeLogo from '../components/svgs/mudelogo'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
-  { label: 'tutumenezes', page: '/' },
+  { label: 'about', page: '/' },
 ]
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
@@ -28,6 +28,20 @@ const Header = ({ titlePre = '' }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
+
+      <h1 className={pathname === '/' ? 'active' : undefined}>
+        <Link href="/">tutumenezes</Link>
+        <style jsx global>{`
+          h1 {
+            font-family: ${themelight.fontFamily.serif};
+            font-size: ${themelight.fontSize.extralarge};
+            font-weight: ${themelight.fontWeight.bold};
+            text-align: center;
+            color: ${themelight.colors.text};
+          }
+        `}</style>
+      </h1>
+
       <ul>
         {navItems.map(({ label, page, link }) => (
           <li key={label}>
@@ -42,6 +56,7 @@ const Header = ({ titlePre = '' }) => {
             )}
           </li>
         ))}
+        <li key="dark-mode">dark-mode</li>
       </ul>
     </header>
   )

@@ -13,11 +13,8 @@
 
   --radius: 8px;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  --font-sans: aktiv-grotesk, sans-serif;
+  --font-serif: utopia-std, serif;
 }
 
 * {
@@ -35,8 +32,7 @@ body {
   min-height: 100vh;
   background: var(--bg);
   color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: utopia-std, serif;
 
   background-image: radial-gradient(#ddd 1px, transparent 1px),
     radial-gradient(#ddd 1px, transparent 1px);
@@ -252,7 +248,7 @@ figure {
 }
 
 a {
-  color: #0070f3;
+  /* color: #0070f3; */
   text-decoration: none;
 }
 a:hover {
@@ -284,12 +280,12 @@ h1 {
   letter-spacing: -0.05rem;
 }
 
-h2 {
+/* h2 {
   font-weight: 300;
   font-size: 1.25rem;
   letter-spacing: -0.02rem;
   color: var(--accents-3);
-}
+} */
 
 .video {
   width: 1080px;
@@ -324,7 +320,7 @@ code {
   background: #f1f1f1;
   padding: 0.2rem;
   border-radius: var(--radius);
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
 }
 
 .slice {
@@ -347,10 +343,10 @@ code {
     padding: 0 1rem 4rem;
   }
 
-  h2 {
+  /* h2 {
     font-size: 0.95rem;
     letter-spacing: 0;
-  }
+  } */
 }
 
 .dotted {

@@ -4,6 +4,7 @@ import Headline from '../components/headline'
 
 import blogStyles from '../styles/blog.module.css'
 import sharedStyles from '../styles/shared.module.css'
+import themelight from '../styles/theme.light'
 import Image from 'next/image'
 
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'

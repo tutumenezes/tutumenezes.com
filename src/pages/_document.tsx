@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import themelight from '../styles/theme.light'
 
 class MyDocument extends Document {
   render() {
@@ -9,6 +10,13 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <style jsx global>{`
+          body {
+            background: ${themelight.colors.background};
+            color: ${themelight.colors.text};
+            font-family: ${themelight.fontFamily.sansSerif};
+          }
+        `}</style>
       </Html>
     )
   }
