@@ -1,0 +1,12 @@
+//settings
+@import './fonts.scss';
+@import './variables.scss';
+@import './mixins.scss';
+
+//global styles
+@import './themes.scss';
+@import './resets.scss';
+@import './common.scss';
+
+//component's modules
+@import './modules/header.module.scss';

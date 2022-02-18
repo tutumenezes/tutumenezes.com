@@ -1,29 +1,19 @@
-:root {
-  --gap-quarter: 0.25rem;
-  --gap-half: 0.5rem;
-  --gap: 1rem;
-  --gap-double: 2rem;
+body {
+  min-height: 100vh;
+  font-family: $font-sans;
 
-  --color-primary: #5d5fef;
-  --color-secondary: #ef5da8;
-  --color-highemphasis: #0d0e15;
-  --color-mediumemphasis: #757575;
-  --color-disabled: #bdbdbd;
-  --color-mude: #e71549;
-  --color-futuur: #1591ed;
+  @include themed() {
+    color: t($text);
+    background: t($bg);
+  }
 
-  --bg: #fff;
-  --fg: #000;
+  transition: all 1s ease;
 
-  --radius: 2px;
+  /* Hack */
+  overflow-x: hidden;
+}
 
-  --font-sans: aktiv-grotesk, sans-serif;
-  --font-serif: utopia-std, serif;
-
-  --font-size-caption: 0.875em;
-  --font-size-text: 1em;
-  --font-size-small: 1.125em;
-  --font-size-medium: 1.5em;
-  --font-size-large: 2em;
-  --font-size-extralarge: 2.75em;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }

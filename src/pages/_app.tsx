@@ -1,12 +1,10 @@
-import '../styles/global.css'
-import 'katex/dist/katex.css'
-import Footer from '../components/footer'
+import '../styles/index.scss'
+import { ThemeProvider } from 'next-themes'
 
 export default function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ThemeProvider>
       <Component {...pageProps} />
-      <Footer />
-    </>
+    </ThemeProvider>
   )
 }

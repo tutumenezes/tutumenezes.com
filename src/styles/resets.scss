@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16 px;
+}
+
+img,
+figure {
+  margin: unset;
+  padding: unset;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #000;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-size: 0.95em;
+  line-height: 1.4em;
+  tab-size: 4;
+  hyphens: none;
+}
+
+a {
+  text-decoration: none;
+
+  @include themed() {
+    color: t($link);
+    text-decoration-color: t($text);
+  }
+}
+
+ul {
+  list-style: none;
+  margin: unset;
+  padding: unset;
+}
+
+p,
+h1,
+h2,
+h3 {
+  font-size: unset;
+  margin: unset;
+
+  @include themed() {
+    color: t($text);
+    text-decoration-color: t($text);
+  }
+}
+
+button {
+  border: unset;
+  background: unset;
+  cursor: pointer;
+}

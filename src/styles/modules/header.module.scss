@@ -1,0 +1,57 @@
+.header {
+  h1 {
+    a {
+      font-family: $font-headline;
+      display: block;
+      text-align: center;
+    }
+  }
+
+  ul {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      button svg,
+      a svg {
+        width: auto;
+      }
+    }
+  }
+
+  @include desktop {
+    margin: 32px auto;
+
+    h1 a {
+      font-size: $font-size--large;
+      letter-spacing: 0.1em;
+    }
+    ul {
+      margin-top: 18px;
+
+      li {
+        margin-left: 16px;
+        &:first-child {
+          margin-left: unset;
+        }
+        button svg,
+        a svg {
+          height: 24px;
+        }
+      }
+    }
+  }
+  @include mobile {
+    h1 a {
+      font-size: $font-size--very-small;
+      letter-spacing: 0.1em;
+    }
+
+    ul li {
+      margin-left: 12px;
+      &:first-child {
+        margin-left: unset;
+      }
+    }
+  }
+}

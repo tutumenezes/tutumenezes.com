@@ -1,0 +1,11 @@
+.headline {
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+
+    p {
+      font-family: $font-serif;
+      font-weight: $font-weight--regular;
+    }
+  }
+}

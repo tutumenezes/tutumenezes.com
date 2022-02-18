@@ -10,13 +10,6 @@ class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <style jsx global>{`
-          body {
-            background: ${themelight.colors.background};
-            color: ${themelight.colors.text};
-            font-family: ${themelight.fontFamily.sansSerif};
-          }
-        `}</style>
       </Html>
     )
   }

@@ -2,8 +2,6 @@ import Link from 'next/link'
 import Header from '../components/header'
 import Headline from '../components/headline'
 
-import blogStyles from '../styles/blog.module.css'
-import sharedStyles from '../styles/shared.module.css'
 import themelight from '../styles/theme.light'
 import Image from 'next/image'
 
@@ -48,13 +46,13 @@ const Index = ({ posts = [], preview }) => {
     <>
       {console.log(posts)}
 
-      <Header titlePre="Blog" />
+      <Header titlePre="Home" />
 
-      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
+      <div className="main-container">
         <Headline />
 
         {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
+          <p className={'blogStyles.noPosts'}>There are no posts yet</p>
         )}
 
         <div className="cases-container mude-cases">
@@ -63,12 +61,12 @@ const Index = ({ posts = [], preview }) => {
             // MUDE LOOP
             if (post.Project == 'mude') {
               return (
-                <div className={blogStyles.postPreview} key={post.Slug}>
+                <div className={'blogStyles.postPreview'} key={post.Slug}>
                   <div>
                     <h3>
-                      <span className={blogStyles.titleContainer}>
+                      <span className={'blogStyles.titleContainer'}>
                         {!post.Published && (
-                          <span className={blogStyles.draftBadge}>Draft</span>
+                          <span className={'blogStyles.draftBadge'}>Draft</span>
                         )}
                         <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
                           <a>{post.Page} →</a>
@@ -102,11 +100,11 @@ const Index = ({ posts = [], preview }) => {
             // FUTUUR LOOP
             if (post.Project == 'futuur') {
               return (
-                <div className={blogStyles.postPreview} key={post.Slug}>
+                <div className={'blogStyles.postPreview'} key={post.Slug}>
                   <h3>
-                    <span className={blogStyles.titleContainer}>
+                    <span className={'blogStyles.titleContainer'}>
                       {!post.Published && (
-                        <span className={blogStyles.draftBadge}>Draft</span>
+                        <span className={'blogStyles.draftBadge'}>Draft</span>
                       )}
                       <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
                         <a>{post.Page} →</a>

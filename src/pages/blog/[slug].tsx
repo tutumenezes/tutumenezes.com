@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import fetch from 'node-fetch'
 import { useRouter } from 'next/router'
-import Header from '../../components/header'
 import Heading from '../../components/heading'
+import Header from '../../components/header'
 import components from '../../components/dynamic'
 import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
 import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
@@ -128,7 +127,7 @@ const RenderPost = ({ post, redirect, preview }) => {
   // loading one from fallback then  redirect back to the index
   if (!post) {
     return (
-      <div className={blogStyles.post}>
+      <div>
         <p>
           Woops! didn't find that post, redirecting you back to the blog index
         </p>
@@ -140,17 +139,17 @@ const RenderPost = ({ post, redirect, preview }) => {
     <>
       <Header titlePre={post.Page} />
       {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
+        <div>
+          <div>
             <b>Note:</b>
             {` `}Viewing in preview mode{' '}
             <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
+              <button>Exit Preview</button>
             </Link>
           </div>
         </div>
       )}
-      <div className={blogStyles.post}>
+      <div className={'blogStyles.post'}>
         <h1>{post.Page || ''}</h1>
         {post.Authors.length > 0 && (
           <div className="authors">By: {post.Authors.join(' ')}</div>
@@ -231,42 +230,42 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderBookmark = ({ link, title, description, format }) => {
             const { bookmark_icon: icon, bookmark_cover: cover } = format
             toRender.push(
-              <div className={blogStyles.bookmark}>
+              <div className={'blogStyles.bookmark'}>
                 <div>
                   <div style={{ display: 'flex' }}>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={blogStyles.bookmarkContentsWrapper}
+                      className={'blogStyles.bookmarkContentsWrapper'}
                       href={link}
                     >
                       <div
                         role="button"
-                        className={blogStyles.bookmarkContents}
+                        className={'blogStyles.bookmarkContents'}
                       >
-                        <div className={blogStyles.bookmarkInfo}>
-                          <div className={blogStyles.bookmarkTitle}>
+                        <div className={'blogStyles.bookmarkInfo'}>
+                          <div className={'blogStyles.bookmarkTitle'}>
                             {title}
                           </div>
-                          <div className={blogStyles.bookmarkDescription}>
+                          <div className={'blogStyles.bookmarkDescription'}>
                             {description}
                           </div>
-                          <div className={blogStyles.bookmarkLinkWrapper}>
+                          <div className={'blogStyles.bookmarkLinkWrapper'}>
                             <img
                               src={icon}
-                              className={blogStyles.bookmarkLinkIcon}
+                              className={'blogStyles.bookmarkLinkIcon'}
                             />
-                            <div className={blogStyles.bookmarkLink}>
+                            <div className={'blogStyles.bookmarkLink'}>
                               {link}
                             </div>
                           </div>
                         </div>
-                        <div className={blogStyles.bookmarkCoverWrapper1}>
-                          <div className={blogStyles.bookmarkCoverWrapper2}>
-                            <div className={blogStyles.bookmarkCoverWrapper3}>
+                        <div className={'blogStyles.bookmarkCoverWrapper1'}>
+                          <div className={'blogStyles.bookmarkCoverWrapper2'}>
+                            <div className={'blogStyles.bookmarkCoverWrapper3'}>
                               <img
                                 src={cover}
-                                className={blogStyles.bookmarkCover}
+                                className={'blogStyles.bookmarkCover'}
                               />
                             </div>
                           </div>

@@ -1,7 +1,6 @@
-import styles from './styles/footer.module.css'
 import Linkedin from './svgs/linkedin'
 import Github from './svgs/github'
-import Twitter from './svgs/twitter'
+import { FiTwitter } from 'react-icons/fi'
 
 const twitter = 'tutumenezes'
 const github = 'tutumenezes'
@@ -27,7 +26,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Twitter className="social-icon" />
+                <FiTwitter className="social-icon" />
               </a>
             )}
 

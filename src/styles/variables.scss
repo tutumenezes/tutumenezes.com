@@ -1,0 +1,48 @@
+//colors
+$color-high-emphasis: #0d0e15;
+$color-medium-emphasis: #757575;
+$color-disabled: #bdbdbd;
+
+$color-light-high-emphasis: #ffffff;
+
+$color-primary: #1c1f23;
+$color-primary-dark: #a90f36;
+$color-primary-bright: #f6a0b6;
+
+$color-background-light: #fbfbfb;
+$color-background-dark: #1c1f23;
+
+//fonts
+//update font-families variables in fonts.scss
+$font-serif: $font-utopia;
+$font-headline: $font-utopia-headline;
+
+$font-sans: $font-neuzeit;
+$font-sans-condensed: $font-neuzeit-condensed;
+
+//font-weight
+$font-weight--regular: 400;
+$font-weight--medium: 500;
+$font-weight--bold: 700;
+$font-weight--thin: 200;
+
+//font-sizes
+//User variables from variables.media.queries to style font-size
+$font-size--smallest: 0.875em;
+$font-size--very-small: 1em;
+$font-size--small: 1.125em;
+$font-size--medium: 1.5em;
+$font-size--large: 2em;
+$font-size--extra-large: 2.75em;
+
+//line-height
+
+//easings
+$easing-bezier-fast: cubic-bezier(0, 0.32, 0.12, 0.44);
+$easing-bezier-slow: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+//media queries
+$mobile-width: 320px;
+$mobile-wide-width: 568px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
