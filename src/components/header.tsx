@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
 import { useTheme } from 'next-themes'
+import ExtLink from './ext-link'
 
 import ThemeToggle from './themetoggle'
 import ReactTooltip from 'react-tooltip'
@@ -18,6 +19,22 @@ const Header = ({ titlePre = '' }) => {
   const { pathname } = useRouter()
 
   const { theme } = useTheme()
+
+  // Sticky Menu Hook and className const
+  useEffect(() => {
+    window.addEventListener('scroll', isSticky)
+    return () => {
+      window.removeEventListener('scroll', isSticky)
+    }
+  })
+
+  const isSticky = (e) => {
+    const header = document.querySelector('.header')
+    const scrollTop = window.scrollY
+    scrollTop >= 32
+      ? header.classList.add('is-sticky')
+      : header.classList.remove('is-sticky')
+  }
 
   return (
     <header className={'header'}>

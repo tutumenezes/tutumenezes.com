@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import Header from '../components/header'
 import Headline from '../components/headline'
-
-import themelight from '../styles/theme.light'
 import Image from 'next/image'
 
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'

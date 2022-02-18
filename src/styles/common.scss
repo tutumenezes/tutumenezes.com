@@ -13,7 +13,11 @@ body {
   overflow-x: hidden;
 }
 
-.container {
-  max-width: 1200px;
+.main-container {
+  max-width: 50rem;
   margin: 0 auto;
+}
+
+a {
+  transition: color 0.1s $easing-bezier-fast;
 }

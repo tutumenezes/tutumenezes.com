@@ -1,11 +1,34 @@
 .headline {
   .container {
-    max-width: 900px;
-    margin: 0 auto;
-
     p {
       font-family: $font-serif;
       font-weight: $font-weight--regular;
+      line-height: 1.25em;
+
+      span {
+        display: block;
+        a {
+          text-decoration: underline;
+          &:hover {
+            &.futuur-link {
+              color: $color-project-futuur;
+            }
+            &.mude-link {
+              color: $color-project-mude;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include desktop {
+    .container {
+      margin: 128px auto;
+      p {
+        font-size: $font-size--medium;
+        line-height: 1.5em;
+      }
     }
   }
 }
