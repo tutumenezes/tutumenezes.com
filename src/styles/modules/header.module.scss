@@ -1,7 +1,7 @@
 .header {
   position: sticky;
   top: 0;
-
+  z-index: 100;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -75,7 +75,7 @@
 
   @include mobile {
     padding: 32px 0 32px 0;
-    margin: 16px auto;
+    margin: 32px 0 0 0;
 
     h1 a {
       font-size: $font-size--large;
@@ -89,6 +89,19 @@
         button svg,
         a svg {
           height: 32px;
+        }
+      }
+    }
+
+    &.is-sticky {
+      h1 a {
+        transform: scale(0.7);
+      }
+      ul {
+        top: -12px;
+        li a svg,
+        li button svg {
+          transform: scale(0.9);
         }
       }
     }

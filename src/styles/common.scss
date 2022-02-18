@@ -21,3 +21,9 @@ body {
 a {
   transition: color 0.1s $easing-bezier-fast;
 }
+
+@include mobile {
+  .__react_component_tooltip {
+    display: none !important;
+  }
+}

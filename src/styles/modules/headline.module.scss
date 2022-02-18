@@ -31,4 +31,24 @@
       }
     }
   }
+
+  @include mobile {
+    .container {
+      margin: 0 32px 64px 32px;
+      p {
+        font-size: $font-size--small;
+        text-align: center;
+        line-height: 1.5em;
+
+        span a {
+          &.futuur-link {
+            text-decoration-color: $color-project-futuur;
+          }
+          &.mude-link {
+            text-decoration-color: $color-project-mude;
+          }
+        }
+      }
+    }
+  }
 }

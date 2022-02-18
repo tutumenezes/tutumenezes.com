@@ -52,7 +52,7 @@ const Header = ({ titlePre = '' }) => {
       </Head>
 
       <h1 className={pathname === '/' ? 'active' : undefined}>
-        <Link href="/">tutumenezes</Link>
+        <Link href="/">tutu menezes</Link>
       </h1>
 
       <ul>
