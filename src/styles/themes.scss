@@ -11,7 +11,7 @@ $border: 'border';
 //Themes
 $themes: (
   light: (
-    bg: $color-background-light,
+    bg: linear-gradient(#ffffff, $color-background-light),
     text: $color-high-emphasis,
     text-secondary: $color-medium-emphasis,
     link: $color-primary,

@@ -104,7 +104,8 @@ async function main() {
                   { property: 'S6_"', visible: true },
                   { property: 'la`A', visible: true },
                   { property: 'a`af', visible: true },
-                  { property: 'ijjk', visible: true },
+                  { property: 'ttmnz', visible: true },
+                  { property: 'tags', visible: true },
                 ],
                 table_wrap: true,
               },
@@ -130,14 +131,16 @@ async function main() {
                 'S6_"': { name: 'Cover', type: 'text' },
                 'la`A': { name: 'Published', type: 'checkbox' },
                 'a`af': { name: 'Date', type: 'date' },
-                ijjk: { name: 'Authors', type: 'person' },
+                ttmnz: { name: 'Authors', type: 'person' },
+                tags: { name: 'Tags', type: 'array' },
               },
               format: {
                 collection_page_properties: [
                   { property: 'S6_"', visible: true },
                   { property: 'la`A', visible: true },
                   { property: 'a`af', visible: true },
-                  { property: 'ijjk', visible: true },
+                  { property: 'ttmnz', visible: true },
+                  { property: 'tags', visible: true },
                 ],
               },
               parent_id: collectionId,
@@ -348,7 +351,7 @@ async function getExistingexistingBlockId() {
   }
   const data = await res.json()
   const id = Object.keys(data ? data.recordMap.block : {}).find(
-    id => id !== pageId
+    (id) => id !== pageId
   )
   return id || uuid()
 }

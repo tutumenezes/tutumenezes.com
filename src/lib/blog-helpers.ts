@@ -4,7 +4,6 @@ export const getBlogLink = (slug: string) => {
 
 export const getDateStr = (date) => {
   return new Date(date).toLocaleString('en-US', {
-    month: 'short',
     year: 'numeric',
   })
 }

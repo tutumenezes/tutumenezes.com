@@ -3,9 +3,12 @@ import Header from '../components/header'
 import Headline from '../components/headline'
 import Image from 'next/image'
 
+import { FiArrowUpRight } from 'react-icons/fi'
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
 import { textBlock } from '../lib/notion/renderers'
-import getNotionUsers from '../lib/notion/getNotionUsers'
+
+import { getPostTags } from '../lib/notion/getPostTags'
+
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import getBlogIndexFutuur from '../lib/notion/getBlogIndexFutuur'
 
@@ -53,76 +56,50 @@ const Index = ({ posts = [], preview }) => {
           <p className={'blogStyles.noPosts'}>There are no posts yet</p>
         )}
 
-        <div className="cases-container mude-cases">
-          {posts.map((post) => {
-            ///////////////////////////////
-            // MUDE LOOP
-            if (post.Project == 'mude') {
-              return (
-                <div className={'blogStyles.postPreview'} key={post.Slug}>
-                  <div>
-                    <h3>
-                      <span className={'blogStyles.titleContainer'}>
-                        {!post.Published && (
-                          <span className={'blogStyles.draftBadge'}>Draft</span>
-                        )}
-                        <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                          <a>{post.Page} →</a>
-                        </Link>
-                      </span>
-                    </h3>
-                    {post.Date && (
-                      <div className="posted">{getDateStr(post.Date)}</div>
-                    )}
-                  </div>
-                  <div className="cover-container">
-                    {post.Cover.length > 0 && (
-                      <Image
-                        className="cover"
-                        src={post.Cover}
-                        width={2250}
-                        height={1390}
-                        layout="responsive"
-                      />
-                    )}
-                  </div>
-                </div>
-              )
-            }
-          })}
-        </div>
-
-        <div className="cases-container futuur-cases">
-          {posts.map((post) => {
-            ///////////////////////////////
-            // FUTUUR LOOP
-            if (post.Project == 'futuur') {
-              return (
-                <div className={'blogStyles.postPreview'} key={post.Slug}>
-                  <h3>
-                    <span className={'blogStyles.titleContainer'}>
-                      {!post.Published && (
-                        <span className={'blogStyles.draftBadge'}>Draft</span>
+        <div className="cases">
+          <div className="case-container mude-cases">
+            {posts.map((post) => {
+              ///////////////////////////////
+              // MUDE LOOP
+              if (post.Project == 'mude') {
+                return (
+                  <div className={'postPreview'} key={post.Slug}>
+                    <div className="content-container">
+                      {post.Date && (
+                        <div className="posted">{getDateStr(post.Date)}</div>
                       )}
-                      <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                        <a>{post.Page} →</a>
-                      </Link>
-                    </span>
-                  </h3>
-                  {post.Date && (
-                    <div className="posted">{getDateStr(post.Date)}</div>
-                  )}
-                  {/* <p>
-                    {(!post.preview || post.preview.length === 0) &&
-                      'No preview available'}
-                    {(post.preview || []).map((block, idx) =>
-                      textBlock(block, true, `${post.Slug}${idx}`)
-                    )}
-                  </p> */}
-                </div>
-              )
-            }
-          })}
+                      <h3>
+                        <span className={'titleContainer'}>
+                          {!post.Published && (
+                            <span className={'draftBadge'}>Draft</span>
+                          )}
+                          <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
+                            <a>
+                              {post.Page} <FiArrowUpRight />
+                            </a>
+                          </Link>
+                        </span>
+                      </h3>
+                      {post.Tags && (
+                        <div className="tags">{getPostTags(post.Tags)} </div>
+                      )}
+                    </div>
+                    <div className="cover-container">
+                      {post.Cover.length > 0 && (
+                        <Image
+                          className="cover"
+                          src={post.Cover}
+                          width={2250}
+                          height={1390}
+                          layout="responsive"
+                        />
+                      )}
+                    </div>
+                  </div>
+                )
+              }
+            })}
+          </div>
         </div>
       </div>
     </>

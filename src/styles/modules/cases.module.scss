@@ -1,0 +1,79 @@
+.cases {
+  .case-container {
+    .postPreview {
+      .content-container {
+        h3 {
+          display: inline-block;
+
+          .titleContainer a {
+            font-size: $font-size--medium;
+            font-family: $font-serif;
+            font-weight: $font-weight--bold;
+            text-transform: lowercase;
+            transition: all 0.2s $easing-bezier-fast;
+            overflow: hidden;
+
+            &::after {
+              content: ' ';
+              display: block;
+              height: 2px;
+              width: 100%;
+              margin-top: 2px;
+
+              @include themed() {
+                background: t($text);
+              }
+            }
+
+            svg {
+              position: relative;
+              width: auto;
+              height: 14px;
+              transition: all 0.2s $easing-bezier-fast;
+            }
+
+            &:hover {
+              opacity: 0.5;
+              svg {
+                transform: scale(1.5);
+              }
+            }
+          }
+        }
+        .tags {
+          margin: 16px auto;
+
+          a {
+            font-family: $font-sans;
+            @include themed() {
+              color: t($text-secondary);
+            }
+
+            font-size: $font-size--small;
+            margin-right: 8px;
+
+            &:hover {
+              opacity: 0.5;
+            }
+          }
+        }
+        .posted {
+          font-family: $font-serif;
+          text-transform: capitalize;
+
+          @include themed() {
+            color: t($text-secondary);
+          }
+
+          font-size: $font-size--very-small;
+          margin: 12px auto;
+        }
+        .cover-container {
+          width: 100px;
+          height: 100px;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
