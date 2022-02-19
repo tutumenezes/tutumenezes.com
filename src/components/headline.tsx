@@ -1,4 +1,5 @@
 import ExtLink from '../components/ext-link'
+import Nav from './nav'
 
 const Headline = () => (
   <div className="headline">
@@ -20,6 +21,7 @@ const Headline = () => (
         </span>
         <span>Passionate about the creative process.</span>
       </p>
+      <Nav />
     </div>
   </div>
 )

@@ -9,10 +9,13 @@ import ThemeToggle from './themetoggle'
 import ReactTooltip from 'react-tooltip'
 import { FiCircle } from 'react-icons/fi'
 
+// import Nav from './nav'
+
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'About', page: '/' },
 ]
 
+//todo: update this image and try to make it dynamic for twitter shares
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 
 const Header = ({ titlePre = '' }) => {
@@ -27,6 +30,14 @@ const Header = ({ titlePre = '' }) => {
       window.removeEventListener('scroll', isSticky)
     }
   })
+
+  //scrool to top when clicking h1
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+  }
 
   const isSticky = (e) => {
     const header = document.querySelector('.header')
@@ -51,51 +62,15 @@ const Header = ({ titlePre = '' }) => {
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
 
-      <h1 className={pathname === '/' ? 'active' : undefined}>
+      <h1
+        id="start"
+        onClick={() => scrollToTop()}
+        className={pathname === '/#start' ? 'active' : undefined}
+      >
         <Link href="/">tutu menezes</Link>
       </h1>
 
-      <ul>
-        {navItems.map(({ label, page, link }) => (
-          <li className="nav-list-item" key={label}>
-            {label == 'About' ? (
-              <>
-                <Link href={page}>
-                  <a
-                    data-tip={label}
-                    className={pathname === page ? 'active' : undefined}
-                  >
-                    <FiCircle />
-                    {theme == 'dark' ? (
-                      <ReactTooltip
-                        place="bottom"
-                        type="light"
-                        effect="solid"
-                      />
-                    ) : (
-                      <ReactTooltip place="bottom" type="dark" effect="solid" />
-                    )}
-                  </a>
-                </Link>
-              </>
-            ) : (
-              <Link href={page}>
-                <a className={pathname === page ? 'active' : undefined}>
-                  {label}
-                  {theme == 'dark' ? (
-                    <ReactTooltip place="bottom" type="light" effect="solid" />
-                  ) : (
-                    <ReactTooltip place="bottom" type="dark" effect="solid" />
-                  )}
-                </a>
-              </Link>
-            )}
-          </li>
-        ))}
-        <li>
-          <ThemeToggle />
-        </li>
-      </ul>
+      {/* <Nav /> */}
     </header>
   )
 }

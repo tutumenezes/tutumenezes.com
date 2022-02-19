@@ -16,24 +16,6 @@
     }
   }
 
-  ul {
-    text-align: center;
-    position: relative;
-    transition: top 0.9s $easing-bezier-fast;
-
-    li {
-      display: inline-block;
-      &:first-child {
-        margin-left: unset;
-      }
-      button svg,
-      a svg {
-        width: auto;
-        transition: all 0.1s $easing-bezier-fast;
-      }
-    }
-  }
-
   &.is-sticky {
     backdrop-filter: blur(3px);
   }
