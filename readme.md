@@ -7,8 +7,8 @@ Meanings it's whole backend is resumed a NOTION page. Many projects inspired thi
 But if you're looking for didatic code examples for NextJS + Notion, the projects below should do the job.
 
 - JJ Kasper [@ijjk](https://github.com/ijjk/notion-blog) (the basis from which this project has been forked)
-- Travis Fischer [@transitive-bullshit](https://github.com/transitive-bullshit/nextjs-notion-starter-kit) (really good - and newer - Notion API Reference)
   — Samuel Kraft [@samuel-kraft](https://github.com/samuelkraft/notion-blog-nextjs)
+- Travis Fischer [@transitive-bullshit](https://github.com/transitive-bullshit/nextjs-notion-starter-kit) (really good - and newer - Notion API Reference)
 
 ## Setup
 
