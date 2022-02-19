@@ -1,24 +1,22 @@
 .cases {
   position: relative;
 
+  .cases-wrapper {
+    position: relative;
+  }
+
   .case-container {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 64px;
+    margin: 0 16px;
 
     .content-list {
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: start;
-
-      max-width: 24rem;
 
       .postPreview {
         display: flex;
         justify-content: space-between;
-
-        margin-top: 32px;
 
         &:first-child {
           margin-top: unset;
@@ -29,29 +27,15 @@
             display: inline-block;
 
             .titleContainer a {
-              font-size: $font-size--medium;
               font-family: $font-serif;
               font-weight: $font-weight--bold;
               text-transform: lowercase;
               transition: all 0.2s $easing-bezier-fast;
               text-decoration: underline;
 
-              &::after {
-                content: ' ';
-                display: none;
-                height: 2px;
-                width: 100%;
-                margin-top: 2px;
-
-                @include themed() {
-                  background: t($text);
-                }
-              }
-
               svg {
                 position: relative;
                 width: auto;
-                height: 14px;
                 transition: all 0.2s $easing-bezier-fast;
               }
 
@@ -67,12 +51,9 @@
             }
           }
           .tags {
-            margin-top: 12px;
-
             a {
               font-family: $font-sans;
-              font-size: $font-size--small;
-              margin-right: 8px;
+
               @include themed() {
                 color: t($text-secondary);
               }
@@ -86,32 +67,16 @@
           .posted {
             font-family: $font-serif;
             text-transform: capitalize;
-            font-size: $font-size--very-small;
-            margin: 8px auto;
+
             @include themed() {
               color: t($text-secondary);
             }
           }
         }
-
         .cover-container {
-          width: 24rem;
-          height: 100%;
-
-          position: absolute;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          margin: auto;
+          background: transparent;
         }
       }
-    }
-
-    .bg-container {
-      width: 24rem;
-      height: auto;
-      padding-top: 56.25%;
-      margin: 0;
     }
 
     &.mude-cases .bg-container {
@@ -119,6 +84,132 @@
     }
     &.futuur-cases .bg-container {
       background-color: $color-project-futuur;
+    }
+  }
+
+  @include desktop {
+    .case-container {
+      justify-content: space-between;
+      margin-bottom: 64px;
+
+      .content-list {
+        flex-direction: column;
+        max-width: 24rem;
+
+        .postPreview {
+          margin-bottom: 32px;
+
+          .content-container {
+            h3 {
+              .titleContainer a {
+                font-size: $font-size--medium;
+                letter-spacing: 0.05em;
+                svg {
+                  height: 14px;
+                }
+              }
+            }
+            .tags {
+              margin-top: 12px;
+              a {
+                font-size: $font-size--small;
+                margin-right: 8px;
+              }
+            }
+            .posted {
+              font-size: $font-size--very-small;
+              margin: 8px auto;
+            }
+          }
+
+          .cover-container {
+            width: 24rem;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+          }
+        }
+      }
+
+      .bg-container {
+        width: 24rem;
+        height: auto;
+        padding-top: 56.25%;
+        margin: 0;
+      }
+    }
+  }
+
+  @include mobile {
+    .case-container {
+      width: 100%;
+      margin: 0 0 128px 0;
+
+      &:before {
+        display: block;
+        content: ' ';
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 8px;
+        height: 100%;
+        margin: unset;
+        padding-top: 48px;
+      }
+
+      &.mude-cases::before {
+        background-color: $color-project-mude;
+      }
+      &.futuur-cases::before {
+        background-color: $color-project-futuur;
+      }
+
+      .content-list {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        margin: auto;
+        margin-top: 32px;
+
+        .postPreview {
+          margin-top: 32px;
+
+          &:first-child {
+            margin-top: unset;
+          }
+
+          .content-container {
+            h3 {
+              .titleContainer a {
+                font-size: $font-size--medium;
+                letter-spacing: 0.05em;
+                svg {
+                  height: 14px;
+                }
+              }
+            }
+            .tags {
+              margin-top: 12px;
+              a {
+                font-size: $font-size--small;
+                margin-right: 8px;
+              }
+            }
+            .posted {
+              font-size: $font-size--very-small;
+              margin: 8px auto;
+            }
+          }
+          .cover-container {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

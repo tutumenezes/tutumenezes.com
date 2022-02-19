@@ -29,8 +29,8 @@
   @include desktop {
     .container {
       justify-content: space-between;
+      margin: 128px 16px;
 
-      margin: 128px auto;
       p {
         font-size: $font-size--medium;
         line-height: 1.5em;

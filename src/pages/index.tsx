@@ -57,108 +57,116 @@ const Index = ({ posts = [], preview }) => {
         )}
 
         <div className="cases">
-          <div className="case-container mude-cases">
-            <div className="content-list">
-              {posts.map((post) => {
-                ///////////////////////////////
-                // MUDE LOOP
-                if (post.Project == 'mude') {
-                  return (
-                    <div className={'postPreview'} key={post.Slug}>
-                      <div className="content-container">
-                        {/* {post.Date && (
-                          <div className="posted">{getDateStr(post.Date)}</div>
-                        )} */}
-                        <h3>
-                          <span className={'titleContainer'}>
-                            {!post.Published && (
-                              <span className={'draftBadge'}>Draft</span>
-                            )}
-                            <Link
-                              href="/blog/[slug]"
-                              as={getBlogLink(post.Slug)}
-                            >
-                              <a>
-                                {post.Page} <FiArrowUpRight />
-                              </a>
-                            </Link>
-                          </span>
-                        </h3>
-                        {post.Tags && (
-                          <div className="tags">{getPostTags(post.Tags)} </div>
-                        )}
-                      </div>
-                      <div className="cover-container">
-                        <div className="image-main"></div>
+          <div className="cases-wrapper">
+            <div className="case-container mude-cases">
+              <div className="content-list">
+                {posts.map((post) => {
+                  ///////////////////////////////
+                  // MUDE LOOP
+                  if (post.Project == 'mude') {
+                    return (
+                      <div className={'postPreview'} key={post.Slug}>
+                        <div className="content-container">
+                          {/* {post.Date && (
+                            <div className="posted">{getDateStr(post.Date)}</div>
+                          )} */}
+                          <h3>
+                            <span className={'titleContainer'}>
+                              {!post.Published && (
+                                <span className={'draftBadge'}>Draft</span>
+                              )}
+                              <Link
+                                href="/blog/[slug]"
+                                as={getBlogLink(post.Slug)}
+                              >
+                                <a>
+                                  {post.Page} <FiArrowUpRight />
+                                </a>
+                              </Link>
+                            </span>
+                          </h3>
+                          {post.Tags && (
+                            <div className="tags">
+                              {getPostTags(post.Tags)}{' '}
+                            </div>
+                          )}
+                        </div>
+                        <div className="cover-container">
+                          <div className="image-main"></div>
 
-                        {/* {post.Cover.length > 0 && (
-                          <Image
-                            className="cover"
-                            src={post.Cover}
-                            width={2250}
-                            height={1390}
-                            layout="responsive"
-                          />
-                        )} */}
+                          {/* {post.Cover.length > 0 && (
+                            <Image
+                              className="cover"
+                              src={post.Cover}
+                              width={2250}
+                              height={1390}
+                              layout="responsive"
+                            />
+                          )} */}
+                        </div>
                       </div>
-                    </div>
-                  )
-                }
-              })}
+                    )
+                  }
+                })}
+              </div>
+              <div className="bg-container"></div>
             </div>
-            <div className="bg-container"></div>
           </div>
 
-          <div className="case-container futuur-cases">
-            <div className="content-list">
-              {posts.map((post) => {
-                ///////////////////////////////
-                // FUTUUR LOOP
-                if (post.Project == 'futuur') {
-                  return (
-                    <div className={'postPreview'} key={post.Slug}>
-                      <div className="content-container">
-                        {/* {post.Date && (
-                          <div className="posted">{getDateStr(post.Date)}</div>
-                        )} */}
-                        <h3>
-                          <span className={'titleContainer'}>
-                            {!post.Published && (
-                              <span className={'draftBadge'}>Draft</span>
-                            )}
-                            <Link
-                              href="/blog/[slug]"
-                              as={getBlogLink(post.Slug)}
-                            >
-                              <a>
-                                {post.Page} <FiArrowUpRight />
-                              </a>
-                            </Link>
-                          </span>
-                        </h3>
-                        {post.Tags && (
-                          <div className="tags">{getPostTags(post.Tags)} </div>
-                        )}
-                      </div>
-                      <div className="cover-container">
-                        <div className="image-main"></div>
+          <div className="cases-wrapper">
+            <div className="case-container futuur-cases">
+              <div className="content-list">
+                {posts.map((post) => {
+                  ///////////////////////////////
+                  // FUTUUR LOOP
+                  if (post.Project == 'futuur') {
+                    return (
+                      <div className={'postPreview'} key={post.Slug}>
+                        <div className="content-container">
+                          {/* {post.Date && (
+                            <div className="posted">{getDateStr(post.Date)}</div>
+                          )} */}
+                          <h3>
+                            <span className={'titleContainer'}>
+                              {!post.Published && (
+                                <span className={'draftBadge'}>Draft</span>
+                              )}
+                              <Link
+                                href="/blog/[slug]"
+                                as={getBlogLink(post.Slug)}
+                              >
+                                <a>
+                                  {post.Page} <FiArrowUpRight />
+                                </a>
+                              </Link>
+                            </span>
+                          </h3>
+                          {post.Tags && (
+                            <div className="tags">
+                              {getPostTags(post.Tags)}{' '}
+                            </div>
+                          )}
+                        </div>
+                        <div className="cover-container">
+                          <div className="image-main"></div>
 
-                        {/* {post.Cover.length > 0 && (
-                          <Image
-                            className="cover"
-                            src={post.Cover}
-                            width={2250}
-                            height={1390}
-                            layout="responsive"
-                          />
-                        )} */}
+                          {/* {post.Cover.length > 0 && (
+                            <Image
+                              className="cover"
+                              src={post.Cover}
+                              width={2250}
+                              height={1390}
+                              layout="responsive"
+                            />
+                          )} */}
+                        </div>
                       </div>
-                    </div>
-                  )
-                }
-              })}
+                    )
+                  }
+                })}
+              </div>
+              <div className="bg-container"></div>
             </div>
-            <div className="bg-container"></div>
           </div>
         </div>
       </div>
