@@ -9,8 +9,8 @@ import { textBlock } from '../../lib/notion/renderers'
 import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
-import getNotionUsers from '../../lib/notion/getNotionUsers'
 import { getBlogLink, getDateStr } from '../../lib/blog-helpers'
+import Breadcrumbs from 'nextjs-breadcrumbs'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -38,7 +38,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
     const { type, properties } = value
     if (type == 'tweet') {
       const src = properties.source[0][0]
-      // parse id from https://twitter.com/_ijjk/status/TWEET_ID format
+      // parse id from https://twitter.com/tutumenezes/status/TWEET_ID format
       const tweetId = src.split('/')[5].split('?')[0]
       if (!tweetId) continue
 
@@ -54,9 +54,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
       }
     }
   }
-
-  const { users } = await getNotionUsers(post.Authors || [])
-  post.Authors = Object.keys(users).map((id) => users[id].full_name)
 
   return {
     props: {
@@ -138,6 +135,7 @@ const RenderPost = ({ post, redirect, preview }) => {
   return (
     <>
       <Header titlePre={post.Page} />
+
       {preview && (
         <div>
           <div>
@@ -149,21 +147,16 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
-      <div className={'blogStyles.post'}>
+      <div className={'blog-post'}>
         <h1>{post.Page || ''}</h1>
-        {post.Authors.length > 0 && (
-          <div className="authors">By: {post.Authors.join(' ')}</div>
-        )}
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
         )}
-
+        <Breadcrumbs useDefaultStyle rootLabel="Home" />;
         <hr />
-
         {(!post.content || post.content.length === 0) && (
           <p>This post has no content</p>
         )}
-
         {(post.content || []).map((block, blockIdx) => {
           const { value } = block
           const { type, properties, id, parent_id } = value
@@ -230,43 +223,30 @@ const RenderPost = ({ post, redirect, preview }) => {
           const renderBookmark = ({ link, title, description, format }) => {
             const { bookmark_icon: icon, bookmark_cover: cover } = format
             toRender.push(
-              <div className={'blogStyles.bookmark'}>
+              <div className={'bookmark'}>
                 <div>
                   <div style={{ display: 'flex' }}>
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={'blogStyles.bookmarkContentsWrapper'}
+                      className={'bookmarkContentsWrapper'}
                       href={link}
                     >
-                      <div
-                        role="button"
-                        className={'blogStyles.bookmarkContents'}
-                      >
-                        <div className={'blogStyles.bookmarkInfo'}>
-                          <div className={'blogStyles.bookmarkTitle'}>
-                            {title}
-                          </div>
-                          <div className={'blogStyles.bookmarkDescription'}>
+                      <div role="button" className={'bookmarkContents'}>
+                        <div className={'bookmarkInfo'}>
+                          <div className={'bookmarkTitle'}>{title}</div>
+                          <div className={'bookmarkDescription'}>
                             {description}
                           </div>
-                          <div className={'blogStyles.bookmarkLinkWrapper'}>
-                            <img
-                              src={icon}
-                              className={'blogStyles.bookmarkLinkIcon'}
-                            />
-                            <div className={'blogStyles.bookmarkLink'}>
-                              {link}
-                            </div>
+                          <div className={'bookmarkLinkWrapper'}>
+                            <img src={icon} className={'bookmarkLinkIcon'} />
+                            <div className={'bookmarkLink'}>{link}</div>
                           </div>
                         </div>
-                        <div className={'blogStyles.bookmarkCoverWrapper1'}>
-                          <div className={'blogStyles.bookmarkCoverWrapper2'}>
-                            <div className={'blogStyles.bookmarkCoverWrapper3'}>
-                              <img
-                                src={cover}
-                                className={'blogStyles.bookmarkCover'}
-                              />
+                        <div className={'bookmarkCoverWrapper1'}>
+                          <div className={'bookmarkCoverWrapper2'}>
+                            <div className={'bookmarkCoverWrapper3'}>
+                              <img src={cover} className={'bookmarkCover'} />
                             </div>
                           </div>
                         </div>
