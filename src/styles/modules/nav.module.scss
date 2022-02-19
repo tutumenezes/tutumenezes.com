@@ -2,12 +2,17 @@
   ul {
     text-align: center;
     position: relative;
-    transition: top 0.9s $easing-bezier-fast;
 
     li {
       display: inline-block;
+
+      transition: all 0.2s $easing-bezier-fast;
+
       &:first-child {
         margin-left: unset;
+      }
+      &:hover {
+        opacity: 0.5;
       }
       button svg,
       a svg {
