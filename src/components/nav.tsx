@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 
 import ThemeToggle from './themetoggle'
 import ReactTooltip from 'react-tooltip'
-import { FiCircle } from 'react-icons/fi'
+import { FiFeather } from 'react-icons/fi'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'About', page: '/' },
@@ -28,7 +28,7 @@ const Nav = ({ titlePre = '' }) => {
                     data-tip={label}
                     className={pathname === page ? 'active' : undefined}
                   >
-                    <FiCircle />
+                    <FiFeather />
                     {theme == 'dark' ? (
                       <ReactTooltip
                         place="bottom"

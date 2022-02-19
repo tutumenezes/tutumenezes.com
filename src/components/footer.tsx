@@ -1,21 +1,20 @@
-import Linkedin from './svgs/linkedin'
-import Github from './svgs/github'
+import { FiSend } from 'react-icons/fi'
+import { FiGithub } from 'react-icons/fi'
+import { FiLinkedin } from 'react-icons/fi'
 import { FiTwitter } from 'react-icons/fi'
 
 const twitter = 'tutumenezes'
 const github = 'tutumenezes'
 const linkedin = 'tutumenezes'
+const email = 'tutumenezes@hub9.co'
 
 export default function Footer() {
   return (
     <>
       <footer className="footer">
-        <div className="footer-container">
+        <div className="container">
           <div className="copyright">
-            Built in TypeScript, NextJs and Notion by tutumenezes in 2022
-          </div>
-          <div className="settings">
-            <a className="toggleDarkMode" title="Toggle dark mode"></a>
+            Written and Built by tutumenezes in 2022 • Hit me up!
           </div>
           <div className="social">
             {twitter && (
@@ -38,7 +37,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="social-icon" />
+                <FiGithub className="social-icon" />
               </a>
             )}
 
@@ -50,7 +49,19 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="social-icon" />
+                <FiLinkedin className="social-icon" />
+              </a>
+            )}
+
+            {email && (
+              <a
+                className="email"
+                href={`mailto:${email}`}
+                title={`Email ${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FiSend className="social-icon" />
               </a>
             )}
           </div>
