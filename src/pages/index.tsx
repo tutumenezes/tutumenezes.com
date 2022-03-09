@@ -10,13 +10,9 @@ import { textBlock } from '../lib/notion/renderers'
 import { getPostTags } from '../lib/notion/getPostTags'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import getBlogIndexFutuur from '../lib/notion/getBlogIndexFutuur'
 
 export async function getStaticProps({ preview }) {
-  const mudeTable = await getBlogIndex()
-  const futuurTable = await getBlogIndexFutuur()
-
-  const postsTable: any = { ...mudeTable, ...futuurTable }
+  const postsTable = await getBlogIndex()
 
   const posts: any[] = Object.keys(postsTable)
     .map((slug) => {
