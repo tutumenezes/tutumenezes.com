@@ -3,7 +3,6 @@ import getPageData from '../../lib/notion/getPageData'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-
   if (typeof req.query.token !== 'string') {
     return res.status(401).json({ message: 'invalid token' })
   }
@@ -18,6 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   res.setPreviewData({})
-  res.writeHead(307, { Location: `/blog` })
+  res.writeHead(307, { Location: `/` })
   res.end()
 }
