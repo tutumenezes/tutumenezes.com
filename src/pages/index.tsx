@@ -5,7 +5,6 @@ import Image from 'next/image'
 
 import { FiArrowUpRight } from 'react-icons/fi'
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
-import { textBlock } from '../lib/notion/renderers'
 
 import { getPostTags } from '../lib/notion/getPostTags'
 
@@ -126,7 +125,7 @@ const Index = ({ posts = [], preview }) => {
                                 <span className={'draftBadge'}>Draft</span>
                               )}
                               <Link
-                                href="/blog/[slug]"
+                                href={getBlogLink(post.Slug)}
                                 as={getBlogLink(post.Slug)}
                               >
                                 <a>
