@@ -5,8 +5,6 @@ import Headline from '../components/headline'
 import { FiArrowUpRight } from 'react-icons/fi'
 import { getBlogLink, postIsPublished } from '../lib/blog-helpers'
 
-import { getPostTags } from '../lib/notion/getPostTags'
-
 import getBlogIndex from '../lib/notion/getBlogIndex'
 
 export async function getStaticProps({ preview }) {
@@ -78,11 +76,7 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          {post.Tags && (
-                            <div className="tags">
-                              {getPostTags(post.Tags)}{' '}
-                            </div>
-                          )}
+                          {post.Type && <div className="type">{post.Type}</div>}
                         </div>
                         <div className="cover-container">
                           {post.Cover.length > 0 && (
@@ -133,11 +127,7 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          {post.Tags && (
-                            <div className="tags">
-                              {getPostTags(post.Tags)}{' '}
-                            </div>
-                          )}
+                          {post.Type && <div className="type">{post.Type}</div>}
                         </div>
                         <div className="cover-container">
                           {post.Cover.length > 0 && (
@@ -185,6 +175,7 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
+                          {post.Type && <div className="type">{post.Type}</div>}
                         </div>
                       </div>
                     )

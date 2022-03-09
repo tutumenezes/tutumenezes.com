@@ -11,6 +11,7 @@ import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
 import Breadcrumbs from 'nextjs-breadcrumbs'
+import { FiArrowUpRight } from 'react-icons/fi'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -201,6 +202,7 @@ const RenderPost = ({ post, redirect, preview }) => {
           </div>
         </div>
       )}
+
       <div className={'blog-post'}>
         <h1>{post.Page || ''}</h1>
         {post.Date && (
@@ -514,6 +516,46 @@ const RenderPost = ({ post, redirect, preview }) => {
           }
           return toRender
         })}
+      </div>
+
+      <div className="related-posts">
+        <h3 className="relatedPosts-title">Keep Reading</h3>
+        {post.prevPost && (
+          <div className="prevPost">
+            <span className={'titleContainer'}>
+              <Link
+                href={getBlogLink(post.prevPost.Slug)}
+                as={getBlogLink(post.prevPost.Slug)}
+              >
+                <a>
+                  {post.prevPost.Page} <FiArrowUpRight />
+                </a>
+              </Link>
+            </span>
+
+            {post.prevPost.Type && (
+              <div className="type">{post.prevPost.Type}</div>
+            )}
+          </div>
+        )}
+        {post.nextPost && (
+          <div className="nextPost">
+            <span className={'titleContainer'}>
+              <Link
+                href={getBlogLink(post.nextPost.Slug)}
+                as={getBlogLink(post.nextPost.Slug)}
+              >
+                <a>
+                  {post.nextPost.Page} <FiArrowUpRight />
+                </a>
+              </Link>
+            </span>
+
+            {post.nextPost.Type && (
+              <div className="type">{post.nextPost.Type}</div>
+            )}
+          </div>
+        )}
       </div>
     </>
   )
