@@ -39,6 +39,8 @@ export async function getStaticProps({ preview }) {
 }
 
 const Index = ({ posts = [], preview }) => {
+  const Comp = 'img'
+
   return (
     <>
       {console.log(posts)}
@@ -63,16 +65,13 @@ const Index = ({ posts = [], preview }) => {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
-                          {/* {post.Date && (
-                            <div className="posted">{getDateStr(post.Date)}</div>
-                          )} */}
                           <h3>
                             <span className={'titleContainer'}>
                               {!post.Published && (
                                 <span className={'draftBadge'}>Draft</span>
                               )}
                               <Link
-                                href="/blog/[slug]"
+                                href={getBlogLink(post.Slug)}
                                 as={getBlogLink(post.Slug)}
                               >
                                 <a>
@@ -88,17 +87,16 @@ const Index = ({ posts = [], preview }) => {
                           )}
                         </div>
                         <div className="cover-container">
-                          <div className="image-main"></div>
-
-                          {/* {post.Cover.length > 0 && (
-                            <Image
+                          {post.Cover.length > 0 && (
+                            <Comp
+                              key={post.id}
+                              src={`/api/asset?assetUrl=${encodeURIComponent(
+                                post.Cover as any
+                              )}&blockId=${post.id}`}
+                              alt="testing this image from Notion"
                               className="cover"
-                              src={post.Cover}
-                              width={2250}
-                              height={1390}
-                              layout="responsive"
                             />
-                          )} */}
+                          )}
                         </div>
                       </div>
                     )
@@ -144,17 +142,16 @@ const Index = ({ posts = [], preview }) => {
                           )}
                         </div>
                         <div className="cover-container">
-                          <div className="image-main"></div>
-
-                          {/* {post.Cover.length > 0 && (
-                            <Image
+                          {post.Cover.length > 0 && (
+                            <Comp
+                              key={post.id}
+                              src={`/api/asset?assetUrl=${encodeURIComponent(
+                                post.Cover as any
+                              )}&blockId=${post.id}`}
+                              alt="testing this image from Notion"
                               className="cover"
-                              src={post.Cover}
-                              width={2250}
-                              height={1390}
-                              layout="responsive"
                             />
-                          )} */}
+                          )}
                         </div>
                       </div>
                     )
@@ -162,6 +159,40 @@ const Index = ({ posts = [], preview }) => {
                 })}
               </div>
               <div className="bg-container"></div>
+            </div>
+          </div>
+
+          <div className="cases-wrapper">
+            <div className="case-container otherWork-cases">
+              <div className="content-list">
+                {posts.map((post) => {
+                  ///////////////////////////////
+                  // OTHER WORK LOOP
+                  if (post.Project == 'other') {
+                    return (
+                      <div className={'postPreview'} key={post.Slug}>
+                        <div className="content-container">
+                          <h3>
+                            <span className={'titleContainer'}>
+                              {!post.Published && (
+                                <span className={'draftBadge'}>Draft</span>
+                              )}
+                              <Link
+                                href={getBlogLink(post.Slug)}
+                                as={getBlogLink(post.Slug)}
+                              >
+                                <a>
+                                  {post.Page} <FiArrowUpRight />
+                                </a>
+                              </Link>
+                            </span>
+                          </h3>
+                        </div>
+                      </div>
+                    )
+                  }
+                })}
+              </div>
             </div>
           </div>
         </div>
