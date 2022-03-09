@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import Header from '../components/header'
 import Headline from '../components/headline'
-import Image from 'next/image'
 
 import { FiArrowUpRight } from 'react-icons/fi'
-import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
+import { getBlogLink, postIsPublished } from '../lib/blog-helpers'
 
 import { getPostTags } from '../lib/notion/getPostTags'
 

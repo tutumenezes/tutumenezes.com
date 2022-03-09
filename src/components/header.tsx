@@ -67,7 +67,9 @@ const Header = ({ titlePre = '' }) => {
         onClick={() => scrollToTop()}
         className={pathname === '/#start' ? 'active' : undefined}
       >
-        <Link href="/">tutu menezes</Link>
+        <Link href="/">
+          <a>tutu menezes</a>
+        </Link>
       </h1>
 
       {/* <Nav /> */}

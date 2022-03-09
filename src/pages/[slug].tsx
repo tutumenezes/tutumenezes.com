@@ -9,7 +9,7 @@ import { textBlock } from '../lib/notion/renderers'
 import getPageData from '../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { getBlogLink, getDateStr } from '../lib/blog-helpers'
+import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
 import Breadcrumbs from 'nextjs-breadcrumbs'
 
 // Get the data for each blog post
@@ -17,6 +17,13 @@ export async function getStaticProps({ params: { slug }, preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
   const post = postsTable[slug]
+
+  // Return 404 custom page if the post doesn't exist
+  if (!post) {
+    return {
+      notFound: true,
+    }
+  }
 
   // if we can't find the post or if it is unpublished and
   // viewed without preview mode then we just redirect to "/"
@@ -30,8 +37,54 @@ export async function getStaticProps({ params: { slug }, preview }) {
       unstable_revalidate: 5,
     }
   }
+
   const postData = await getPageData(post.id)
   post.content = postData.blocks
+
+  //carregar todos os posts (ver se já não está carregando pra não rodar 2x)
+  //pegar post atual
+  //procurar o index-of do post atual
+  //pegar o anterior e o próximo
+  //tratar se for o primeiro post
+  //tratar se for o ultimo post
+
+  // Get Next and Previous Posts to print at the bottom of the page
+  const posts: any[] = Object.keys(postsTable)
+    .map((slug) => {
+      const post = postsTable[slug]
+      // remove draft posts in production
+      if (!preview && !postIsPublished(post)) {
+        return null
+      }
+      return post
+    })
+    .filter(Boolean)
+
+  let postIndex = 0
+
+  for (let i = 0; i < posts.length; i++) {
+    if (posts[i].Slug === slug) {
+      postIndex = i
+      break
+    }
+  }
+
+  let nextPostIndex = postIndex + 1
+  let prevPostIndex = postIndex - 1
+
+  if (postIndex === 0) {
+    prevPostIndex = posts.length - 1
+  }
+
+  if (postIndex === posts.length - 1) {
+    nextPostIndex = 0
+  }
+
+  post.prevPost = posts[prevPostIndex]
+  delete post.prevPost.content
+
+  post.nextPost = posts[nextPostIndex]
+  delete post.nextPost.content
 
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
@@ -69,6 +122,7 @@ export async function getStaticPaths() {
   const postsTable = await getBlogIndex()
   // we fallback for any unpublished posts to save build time
   // for actually published ones
+
   return {
     paths: Object.keys(postsTable)
       .filter((post) => postsTable[post].Published === 'Yes')
@@ -152,7 +206,12 @@ const RenderPost = ({ post, redirect, preview }) => {
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
         )}
-        <Breadcrumbs useDefaultStyle rootLabel="Home" />;
+        <Breadcrumbs
+          containerClassName={'blogBreadcrumb'}
+          activeItemClassName={'activeItem'}
+          omitIndexList={[1]}
+        />
+        ;
         <hr />
         {(!post.content || post.content.length === 0) && (
           <p>This post has no content</p>
