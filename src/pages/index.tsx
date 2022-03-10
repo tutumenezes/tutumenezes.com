@@ -3,7 +3,11 @@ import Header from '../components/header'
 import Headline from '../components/headline'
 
 import { FiArrowUpRight } from 'react-icons/fi'
-import { getBlogLink, postIsPublished } from '../lib/blog-helpers'
+import {
+  getBlogLink,
+  getCategoryLink,
+  postIsPublished,
+} from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
 
@@ -76,7 +80,17 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          {post.Type && <div className="type">{post.Type}</div>}
+                          <Link
+                            href={getCategoryLink(post.Type)}
+                            as={getCategoryLink(post.Type)}
+                          >
+                            <a>
+                              #
+                              {post.Type && (
+                                <div className="type">{post.Type}</div>
+                              )}
+                            </a>
+                          </Link>
                         </div>
                         <div className="cover-container">
                           {post.Cover.length > 0 && (
@@ -127,7 +141,17 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          {post.Type && <div className="type">{post.Type}</div>}
+                          <Link
+                            href={getCategoryLink(post.Type)}
+                            as={getCategoryLink(post.Type)}
+                          >
+                            <a>
+                              #
+                              {post.Type && (
+                                <div className="type">{post.Type}</div>
+                              )}
+                            </a>
+                          </Link>
                         </div>
                         <div className="cover-container">
                           {post.Cover.length > 0 && (
@@ -175,7 +199,17 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          {post.Type && <div className="type">{post.Type}</div>}
+                          <Link
+                            href={getCategoryLink(post.Type)}
+                            as={getCategoryLink(post.Type)}
+                          >
+                            <a>
+                              #
+                              {post.Type && (
+                                <div className="type">{post.Type}</div>
+                              )}
+                            </a>
+                          </Link>
                         </div>
                       </div>
                     )

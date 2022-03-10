@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Header from '../../components/header'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import {
   getBlogLink,
@@ -8,23 +7,21 @@ import {
   onlyUnique,
   postIsPublished,
 } from '../../lib/blog-helpers'
-import { textBlock } from '../../lib/notion/renderers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { useEffect } from 'react'
 import Breadcrumbs from 'nextjs-breadcrumbs'
 
-export async function getStaticProps({ preview }) {
+export async function getStaticProps({ params: { category }, preview }) {
   //TODO: get context from URL and then filter here instead at client-side
 
   const postsTable = await getBlogIndex()
 
   const posts: any[] = Object.keys(postsTable)
-    .map((slug) => {
-      const post = postsTable[slug]
+    .map((category) => {
+      const post = postsTable[category]
 
-      post.Tags = post.Tags || []
+      post.Type = post.Type || []
 
-      // remove draft posts in production
       if (!preview && !postIsPublished(post)) {
         return null
       }
@@ -33,17 +30,28 @@ export async function getStaticProps({ preview }) {
     })
     .filter(Boolean)
 
-  // TODO: se não houver essa tag na api retorna 404
-  // return {notFound: true}
+  const alltypes: any[] = Object.keys(posts)
+    .map((category) => {
+      const type = posts[category].Type
 
-  console.log(posts)
+      return type
+    })
+    .filter(Boolean)
 
-  return {
-    props: {
-      preview: preview || false,
-      posts,
-    },
-    revalidate: 10,
+  const types = [].concat.apply([], alltypes).filter(onlyUnique).sort()
+
+  if (types.indexOf(category) == -1) {
+    return {
+      notFound: true,
+    }
+  } else {
+    return {
+      props: {
+        preview: preview || false,
+        posts,
+      },
+      revalidate: 10,
+    }
   }
 }
 
@@ -52,30 +60,22 @@ export async function getStaticPaths() {
   // we fallback for any unpublished posts to save build time
   // for actually published ones
 
-  const posts: any[] = Object.keys(postsTable)
-    .map((slug) => {
-      const post = postsTable[slug]
+  const types: any[] = Object.keys(postsTable)
+    .map((category) => {
+      const type = postsTable[category].Type
 
-      post.Tags = post.Tags || []
-
-      return post
+      return type
     })
     .filter(Boolean)
 
-  const alltags: any[] = Object.keys(posts)
-    .map((slug) => {
-      const tag = posts[slug].Tags
+  const paths = []
 
-      return tag
-    })
-    .filter(Boolean)
-
-  const tags = [].concat.apply([], alltags).filter(onlyUnique)
-
-  const paths = tags.map((slug) => getCategoryLink(slug))
+  types.forEach((id) => {
+    paths.push(getCategoryLink(id))
+  })
 
   return {
-    paths: paths,
+    paths: paths.filter(onlyUnique),
     fallback: true,
   }
 }
@@ -97,8 +97,6 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
   if (router.isFallback) {
     return <div>Loading...</div>
   }
-
-  // console.log(posts)
 
   return (
     <>
@@ -134,7 +132,7 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
         )}
         <div className="categoryPostList">
           {posts.map((post) => {
-            if (post.Type.IndexOf(router.query.category) > -1) {
+            if (post.Type.indexOf(router.query.category) > -1) {
               return (
                 <Link href={getBlogLink(post.Slug)} as={getBlogLink(post.Slug)}>
                   <div className="categoryPostEntry">

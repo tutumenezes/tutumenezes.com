@@ -42,13 +42,6 @@ export async function getStaticProps({ params: { slug }, preview }) {
   const postData = await getPageData(post.id)
   post.content = postData.blocks
 
-  //carregar todos os posts (ver se já não está carregando pra não rodar 2x)
-  //pegar post atual
-  //procurar o index-of do post atual
-  //pegar o anterior e o próximo
-  //tratar se for o primeiro post
-  //tratar se for o ultimo post
-
   // Get Next and Previous Posts to print at the bottom of the page
   const posts: any[] = Object.keys(postsTable)
     .map((slug) => {
@@ -87,6 +80,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
   post.nextPost = posts[nextPostIndex]
   delete post.nextPost.content
 
+  //Get Post Blocks
   for (let i = 0; i < postData.blocks.length; i++) {
     const { value } = postData.blocks[i]
     const { type, properties } = value
@@ -124,10 +118,12 @@ export async function getStaticPaths() {
   // we fallback for any unpublished posts to save build time
   // for actually published ones
 
+  const paths = Object.keys(postsTable)
+    .filter((post) => postsTable[post].Published === 'Yes')
+    .map((slug) => getBlogLink(slug))
+
   return {
-    paths: Object.keys(postsTable)
-      .filter((post) => postsTable[post].Published === 'Yes')
-      .map((slug) => getBlogLink(slug)),
+    paths: paths,
     fallback: true,
   }
 }

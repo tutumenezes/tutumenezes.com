@@ -81,7 +81,11 @@ const Types = ({ types = [], preview }) => {
         <div className="typesList">
           {types.map((type) => {
             return (
-              <Link href={getCategoryLink(type)} as={getCategoryLink(type)}>
+              <Link
+                key={type}
+                href={getCategoryLink(type)}
+                as={getCategoryLink(type)}
+              >
                 <a href={getCategoryLink(type)} className="typeItem">
                   <span>#</span>
                   {type}

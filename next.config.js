@@ -46,6 +46,13 @@ module.exports = {
     domains: ['s3.us-west-2.amazonaws.com'],
   },
 
+  webpack5: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false }
+
+    return config
+  },
+
   webpack(cfg, { dev, isServer }) {
     // only compile build-rss in production server build
     if (dev || !isServer) return cfg
