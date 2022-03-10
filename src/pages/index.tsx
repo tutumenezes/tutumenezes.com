@@ -99,7 +99,7 @@ const Index = ({ posts = [], preview }) => {
                               src={`/api/asset?assetUrl=${encodeURIComponent(
                                 post.Cover as any
                               )}&blockId=${post.id}`}
-                              alt="testing this image from Notion"
+                              alt={post.Alt}
                               className="cover"
                             />
                           )}
@@ -160,7 +160,7 @@ const Index = ({ posts = [], preview }) => {
                               src={`/api/asset?assetUrl=${encodeURIComponent(
                                 post.Cover as any
                               )}&blockId=${post.id}`}
-                              alt="testing this image from Notion"
+                              alt={post.Alt}
                               className="cover"
                             />
                           )}
