@@ -10,6 +10,7 @@ import {
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { useEffect } from 'react'
 import Breadcrumbs from 'nextjs-breadcrumbs'
+import Loading from '../../components/Loading'
 
 export async function getStaticProps({ params: { category }, preview }) {
   //TODO: get context from URL and then filter here instead at client-side
@@ -95,7 +96,11 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
   if (router.isFallback) {
-    return <div>Loading...</div>
+    return (
+      <div>
+        <Loading />
+      </div>
+    )
   }
 
   return (

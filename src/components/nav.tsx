@@ -8,12 +8,11 @@ import ReactTooltip from 'react-tooltip'
 import { FiFeather } from 'react-icons/fi'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
-  { label: 'About', page: '/' },
+  { label: 'About', page: '/about' },
 ]
 
 const Nav = ({ titlePre = '' }) => {
   const { pathname } = useRouter()
-
   const { theme } = useTheme()
 
   return (

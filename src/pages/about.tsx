@@ -1,85 +1,25 @@
-import Link from 'next/link'
+import ExtLink from '../components/ext-link'
 import fetch from 'node-fetch'
-import { useRouter } from 'next/router'
 import Heading from '../components/heading'
-import Header from '../components/header'
 import components from '../components/dynamic'
+import getBlogIndex from '../lib/notion/getBlogIndex'
 import ReactJSXParser from '@zeit/react-jsx-parser'
 import { textBlock } from '../lib/notion/renderers'
+import Header from '../components/header'
+import HeadlineAbout from '../components/headlineAbout'
+import profilePic from '../../public/about-tutumenezes-image.webp'
+import { postIsPublished } from '../lib/blog-helpers'
 import getPageData from '../lib/notion/getPageData'
+import { useRouter } from 'next/router'
 import React, { CSSProperties, useEffect } from 'react'
-import getBlogIndex from '../lib/notion/getBlogIndex'
-import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
-import Breadcrumbs from 'nextjs-breadcrumbs'
-import { FiArrowUpRight } from 'react-icons/fi'
 import Loading from '../components/Loading'
 
-// Get the data for each blog post
-export async function getStaticProps({ params: { slug }, preview }) {
-  // load the postsTable so that we can get the page's ID
+export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
-  const post = postsTable[slug]
 
-  // Return 404 custom page if the post doesn't exist
-  if (!post) {
-    return {
-      notFound: true,
-    }
-  }
-
-  // if we can't find the post or if it is unpublished and
-  // viewed without preview mode then we just redirect to "/"
-  if (!post || (post.Published !== 'Yes' && !preview)) {
-    console.log(`Failed to find post for slug: ${slug}`)
-    return {
-      props: {
-        redirect: '/',
-        preview: false,
-      },
-      unstable_revalidate: 5,
-    }
-  }
-
+  const post = postsTable['about']
   const postData = await getPageData(post.id)
   post.content = postData.blocks
-
-  // Get Next and Previous Posts to print at the bottom of the page
-  const posts: any[] = Object.keys(postsTable)
-    .map((slug) => {
-      const post = postsTable[slug]
-      // remove draft posts in production
-      if (!preview && !postIsPublished(post)) {
-        return null
-      }
-      return post
-    })
-    .filter(Boolean)
-
-  let postIndex = 0
-
-  for (let i = 0; i < posts.length; i++) {
-    if (posts[i].Slug === slug) {
-      postIndex = i
-      break
-    }
-  }
-
-  let nextPostIndex = postIndex + 1
-  let prevPostIndex = postIndex - 1
-
-  if (postIndex === 0) {
-    prevPostIndex = posts.length - 1
-  }
-
-  if (postIndex === posts.length - 1) {
-    nextPostIndex = 0
-  }
-
-  post.prevPost = posts[prevPostIndex]
-  delete post.prevPost.content
-
-  post.nextPost = posts[nextPostIndex]
-  delete post.nextPost.content
 
   //Get Post Blocks
   for (let i = 0; i < postData.blocks.length; i++) {
@@ -104,34 +44,20 @@ export async function getStaticProps({ params: { slug }, preview }) {
     }
   }
 
+  console.log(post)
+
   return {
     props: {
-      post,
       preview: preview || false,
+      post,
     },
     revalidate: 10,
   }
 }
 
-// Return our list of blog posts to prerender
-export async function getStaticPaths() {
-  const postsTable = await getBlogIndex()
-  // we fallback for any unpublished posts to save build time
-  // for actually published ones
-
-  const paths = Object.keys(postsTable)
-    .filter((post) => postsTable[post].Published === 'Yes')
-    .map((slug) => getBlogLink(slug))
-
-  return {
-    paths: paths,
-    fallback: true,
-  }
-}
-
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, redirect, preview }) => {
+const About = ({ post, redirect, preview }) => {
   const router = useRouter()
 
   let listTagName: string | null = null
@@ -190,35 +116,24 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
+      <Header titlePre="About" />
+      <div className="main-container">
+        <HeadlineAbout />
 
-      {preview && (
-        <div>
-          <div>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
+        {/* <div className='cover-container'>
+                    <Image
+                        className="about-image"
+                        alt='my profile picture'
+                        layout="fill"
+                        objectFit="cover"
+                        src={profilePic}
+                    />    
+                </div> */}
 
-      <div className={'blog-post'}>
-        <h1>{post.Page || ''}</h1>
-        {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
-        )}
-        <Breadcrumbs
-          containerClassName={'blogBreadcrumb'}
-          activeItemClassName={'activeItem'}
-          omitIndexList={[1]}
-        />
-        ;
-        <hr />
         {(!post.content || post.content.length === 0) && (
-          <p>This post has no content</p>
+          <p>Oops, I didn't write about me yet</p>
         )}
+
         {(post.content || []).map((block, blockIdx) => {
           const { value } = block
           const { type, properties, id, parent_id } = value
@@ -518,48 +433,8 @@ const RenderPost = ({ post, redirect, preview }) => {
           return toRender
         })}
       </div>
-
-      <div className="related-posts">
-        <h3 className="relatedPosts-title">Keep Reading</h3>
-        {post.prevPost && (
-          <div className="prevPost">
-            <span className={'titleContainer'}>
-              <Link
-                href={getBlogLink(post.prevPost.Slug)}
-                as={getBlogLink(post.prevPost.Slug)}
-              >
-                <a>
-                  {post.prevPost.Page} <FiArrowUpRight />
-                </a>
-              </Link>
-            </span>
-
-            {post.prevPost.Type && (
-              <div className="type">{post.prevPost.Type}</div>
-            )}
-          </div>
-        )}
-        {post.nextPost && (
-          <div className="nextPost">
-            <span className={'titleContainer'}>
-              <Link
-                href={getBlogLink(post.nextPost.Slug)}
-                as={getBlogLink(post.nextPost.Slug)}
-              >
-                <a>
-                  {post.nextPost.Page} <FiArrowUpRight />
-                </a>
-              </Link>
-            </span>
-
-            {post.nextPost.Type && (
-              <div className="type">{post.nextPost.Type}</div>
-            )}
-          </div>
-        )}
-      </div>
     </>
   )
 }
 
-export default RenderPost
+export default About

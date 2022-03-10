@@ -43,8 +43,6 @@ const Index = ({ posts = [], preview }) => {
 
   return (
     <>
-      {console.log(posts)}
-
       <Header titlePre="Home" />
 
       <div className="main-container">
