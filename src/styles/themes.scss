@@ -17,6 +17,7 @@ $themes: (
     link: $color-primary,
     hover: $color-medium-emphasis,
     border: $color-disabled,
+    sublte-bg: $color-sublte-background-light,
   ),
   dark: (
     bg: linear-gradient($color-background-dark, $color-high-emphasis),
@@ -25,5 +26,6 @@ $themes: (
     link: $color-light-high-emphasis,
     hover: $color-medium-emphasis,
     border: $color-medium-emphasis,
+    sublte-bg: $color-sublte-background-dark,
   ),
 );

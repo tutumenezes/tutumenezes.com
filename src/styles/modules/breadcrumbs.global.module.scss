@@ -26,6 +26,8 @@
         font-weight: $font-weight--bold;
         text-transform: uppercase;
 
+        font-size: $font-size--small;
+
         @include themed() {
           color: t($text-secondary);
         }

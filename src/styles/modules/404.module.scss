@@ -1,0 +1,60 @@
+.page-not-found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  @include mobile {
+    padding: 0 16px;
+    margin-top: 64px;
+  }
+
+  .centralized {
+    align-self: center;
+
+    h1 {
+      font-family: $font-headline;
+      font-weight: $font-weight--bold;
+      color: $color-primary;
+      margin-bottom: 12px;
+      font-size: $font-size--extra-large;
+    }
+
+    h2 {
+      font-family: $font-sans;
+      font-weight: $font-weight--medium;
+      margin-bottom: 12px;
+      font-size: $font-size--large;
+    }
+
+    h3 {
+      font-family: $font-sans;
+      font-weight: $font-weight--medium;
+      color: $color-medium-emphasis;
+      font-size: $font-size--medium;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-family: $font-sans;
+      font-weight: $font-weight--medium;
+      color: $color-primary;
+      font-size: $font-size--medium;
+    }
+
+    .gif-wrapper {
+      width: 100%;
+      padding-bottom: 75%;
+      position: relative;
+      margin: 32px auto;
+      border-radius: 12px;
+      overflow: hidden;
+
+      div img {
+        background-color: transparent;
+      }
+    }
+  }
+}
