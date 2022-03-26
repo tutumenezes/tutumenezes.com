@@ -3,56 +3,122 @@
 
   .cases-wrapper {
     position: relative;
-  }
 
-  .case-container {
-    display: flex;
-    margin: 0 16px;
-
-    .content-list {
+    .case-container {
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      margin: 0 16px;
 
-      .postPreview {
-        display: flex;
+      @include desktop {
         justify-content: space-between;
+        margin-bottom: 64px;
+      }
 
-        &:first-child {
-          margin-top: unset;
+      @include mobile {
+        width: 100%;
+        margin: 0 0 128px 0;
+        padding: 0 32px;
+
+        &:before {
+          display: block;
+          content: ' ';
+
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 8px;
+          height: 100%;
+          margin: unset;
+          padding-top: 48px;
         }
 
-        .content-container {
-          h3 {
-            display: inline-block;
+        &.mude-cases::before {
+          background-color: $color-project-mude;
+        }
+        &.futuur-cases::before {
+          background-color: $color-project-futuur;
+        }
+      }
 
-            .titleContainer a {
-              font-family: $font-serif;
-              font-weight: $font-weight--bold;
-              text-transform: lowercase;
-              transition: all 0.2s $easing-bezier-fast;
-              text-decoration: underline;
+      .content-list {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
 
-              svg {
-                position: relative;
-                width: auto;
+        @include mobile {
+          position: relative;
+          margin: auto;
+          margin-top: 32px;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+
+        .postPreview {
+          display: flex;
+          justify-content: space-between;
+
+          @include desktop {
+            margin-bottom: 32px;
+          }
+
+          @include mobile {
+            margin-top: 32px;
+            width: unset;
+          }
+
+          &:first-child {
+            margin-top: unset;
+          }
+
+          .content-container {
+            h3 {
+              display: inline-block;
+
+              .titleContainer a {
+                font-family: $font-serif;
+                font-weight: $font-weight--bold;
+                text-transform: lowercase;
                 transition: all 0.2s $easing-bezier-fast;
-              }
+                text-decoration: underline;
 
-              &:hover {
-                opacity: 0.5;
-                svg {
-                  transform: scale(1.5);
+                @include desktop {
+                  font-size: $font-size--medium;
+                  letter-spacing: 0.05em;
                 }
-                &::after {
+
+                @include mobile {
+                  font-size: $font-size--medium;
+                  letter-spacing: 0.05em;
+                }
+
+                svg {
+                  position: relative;
+                  width: auto;
+                  transition: all 0.2s $easing-bezier-fast;
+                  height: 14px;
+                }
+
+                &:hover {
                   opacity: 0.5;
+                  svg {
+                    transform: scale(1.5);
+                  }
+                  &::after {
+                    opacity: 0.5;
+                  }
                 }
               }
             }
-          }
-          .tags {
-            a {
+            a .type {
               font-family: $font-sans;
+              text-transform: uppercase;
+              font-weight: $font-weight--bold;
+              letter-spacing: 0.08em;
+
+              margin-top: 12px;
+              font-size: $font-size--small;
+              margin-right: 8px;
 
               @include themed() {
                 color: t($text-secondary);
@@ -62,67 +128,19 @@
                 opacity: 0.5;
               }
             }
-          }
 
-          .posted {
-            font-family: $font-serif;
-            text-transform: capitalize;
-
-            @include themed() {
-              color: t($text-secondary);
-            }
-          }
-        }
-        .cover-container {
-          background: transparent;
-        }
-      }
-    }
-
-    &.mude-cases .bg-container {
-      background-color: $color-project-mude;
-    }
-    &.futuur-cases .bg-container {
-      background-color: $color-project-futuur;
-    }
-  }
-
-  @include desktop {
-    .case-container {
-      justify-content: space-between;
-      margin-bottom: 64px;
-
-      .content-list {
-        flex-direction: column;
-        max-width: 24rem;
-
-        .postPreview {
-          margin-bottom: 32px;
-
-          .content-container {
-            h3 {
-              .titleContainer a {
-                font-size: $font-size--medium;
-                letter-spacing: 0.05em;
-                svg {
-                  height: 14px;
-                }
-              }
-            }
-            .tags {
-              margin-top: 12px;
-              a {
-                font-size: $font-size--small;
-                margin-right: 8px;
-              }
-            }
             .posted {
+              font-family: $font-serif;
+              text-transform: capitalize;
               font-size: $font-size--very-small;
               margin: 8px auto;
+              @include themed() {
+                color: t($text-secondary);
+              }
             }
           }
-
           .cover-container {
+            background: transparent;
             width: 24rem;
             height: 100%;
             position: absolute;
@@ -130,123 +148,47 @@
             top: 0;
             bottom: 0;
             margin: auto;
-          }
-        }
-      }
 
-      .bg-container {
-        width: 24rem;
-        height: auto;
-        padding-top: 56.25%;
-        margin: 0;
-      }
-
-      &.otherWork-cases {
-        flex-direction: column;
-        padding-top: 64px;
-        margin: 0 16px;
-
-        .content-list {
-          display: flex;
-          flex-direction: row;
-          max-width: unset;
-          flex-wrap: wrap;
-
-          .postPreview {
-            display: inline-block;
-            width: 24rem;
-
-            .content-container h3 .titleContainer a {
-              font-size: $font-size--small;
+            @include mobile {
+              display: none;
             }
           }
         }
       }
-    }
-  }
-
-  @include mobile {
-    .case-container {
-      width: 100%;
-      margin: 0 0 128px 0;
-      padding: 0 32px;
-
-      &:before {
-        display: block;
-        content: ' ';
-
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 8px;
-        height: 100%;
-        margin: unset;
-        padding-top: 48px;
+      .bg-container {
+        @include desktop {
+          width: 24rem;
+          height: auto;
+          padding-top: 56.25%;
+          margin: 0;
+        }
       }
 
-      &.mude-cases::before {
+      &.mude-cases .bg-container {
         background-color: $color-project-mude;
       }
-      &.futuur-cases::before {
+      &.futuur-cases .bg-container {
         background-color: $color-project-futuur;
-      }
-
-      .content-list {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        margin: auto;
-        margin-top: 32px;
-
-        .postPreview {
-          margin-top: 32px;
-
-          &:first-child {
-            margin-top: unset;
-          }
-
-          .content-container {
-            h3 {
-              .titleContainer a {
-                font-size: $font-size--medium;
-                letter-spacing: 0.05em;
-                svg {
-                  height: 14px;
-                }
-              }
-            }
-            .tags {
-              margin-top: 12px;
-              a {
-                font-size: $font-size--small;
-                margin-right: 8px;
-              }
-            }
-            .posted {
-              font-size: $font-size--very-small;
-              margin: 8px auto;
-            }
-          }
-          .cover-container {
-            display: none;
-          }
-        }
       }
       &.otherWork-cases {
         flex-direction: column;
         padding-top: 64px;
-        margin: 0 16px;
+        margin: unset;
 
         .content-list {
           display: flex;
           flex-direction: row;
           max-width: unset;
           flex-wrap: wrap;
+          @include desktop {
+            justify-content: flex-start;
+          }
 
           .postPreview {
             display: inline-block;
-            width: 24rem;
+            @include desktop {
+              width: 24rem;
+            }
 
             .content-container h3 .titleContainer a {
               font-size: $font-size--small;

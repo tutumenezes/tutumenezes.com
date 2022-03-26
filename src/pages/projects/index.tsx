@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import Header from '../components/header'
+import Header from '../../components/header'
 import React, { useEffect } from 'react'
 import {
-  getCategoryLink,
+  getProjectLink,
   postIsPublished,
   onlyUnique,
-} from '../lib/blog-helpers'
-import getBlogIndex from '../lib/notion/getBlogIndex'
+} from '../../lib/blog-helpers'
+import getBlogIndex from '../../lib/notion/getBlogIndex'
 import Breadcrumbs from 'nextjs-breadcrumbs'
 
 export async function getStaticProps({ preview }) {
@@ -16,7 +16,7 @@ export async function getStaticProps({ preview }) {
     .map((slug) => {
       const post = postsTable[slug]
 
-      post.Type = post.Type || []
+      post.Project = post.Project || []
       //   post.Tags = post.Category.split(',')
 
       if (!preview && !postIsPublished(post)) {
@@ -27,29 +27,29 @@ export async function getStaticProps({ preview }) {
     })
     .filter(Boolean)
 
-  const alltypes: any[] = Object.keys(posts)
+  const allprojects: any[] = Object.keys(posts)
     .map((slug) => {
-      const type = posts[slug].Type
+      const project = posts[slug].Project
 
-      return type
+      return project
     })
     .filter(Boolean)
 
-  const types = [].concat.apply([], alltypes).filter(onlyUnique).sort()
+  const projects = [].concat.apply([], allprojects).filter(onlyUnique).sort()
 
   return {
     props: {
       preview: preview || false,
-      types,
+      projects,
     },
     revalidate: 10,
   }
 }
 
-const Types = ({ types = [], preview }) => {
+const Projects = ({ projects = [], preview }) => {
   return (
     <>
-      <Header titlePre="Types" />
+      <Header titlePre="Projects" />
 
       {preview && (
         <div className="alertContainer">
@@ -72,23 +72,23 @@ const Types = ({ types = [], preview }) => {
             activeItemClassName={'activeItem'}
             omitIndexList={[1]}
           />
-          <h1>Types</h1>
+          <h1>Projects</h1>
         </div>
 
-        {types.length === 0 && (
+        {projects.length === 0 && (
           <p className={'noPosts'}>Opa! Ainda tá sem post aqui.</p>
         )}
         <div className="typesList">
-          {types.map((type) => {
+          {projects.map((proj) => {
             return (
               <Link
-                key={type}
-                href={getCategoryLink(type)}
-                as={getCategoryLink(type)}
+                key={proj}
+                href={getProjectLink(proj)}
+                as={getProjectLink(proj)}
               >
-                <a href={getCategoryLink(type)} className="typeItem">
+                <a href={getProjectLink(proj)} className="typeItem">
                   <span>#</span>
-                  {type}
+                  {proj}
                 </a>
               </Link>
             )
@@ -100,4 +100,4 @@ const Types = ({ types = [], preview }) => {
   )
 }
 
-export default Types
+export default Projects

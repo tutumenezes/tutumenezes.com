@@ -1,13 +1,25 @@
 .headline {
   .container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: center;
     position: relative;
+    flex-direction: column;
+
+    @include desktop {
+      justify-content: space-between;
+      margin: 128px 0;
+    }
+
+    @include mobile {
+      justify-content: space-between;
+      margin: 0 16px 64px 16px;
+    }
 
     p {
       font-family: $font-serif;
       font-weight: $font-weight--regular;
-      line-height: 1.25em;
+      line-height: 1.5em;
 
       span {
         display: block;
@@ -23,38 +35,26 @@
           }
         }
       }
-    }
-  }
 
-  @include desktop {
-    .container {
-      justify-content: space-between;
-      margin: 128px 16px;
-
-      p {
+      @include desktop {
         font-size: $font-size--medium;
-        line-height: 1.5em;
+        text-align: left;
       }
-    }
-  }
 
-  @include mobile {
-    .container {
-      justify-content: space-between;
-      flex-direction: column-reverse;
+      @include mobile {
+        font-size: $font-size--large;
+        text-align: left;
 
-      margin: 0 32px 64px 32px;
-      p {
-        font-size: $font-size--small;
-        text-align: center;
-        line-height: 1.5em;
-
-        span a {
-          &.futuur-link {
-            text-decoration-color: $color-project-futuur;
-          }
-          &.mude-link {
-            text-decoration-color: $color-project-mude;
+        span {
+          display: inline;
+          margin-right: 8px;
+          a {
+            &.futuur-link {
+              text-decoration-color: $color-project-futuur;
+            }
+            &.mude-link {
+              text-decoration-color: $color-project-mude;
+            }
           }
         }
       }

@@ -6,6 +6,10 @@ export const getCategoryLink = (tag: string) => {
   return `/tags/${tag}`
 }
 
+export const getProjectLink = (tag: string) => {
+  return `/projects/${tag}`
+}
+
 export const onlyUnique = (value, index, self) => {
   return self.indexOf(value) === index
 }

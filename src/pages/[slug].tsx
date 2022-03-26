@@ -9,8 +9,13 @@ import { textBlock } from '../lib/notion/renderers'
 import getPageData from '../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { getBlogLink, getDateStr, postIsPublished } from '../lib/blog-helpers'
-import Breadcrumbs from 'nextjs-breadcrumbs'
+import {
+  getBlogLink,
+  getDateStr,
+  postIsPublished,
+  getCategoryLink,
+  getProjectLink,
+} from '../lib/blog-helpers'
 import { FiArrowUpRight } from 'react-icons/fi'
 import Loading from '../components/Loading'
 
@@ -103,6 +108,8 @@ export async function getStaticProps({ params: { slug }, preview }) {
       }
     }
   }
+
+  console.log(posts)
 
   return {
     props: {
@@ -209,11 +216,49 @@ const RenderPost = ({ post, redirect, preview }) => {
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>
         )}
-        <Breadcrumbs
-          containerClassName={'blogBreadcrumb'}
-          activeItemClassName={'activeItem'}
-          omitIndexList={[1]}
-        />
+        <div className="breadcrumbs">
+          {post.Type ? (
+            <>
+              <ul>
+                <li>
+                  <Link href="/" as="/">
+                    <a aria-label="Go to Homepage">Home</a>
+                  </Link>
+                </li>
+                {post.Type && (
+                  <li>
+                    <Link
+                      href={getCategoryLink(post.Type)}
+                      as={getCategoryLink(post.Type)}
+                    >
+                      <a aria-label={'Go to type: ' + post.Type}>
+                        {post.Type && <div className="type">{post.Type}</div>}
+                      </a>
+                    </Link>
+                  </li>
+                )}
+                {post.Type === 'case' && post.Project ? (
+                  <li>
+                    <Link
+                      href={getProjectLink(post.Project)}
+                      as={getProjectLink(post.Project)}
+                    >
+                      <a aria-label={'Go to type: ' + post.Project}>
+                        {post.Project && (
+                          <div className="type">{post.Project}</div>
+                        )}
+                      </a>
+                    </Link>
+                  </li>
+                ) : (
+                  ''
+                )}
+              </ul>
+            </>
+          ) : (
+            ''
+          )}
+        </div>
         ;
         <hr />
         {(!post.content || post.content.length === 0) && (

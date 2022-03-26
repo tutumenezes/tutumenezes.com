@@ -8,6 +8,7 @@ import ExtLink from './ext-link'
 import ThemeToggle from './themetoggle'
 import ReactTooltip from 'react-tooltip'
 import { FiCircle } from 'react-icons/fi'
+import Nav from './nav'
 
 // import Nav from './nav'
 
@@ -42,7 +43,7 @@ const Header = ({ titlePre = '' }) => {
   const isSticky = (e) => {
     const header = document.querySelector('.header')
     const scrollTop = window.scrollY
-    scrollTop >= 32
+    scrollTop >= 132
       ? header.classList.add('is-sticky')
       : header.classList.remove('is-sticky')
   }
@@ -61,18 +62,18 @@ const Header = ({ titlePre = '' }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={ogImageUrl} />
       </Head>
-
-      <h1
-        id="start"
-        onClick={() => scrollToTop()}
-        className={pathname === '/#start' ? 'active' : undefined}
-      >
-        <Link href="/">
-          <a>tutu menezes</a>
-        </Link>
-      </h1>
-
-      {/* <Nav /> */}
+      <div className="header-container">
+        <h1
+          id="start"
+          onClick={() => scrollToTop()}
+          className={pathname === '/#start' ? 'active' : undefined}
+        >
+          <Link href="/">
+            <a>tutu menezes</a>
+          </Link>
+        </h1>
+        <Nav />
+      </div>
     </header>
   )
 }

@@ -3,9 +3,16 @@
     text-align: center;
     position: relative;
 
+    @include desktop {
+      margin-top: 18px;
+    }
+    @include mobile {
+      margin-bottom: 32px;
+    }
+
     li {
       display: inline-block;
-
+      margin-left: 16px;
       transition: all 0.2s $easing-bezier-fast;
 
       &:first-child {
@@ -18,53 +25,12 @@
       a svg {
         width: auto;
         transition: all 0.1s $easing-bezier-fast;
-      }
-    }
-  }
 
-  @include desktop {
-    ul {
-      margin-top: 18px;
-
-      li {
-        margin-left: 16px;
-
-        button svg,
-        a svg {
+        @include desktop {
           height: 24px;
         }
-      }
-    }
-
-    &.is-sticky {
-      ul {
-        top: -12px;
-        li a svg,
-        li button svg {
-          transform: scale(0.9);
-        }
-      }
-    }
-  }
-
-  @include mobile {
-    ul {
-      margin-bottom: 32px;
-      li {
-        margin-left: 16px;
-        button svg,
-        a svg {
-          height: 32px;
-        }
-      }
-    }
-
-    &.is-sticky {
-      ul {
-        top: -12px;
-        li a svg,
-        li button svg {
-          transform: scale(0.9);
+        @include mobile {
+          height: 28px;
         }
       }
     }

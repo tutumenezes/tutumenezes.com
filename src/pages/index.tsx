@@ -83,9 +83,8 @@ const Index = ({ posts = [], preview }) => {
                             as={getCategoryLink(post.Type)}
                           >
                             <a>
-                              #
                               {post.Type && (
-                                <div className="type">{post.Type}</div>
+                                <div className="type">#{post.Type}</div>
                               )}
                             </a>
                           </Link>
@@ -144,9 +143,8 @@ const Index = ({ posts = [], preview }) => {
                             as={getCategoryLink(post.Type)}
                           >
                             <a>
-                              #
                               {post.Type && (
-                                <div className="type">{post.Type}</div>
+                                <div className="type">#{post.Type}</div>
                               )}
                             </a>
                           </Link>
@@ -202,9 +200,8 @@ const Index = ({ posts = [], preview }) => {
                             as={getCategoryLink(post.Type)}
                           >
                             <a>
-                              #
                               {post.Type && (
-                                <div className="type">{post.Type}</div>
+                                <div className="type">#{post.Type}</div>
                               )}
                             </a>
                           </Link>
