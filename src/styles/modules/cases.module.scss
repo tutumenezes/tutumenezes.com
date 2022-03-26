@@ -6,7 +6,7 @@
 
     .case-container {
       display: flex;
-      margin: 0 16px;
+      margin: 0;
 
       @include desktop {
         justify-content: space-between;
@@ -60,6 +60,7 @@
 
           @include desktop {
             margin-bottom: 32px;
+            padding-right: 10%;
           }
 
           @include mobile {
@@ -139,19 +140,35 @@
       }
       .bg-container {
         @include desktop {
-          width: 24rem;
+          width: 50%;
           height: auto;
           padding-top: 56.25%;
           margin: 0;
         }
       }
 
-      &.mude-cases .bg-container {
-        background-color: $color-project-mude;
+      &.mude-cases {
+        .content-list {
+          @include desktop {
+            width: 50%;
+          }
+        }
+        .bg-container {
+          background-color: $color-project-mude;
+        }
       }
-      &.futuur-cases .bg-container {
-        background-color: $color-project-futuur;
+
+      &.futuur-cases {
+        .content-list {
+          @include desktop {
+            width: 50%;
+          }
+        }
+        .bg-container {
+          background-color: $color-project-futuur;
+        }
       }
+
       &.otherWork-cases {
         flex-direction: column;
         padding-top: 64px;
@@ -173,11 +190,7 @@
           .postPreview {
             display: inline-block;
             @include desktop {
-              width: 24rem;
-            }
-
-            .content-container h3 .titleContainer a {
-              font-size: $font-size--small;
+              width: 50%;
             }
           }
         }
