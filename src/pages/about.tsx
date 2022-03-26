@@ -314,9 +314,25 @@ const About = ({ post, redirect, preview }) => {
                       key={id}
                     >
                       {child}
+                      {properties.caption ? (
+                        <div className="caption inside-wrapper">
+                          {textBlock(properties.caption, true, id)}
+                        </div>
+                      ) : (
+                        ''
+                      )}
                     </div>
                   ) : (
-                    child
+                    <>
+                      {child}
+                      {properties.caption ? (
+                        <div className="caption">
+                          {textBlock(properties.caption, true, id)}
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </>
                   )
                 )
                 break

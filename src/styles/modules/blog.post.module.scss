@@ -138,8 +138,9 @@
     }
 
     .caption {
-      font-family: $font-sans-condensed;
+      font-family: $font-sans;
       font-size: $font-size--smallest;
+      font-weight: $font-weight--thin;
 
       &.inside-wrapper {
         position: absolute;
