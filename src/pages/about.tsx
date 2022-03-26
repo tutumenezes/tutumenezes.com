@@ -117,19 +117,7 @@ const About = ({ post, redirect, preview }) => {
   return (
     <>
       <Header titlePre="About" />
-      <div className="main-container">
-        <HeadlineAbout />
-
-        {/* <div className='cover-container'>
-                    <Image
-                        className="about-image"
-                        alt='my profile picture'
-                        layout="fill"
-                        objectFit="cover"
-                        src={profilePic}
-                    />    
-                </div> */}
-
+      <div className="about-page main-container">
         {(!post.content || post.content.length === 0) && (
           <p>Oops, I didn't write about me yet</p>
         )}

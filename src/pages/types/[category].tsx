@@ -105,7 +105,7 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre="Categoria" />
+      <Header titlePre="Category" />
 
       {preview && (
         <div className="alertContainer">
@@ -121,11 +121,11 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
         </div>
       )}
 
-      <div className="category-container">
-        <div className="categoryHeader">
+      <div className="tags-container main-container">
+        <div className="tags-header">
           <Breadcrumbs
-            containerClassName={'blogBreadcrumb'}
-            activeItemClassName={'activeItem'}
+            containerClassName={'breadcrumbs'}
+            activeItemClassName={'active'}
             omitIndexList={[1]}
           />
 
@@ -135,12 +135,12 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
         {posts.length === 0 && (
           <p className={'noPosts'}>Opa! Ainda tá sem post aqui.</p>
         )}
-        <div className="categoryPostList">
+        <div className="tag-list tag-post-list">
           {posts.map((post) => {
             if (post.Type.indexOf(router.query.category) > -1) {
               return (
                 <Link href={getBlogLink(post.Slug)} as={getBlogLink(post.Slug)}>
-                  <div className="categoryPostEntry">
+                  <div className="tag-post-entry">
                     <h3>
                       <span className="titleContainer">
                         <Link

@@ -1,4 +1,21 @@
 .blog-post {
-  max-width: 50rem;
-  margin: 0 auto;
+  .blog-post-header {
+    padding-bottom: 32px;
+    h1 {
+      font-family: $font-headline;
+      font-weight: $font-weight--bold;
+      text-transform: capitalize;
+      font-size: $font-size--extra-large;
+      @include themed() {
+        color: t($text);
+      }
+    }
+    .year {
+      font-family: $font-sans;
+      font-weight: $font-weight--medium;
+      @include themed() {
+        color: t($text-secondary);
+      }
+    }
+  }
 }

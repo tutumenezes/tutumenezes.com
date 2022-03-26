@@ -22,61 +22,6 @@ const HeadlineAbout = ({ titlePre = '' }) => {
           <span>Hi, I'm Arthur. </span>
           <span>But you can call me Tutu.</span>
         </p>
-        <div className="nav">
-          <ul>
-            {navItems.map(({ label, page, link }) => (
-              <li className="nav-list-item" key={label}>
-                {label == 'Home' ? (
-                  <>
-                    <Link href={page}>
-                      <a
-                        data-tip={label}
-                        className={pathname === page ? 'active' : undefined}
-                      >
-                        <FiHome />
-                        {theme == 'dark' ? (
-                          <ReactTooltip
-                            place="bottom"
-                            type="light"
-                            effect="solid"
-                          />
-                        ) : (
-                          <ReactTooltip
-                            place="bottom"
-                            type="dark"
-                            effect="solid"
-                          />
-                        )}
-                      </a>
-                    </Link>
-                  </>
-                ) : (
-                  <Link href={page}>
-                    <a className={pathname === page ? 'active' : undefined}>
-                      {label}
-                      {theme == 'dark' ? (
-                        <ReactTooltip
-                          place="bottom"
-                          type="light"
-                          effect="solid"
-                        />
-                      ) : (
-                        <ReactTooltip
-                          place="bottom"
-                          type="dark"
-                          effect="solid"
-                        />
-                      )}
-                    </a>
-                  </Link>
-                )}
-              </li>
-            ))}
-            <li>
-              <ThemeToggle />
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   )

@@ -65,12 +65,12 @@ const Projects = ({ projects = [], preview }) => {
         </div>
       )}
 
-      <div className="types-container">
-        <div className="typesHeader">
+      <div className="tags-container main-container">
+        <div className="tags-header">
           <Breadcrumbs
-            containerClassName={'blogBreadcrumb'}
-            activeItemClassName={'activeItem'}
-            omitIndexList={[1]}
+            containerClassName={'breadcrumbs'}
+            activeItemClassName={'active'}
+            replaceCharacterList={[{ from: 'projects', to: '' }]}
           />
           <h1>Projects</h1>
         </div>
@@ -78,7 +78,7 @@ const Projects = ({ projects = [], preview }) => {
         {projects.length === 0 && (
           <p className={'noPosts'}>Opa! Ainda tá sem post aqui.</p>
         )}
-        <div className="typesList">
+        <div className="tag-list">
           {projects.map((proj) => {
             return (
               <Link

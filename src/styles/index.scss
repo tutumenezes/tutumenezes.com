@@ -16,3 +16,7 @@
 @import './modules/footer.module.scss';
 @import './modules/blog.post.module.scss';
 @import './modules/about.module.scss';
+
+//global components
+@import './modules/breadcrumbs.global.module.scss';
+@import './modules/tags.global.module.scss';

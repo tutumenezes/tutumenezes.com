@@ -1,0 +1,39 @@
+.breadcrumbs {
+  ol,
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: unset;
+
+    li {
+      display: inline-block;
+      margin-left: 0.5em;
+      &:first-child {
+        margin-left: 0;
+        &::before {
+          display: none;
+        }
+      }
+      &::before {
+        display: inline-block;
+        content: '/';
+        margin-right: 0.5em;
+      }
+
+      a {
+        font-family: $font-sans;
+        font-weight: $font-weight--bold;
+        text-transform: uppercase;
+
+        @include themed() {
+          color: t($text-secondary);
+        }
+
+        &:hover {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

@@ -84,17 +84,17 @@ const Index = ({ posts = [], preview }) => {
                           >
                             <a>
                               {post.Type && (
-                                <div className="type">#{post.Type}</div>
+                                <div className="tag">#{post.Type}</div>
                               )}
                             </a>
                           </Link>
                         </div>
                         <div className="cover-container">
-                          {post.Cover.length > 0 && (
+                          {post.Thumb.length > 0 && (
                             <Comp
                               key={post.id}
                               src={`/api/asset?assetUrl=${encodeURIComponent(
-                                post.Cover as any
+                                post.Thumb as any
                               )}&blockId=${post.id}`}
                               alt={post.Alt}
                               className="cover"
@@ -144,17 +144,17 @@ const Index = ({ posts = [], preview }) => {
                           >
                             <a>
                               {post.Type && (
-                                <div className="type">#{post.Type}</div>
+                                <div className="tag">#{post.Type}</div>
                               )}
                             </a>
                           </Link>
                         </div>
                         <div className="cover-container">
-                          {post.Cover.length > 0 && (
+                          {post.Thumb.length > 0 && (
                             <Comp
                               key={post.id}
                               src={`/api/asset?assetUrl=${encodeURIComponent(
-                                post.Cover as any
+                                post.Thumb as any
                               )}&blockId=${post.id}`}
                               alt={post.Alt}
                               className="cover"
@@ -201,7 +201,7 @@ const Index = ({ posts = [], preview }) => {
                           >
                             <a>
                               {post.Type && (
-                                <div className="type">#{post.Type}</div>
+                                <div className="tag">#{post.Type}</div>
                               )}
                             </a>
                           </Link>

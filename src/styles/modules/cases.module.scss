@@ -110,24 +110,6 @@
                 }
               }
             }
-            a .type {
-              font-family: $font-sans;
-              text-transform: uppercase;
-              font-weight: $font-weight--bold;
-              letter-spacing: 0.08em;
-
-              margin-top: 12px;
-              font-size: $font-size--small;
-              margin-right: 8px;
-
-              @include themed() {
-                color: t($text-secondary);
-              }
-
-              &:hover {
-                opacity: 0.5;
-              }
-            }
 
             .posted {
               font-family: $font-serif;

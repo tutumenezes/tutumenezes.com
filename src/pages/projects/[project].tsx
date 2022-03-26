@@ -109,7 +109,7 @@ const RenderProject = ({ results = [], redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre="Categoria" />
+      <Header titlePre="Project" />
 
       {preview && (
         <div className="alertContainer">
@@ -125,11 +125,11 @@ const RenderProject = ({ results = [], redirect, preview }) => {
         </div>
       )}
 
-      <div className="category-container">
-        <div className="categoryHeader">
+      <div className="tags-container main-container">
+        <div className="tags-header">
           <Breadcrumbs
-            containerClassName={'blogBreadcrumb'}
-            activeItemClassName={'activeItem'}
+            containerClassName={'breadcrumbs'}
+            activeItemClassName={'active'}
             omitIndexList={[1]}
           />
 
@@ -140,12 +140,12 @@ const RenderProject = ({ results = [], redirect, preview }) => {
           <p className={'noPosts'}>Ops! No posts yet.</p>
         )}
 
-        <div className="categoryPostList">
+        <div className="tag-list tag-post-list">
           {results.map((post) => {
             if (post.Project.indexOf(router.query.project) > -1) {
               return (
                 <Link href={getBlogLink(post.Slug)} as={getBlogLink(post.Slug)}>
-                  <div className="categoryPostEntry">
+                  <div className="tag-post-entry">
                     <h3>
                       <span className="titleContainer">
                         <Link

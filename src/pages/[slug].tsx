@@ -211,55 +211,53 @@ const RenderPost = ({ post, redirect, preview }) => {
         </div>
       )}
 
-      <div className={'blog-post'}>
-        <h1>{post.Page || ''}</h1>
-        {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>
-        )}
-        <div className="breadcrumbs">
-          {post.Type ? (
-            <>
-              <ul>
-                <li>
-                  <Link href="/" as="/">
-                    <a aria-label="Go to Homepage">Home</a>
-                  </Link>
-                </li>
-                {post.Type && (
+      <div className={'blog-post main-container'}>
+        <div className="blog-post-header">
+          <div className="breadcrumbs" aria-label="breadcrumbs">
+            {post.Type ? (
+              <>
+                <ol>
                   <li>
-                    <Link
-                      href={getCategoryLink(post.Type)}
-                      as={getCategoryLink(post.Type)}
-                    >
-                      <a aria-label={'Go to type: ' + post.Type}>
-                        {post.Type && <div className="type">{post.Type}</div>}
-                      </a>
+                    <Link href="/" as="/">
+                      <a aria-label="Go to Homepage">Home</a>
                     </Link>
                   </li>
-                )}
-                {post.Type === 'case' && post.Project ? (
-                  <li>
-                    <Link
-                      href={getProjectLink(post.Project)}
-                      as={getProjectLink(post.Project)}
-                    >
-                      <a aria-label={'Go to type: ' + post.Project}>
-                        {post.Project && (
-                          <div className="type">{post.Project}</div>
-                        )}
-                      </a>
-                    </Link>
-                  </li>
-                ) : (
-                  ''
-                )}
-              </ul>
-            </>
-          ) : (
-            ''
-          )}
+                  {post.Type && (
+                    <li>
+                      <Link
+                        href={getCategoryLink(post.Type)}
+                        as={getCategoryLink(post.Type)}
+                      >
+                        <a aria-label={'Go to type: ' + post.Type}>
+                          {post.Type && post.Type}
+                        </a>
+                      </Link>
+                    </li>
+                  )}
+                  {post.Type === 'case' && post.Project ? (
+                    <li>
+                      <Link
+                        href={getProjectLink(post.Project)}
+                        as={getProjectLink(post.Project)}
+                      >
+                        <a aria-label={'Go to type: ' + post.Project}>
+                          {post.Project && post.Project}
+                        </a>
+                      </Link>
+                    </li>
+                  ) : (
+                    ''
+                  )}
+                </ol>
+              </>
+            ) : (
+              ''
+            )}
+          </div>
+          <h1>{post.Page || ''}</h1>
+          {post.Date && <div className="year">{getDateStr(post.Date)}</div>}
         </div>
-        ;
+
         <hr />
         {(!post.content || post.content.length === 0) && (
           <p>This post has no content</p>

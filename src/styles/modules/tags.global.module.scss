@@ -1,0 +1,105 @@
+.tags-container {
+  min-height: 70vh;
+
+  .tags-header {
+    h1 {
+      font-family: $font-headline;
+      font-weight: $font-weight--bold;
+
+      @include themed() {
+        color: t($text);
+      }
+
+      @include desktop {
+        font-size: $font-size--extra-large;
+      }
+    }
+  }
+
+  .tag-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-top: 32px;
+
+    a {
+      display: block;
+      width: 100%;
+      font-family: $font-sans;
+      font-weight: $font-weight--medium;
+      text-transform: capitalize;
+      margin-top: 16px;
+
+      &:after {
+        display: block;
+        content: '';
+        height: 1px;
+        width: 100%;
+        background-color: $color-outline;
+        margin-top: 16px;
+      }
+
+      &:hover {
+        opacity: 0.5;
+      }
+
+      @include themed() {
+        color: t($text-secondary);
+      }
+
+      @include desktop {
+        font-size: $font-size--extra-large;
+      }
+
+      span {
+        font-weight: $font-weight--bold;
+
+        @include themed() {
+          color: t($text);
+        }
+      }
+    }
+
+    &.tag-post-list {
+      .tag-post-entry {
+        width: 100%;
+
+        h3 .titleContainer a {
+          display: block;
+          font-size: $font-size--large;
+          margin-top: 16px;
+
+          &:after {
+            display: block;
+            content: '';
+            height: 1px;
+            width: 100%;
+            background-color: $color-outline;
+            margin-top: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tag {
+  font-family: $font-sans;
+  text-transform: uppercase;
+  font-weight: $font-weight--bold;
+  letter-spacing: 0.08em;
+
+  margin-top: 12px;
+  font-size: $font-size--small;
+  margin-right: 8px;
+
+  @include themed() {
+    color: t($text-secondary);
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
