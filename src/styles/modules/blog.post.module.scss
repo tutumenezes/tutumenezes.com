@@ -97,6 +97,17 @@
       @include themed() {
         color: t($text);
       }
+      a {
+        text-decoration: underline;
+        @include themed() {
+          color: t($link);
+        }
+        &:hover {
+          @include themed() {
+            color: t($hover);
+          }
+        }
+      }
     }
 
     a {
