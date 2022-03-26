@@ -157,6 +157,10 @@
         padding-top: 64px;
         margin: unset;
 
+        @include mobile {
+          padding-top: 0;
+        }
+
         .content-list {
           display: flex;
           flex-direction: row;

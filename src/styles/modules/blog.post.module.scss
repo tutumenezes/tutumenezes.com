@@ -1,6 +1,11 @@
 .blog-post {
+  @include mobile {
+    padding: 0 16px;
+  }
+
   .blog-post-header {
     padding-bottom: 32px;
+
     h1 {
       font-family: $font-headline;
       font-weight: $font-weight--bold;

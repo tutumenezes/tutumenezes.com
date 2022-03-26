@@ -1,18 +1,21 @@
 .tags-container {
-  min-height: 70vh;
+  min-height: calc(70vh - 342px);
+
+  @include mobile {
+    padding: 0 16px;
+  }
 
   .tags-header {
     h1 {
       font-family: $font-headline;
       font-weight: $font-weight--bold;
+      text-transform: capitalize;
 
       @include themed() {
         color: t($text);
       }
 
-      @include desktop {
-        font-size: $font-size--extra-large;
-      }
+      font-size: $font-size--extra-large;
     }
   }
 
@@ -32,6 +35,20 @@
       text-transform: capitalize;
       margin-top: 16px;
 
+      @include desktop {
+        @include themed() {
+          color: t($text-secondary);
+        }
+      }
+
+      @include mobile {
+        @include themed() {
+          color: t($text);
+        }
+      }
+
+      font-size: $font-size--extra-large;
+
       &:after {
         display: block;
         content: '';
@@ -43,14 +60,6 @@
 
       &:hover {
         opacity: 0.5;
-      }
-
-      @include themed() {
-        color: t($text-secondary);
-      }
-
-      @include desktop {
-        font-size: $font-size--extra-large;
       }
 
       span {
@@ -87,11 +96,10 @@
 
 .tag {
   font-family: $font-sans;
-  text-transform: uppercase;
-  font-weight: $font-weight--bold;
-  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  font-weight: $font-weight--regular;
 
-  margin-top: 12px;
+  margin-top: 8px;
   font-size: $font-size--small;
   margin-right: 8px;
 

@@ -3,17 +3,18 @@
   position: sticky;
   top: 0;
   z-index: 100;
-
-  @include desktop {
-    max-width: 50rem;
-  }
-
-  @include mobile {
-    width: 100%;
-    padding: 16px;
-  }
+  backdrop-filter: blur(2px);
 
   .header-container {
+    @include desktop {
+      max-width: 50rem;
+    }
+    @include mobile {
+      width: 100%;
+      padding: 16px;
+    }
+
+    margin: 0 auto;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -21,7 +22,6 @@
     align-items: center;
     padding: 16px 0;
     width: 100%;
-    backdrop-filter: blur(2px);
 
     h1 {
       margin: 16px 0;

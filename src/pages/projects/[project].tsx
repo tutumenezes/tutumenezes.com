@@ -10,7 +10,7 @@ import {
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { useEffect } from 'react'
 import Breadcrumbs from 'nextjs-breadcrumbs'
-import Loading from '../../components/Loading'
+import { Loading } from '../../components/Loading'
 
 export async function getStaticProps({ params: { project }, preview }) {
   //TODO: get context from URL and then filter here instead at client-side

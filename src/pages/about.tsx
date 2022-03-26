@@ -12,7 +12,7 @@ import { postIsPublished } from '../lib/blog-helpers'
 import getPageData from '../lib/notion/getPageData'
 import { useRouter } from 'next/router'
 import React, { CSSProperties, useEffect } from 'react'
-import Loading from '../components/Loading'
+import { Loading } from '../components/Loading'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()

@@ -16,8 +16,8 @@ import {
   getCategoryLink,
   getProjectLink,
 } from '../lib/blog-helpers'
-import { FiArrowUpRight, FiArrowUpLeft } from 'react-icons/fi'
-import Loading from '../components/Loading'
+import { FiArrowUpRight } from 'react-icons/fi'
+import { Loading } from '../components/Loading'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -578,7 +578,7 @@ const RenderPost = ({ post, redirect, preview }) => {
         </div>
 
         <div className="related-posts main-container">
-          <h3>More Posts</h3>
+          <h3>Read More</h3>
           <div className="related-posts-list">
             {post.prevPost && (
               <div className="prevPost related-item">
@@ -588,8 +588,8 @@ const RenderPost = ({ post, redirect, preview }) => {
                     as={getBlogLink(post.prevPost.Slug)}
                   >
                     <a>
-                      <FiArrowUpLeft />
                       {post.prevPost.Page}
+                      <FiArrowUpRight />
                     </a>
                   </Link>
                 </span>

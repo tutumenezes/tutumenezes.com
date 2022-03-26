@@ -33,7 +33,7 @@ const Nav = ({ titlePre = '' }) => {
             </Link>
           </li>
         )}
-        {pathname === '/' && (
+        {pathname !== '/about' && (
           <li className="nav-list-item" key={'about'}>
             <Link href={'/about'} as={'/about'}>
               <a data-tip={'About'} className={'active'}>
