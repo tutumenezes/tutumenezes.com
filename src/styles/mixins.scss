@@ -44,3 +44,29 @@
 @function t($key) {
   @return map-get($theme-map, $key);
 }
+
+//ANIMATION AND KEYFRAMES
+@mixin animate($animation, $duration, $method, $times) {
+  animation: $animation $duration $method $times;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// USE EXAMPLE:
+
+// @include keyframes(fade){
+//   0%{
+//   opacity: 1;
+//   }
+//  50%{
+//   opacity: 0.5;
+//   }
+//  100%{
+//   opacity: 0;
+//  }
+// }
+// @include animate(fade, 1s, linear, 1);

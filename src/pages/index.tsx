@@ -10,6 +10,7 @@ import {
 } from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
+import { useEffect, useState } from 'react'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -41,6 +42,18 @@ export async function getStaticProps({ preview }) {
 const Index = ({ posts = [], preview }) => {
   const Comp = 'img'
 
+  //TODO: ANIMATE WHEN IDLE
+  //TODO: TURN INTO A FUNCTION
+  const [hoveredFutuur, setHoveredFutuur] = useState(false)
+  const toggleHoverFutuur = (e) => {
+    setHoveredFutuur(!hoveredFutuur)
+  }
+
+  const [hoveredMude, setHoveredMude] = useState(false)
+  const toggleHoverMude = (e) => {
+    setHoveredMude(!hoveredMude)
+  }
+
   return (
     <>
       <Header titlePre="Home" />
@@ -61,7 +74,14 @@ const Index = ({ posts = [], preview }) => {
                   // MUDE LOOP
                   if (post.Project == 'mude') {
                     return (
-                      <div className={'postPreview'} key={post.Slug}>
+                      <div
+                        className={
+                          hoveredMude ? 'postPreview' : 'postPreview show'
+                        }
+                        onMouseEnter={toggleHoverMude}
+                        onMouseLeave={toggleHoverMude}
+                        key={post.Slug}
+                      >
                         <div className="content-container">
                           <h3>
                             <span className={'titleContainer'}>
@@ -118,7 +138,14 @@ const Index = ({ posts = [], preview }) => {
                   // FUTUUR LOOP
                   if (post.Project == 'futuur') {
                     return (
-                      <div className={'postPreview'} key={post.Slug}>
+                      <div
+                        className={
+                          hoveredFutuur ? 'postPreview' : 'postPreview show'
+                        }
+                        onMouseEnter={toggleHoverFutuur}
+                        onMouseLeave={toggleHoverFutuur}
+                        key={post.Slug}
+                      >
                         <div className="content-container">
                           {/* {post.Date && (
                             <div className="posted">{getDateStr(post.Date)}</div>

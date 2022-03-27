@@ -1,0 +1,36 @@
+$animationSpeed: 4s;
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.cases {
+  .content-list {
+    .postPreview {
+      .cover-container {
+        transition: opacity 0.8s $easing-bezier-fast;
+        opacity: 0;
+      }
+      &:hover {
+        .cover-container {
+          opacity: 1;
+          z-index: 100;
+        }
+      }
+      &.show {
+        .cover-container {
+          opacity: 1;
+          z-index: 0;
+        }
+      }
+    }
+  }
+}
