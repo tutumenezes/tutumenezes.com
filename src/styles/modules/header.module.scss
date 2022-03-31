@@ -31,9 +31,15 @@
         font-weight: $font-weight--bold;
         display: block;
         text-align: left;
-        font-size: $font-size--medium;
         letter-spacing: 0.1em;
         transition: all 0.1s $easing-bezier-fast;
+
+        @include desktop {
+          font-size: $font-size--large;
+        }
+        @include mobile {
+          font-size: $font-size--medium;
+        }
       }
     }
   }

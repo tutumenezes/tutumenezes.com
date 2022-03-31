@@ -47,11 +47,13 @@ const Index = ({ posts = [], preview }) => {
   const [hoveredFutuur, setHoveredFutuur] = useState(false)
   const toggleHoverFutuur = (e) => {
     setHoveredFutuur(!hoveredFutuur)
+    console.log(hoveredFutuur)
   }
 
   const [hoveredMude, setHoveredMude] = useState(false)
   const toggleHoverMude = (e) => {
     setHoveredMude(!hoveredMude)
+    console.log(hoveredMude)
   }
 
   return (
@@ -76,7 +78,7 @@ const Index = ({ posts = [], preview }) => {
                     return (
                       <div
                         className={
-                          hoveredMude ? 'postPreview' : 'postPreview show'
+                          !hoveredMude ? 'postPreview' : 'postPreview show'
                         }
                         onMouseEnter={toggleHoverMude}
                         onMouseLeave={toggleHoverMude}

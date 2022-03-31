@@ -49,7 +49,7 @@ export async function getStaticProps({ preview }) {
 const Types = ({ types = [], preview }) => {
   return (
     <>
-      <Header titlePre="Types" />
+      <Header titlePre="Types" ogSlug={'types'} />
 
       {preview && (
         <div className="alertContainer">

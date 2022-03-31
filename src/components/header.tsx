@@ -2,7 +2,6 @@ import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useTheme } from 'next-themes'
 import Nav from './nav'
 
 const domain = process.env.NEXT_PUBLIC_GTM_DOMAIN
@@ -12,13 +11,13 @@ const ogImageUrl =
 const Header = ({
   titlePre = '',
   dynamicOgImageURL = ogImageUrl,
+  ogImageAlt = '',
+  ogSlug = '',
   preview = '',
   updatedTime = '',
 }) => {
   //set pathname variable that will be added to page's title
   const { pathname } = useRouter()
-
-  const { theme } = useTheme()
 
   // Sticky Menu Hook and className const
   useEffect(() => {
@@ -69,6 +68,18 @@ const Header = ({
           property="og:image:secure_url"
           content={dynamicOgImageURL ? dynamicOgImageURL : ogImageUrl}
         />
+        <meta
+          property="og:image"
+          content={dynamicOgImageURL ? dynamicOgImageURL : ogImageUrl}
+        />
+        <meta
+          property="og:url"
+          content={
+            ogSlug
+              ? 'https://tutumenezes.com/' + ogSlug
+              : 'https://tutumenezes.com'
+          }
+        />
         <meta name="twitter:site" content="@tutumenezes" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -83,6 +94,10 @@ const Header = ({
         <meta
           property="og:image"
           content={dynamicOgImageURL ? dynamicOgImageURL : ogImageUrl}
+        />
+        <meta
+          property="og:image:alt"
+          content={ogImageAlt ? ogImageAlt : 'Post Cover Image'}
         />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="500" />

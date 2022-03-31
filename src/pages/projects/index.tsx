@@ -49,7 +49,7 @@ export async function getStaticProps({ preview }) {
 const Projects = ({ projects = [], preview }) => {
   return (
     <>
-      <Header titlePre="Projects" />
+      <Header titlePre="Projects" ogSlug={'projects'} />
 
       {preview && (
         <div className="alertContainer">

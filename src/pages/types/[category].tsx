@@ -105,7 +105,10 @@ const RenderCategory = ({ posts = [], redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={router.query.category.toString()} />
+      <Header
+        titlePre={router.query.category.toString()}
+        ogSlug={'types/' + router.query.category.toString()}
+      />
 
       {preview && (
         <div className="alertContainer">

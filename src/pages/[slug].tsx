@@ -206,6 +206,8 @@ const RenderPost = ({ post, redirect, preview }) => {
         )}&blockId=${post.id}`}
         preview={post.ogPreview}
         updatedTime={post.Date}
+        ogSlug={post.Slug}
+        ogImageAlt={post.AltText}
       />
 
       {preview && (
