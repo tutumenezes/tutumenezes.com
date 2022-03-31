@@ -109,7 +109,10 @@ const RenderProject = ({ results = [], redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={router.query.project.toString()} />
+      <Header
+        titlePre={router.query.project.toString()}
+        ogSlug={'projects/' + router.query.project.toString()}
+      />
 
       {preview && (
         <div className="alertContainer">
