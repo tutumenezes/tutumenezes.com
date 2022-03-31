@@ -199,7 +199,14 @@ const RenderPost = ({ post, redirect, preview }) => {
 
   return (
     <>
-      <Header titlePre={post.Page} />
+      <Header
+        titlePre={post.Page}
+        dynamicOgImageURL={`https://tutumenezes.com/api/asset?assetUrl=${encodeURIComponent(
+          post.ogImage as any
+        )}&blockId=${post.id}`}
+        preview={post.ogPreview}
+        updatedTime={post.Date}
+      />
 
       {preview && (
         <div>

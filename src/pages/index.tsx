@@ -10,7 +10,7 @@ import {
 } from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -203,7 +203,7 @@ const Index = ({ posts = [], preview }) => {
                 {posts.map((post) => {
                   ///////////////////////////////
                   // OTHER WORK LOOP
-                  if (post.Project == 'other') {
+                  if (post.Project != 'futuur' && post.Project != 'mude') {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
