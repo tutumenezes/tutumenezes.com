@@ -157,7 +157,7 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
         titlePre={post.Page}
         dynamicOgImageURL={post.ogImage}
         preview={post.ogPreview}
-        // updatedTime={toString(post.Date)}
+        updatedTime={post.Date.toString()}
         ogSlug={post.Slug}
         ogImageAlt={post.AltText}
       />
