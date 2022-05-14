@@ -10,7 +10,7 @@
   },
   "pre-commit": "lint-staged",
   "dependencies": {
-    "@notionhq/client": "^0.1.8",
+    "@notionhq/client": "^1.0.4",
     "@zeit/react-jsx-parser": "2.0.0",
     "async-sema": "3.1.0",
     "github-slugger": "1.2.1",
@@ -19,6 +19,8 @@
     "next": "^11.1.2",
     "next-themes": "^0.0.15",
     "nextjs-breadcrumbs": "^1.1.9",
+    "notion-api": "^0.1.0",
+    "notion-client": "^6.12.9",
     "prismjs": "1.17.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",

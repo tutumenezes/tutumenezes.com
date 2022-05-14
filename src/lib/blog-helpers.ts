@@ -25,7 +25,7 @@ export const getDateStr = (date) => {
 }
 
 export const postIsPublished = (post: any) => {
-  return post.Published === 'Yes'
+  return post.Published
 }
 
 export const normalizeSlug = (slug) => {
