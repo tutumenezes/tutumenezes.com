@@ -3,39 +3,26 @@ import Header from '../components/header'
 import Headline from '../components/headline'
 
 import { FiArrowUpRight } from 'react-icons/fi'
-import {
-  getBlogLink,
-  getCategoryLink,
-  postIsPublished,
-} from '../lib/blog-helpers'
+import { getBlogLink, getCategoryLink } from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { useState } from 'react'
+import { textBlock } from '../lib/notion/renderers'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
 
-  const posts: any[] = Object.keys(postsTable)
-    .map((slug) => {
-      const post = postsTable[slug]
-      // remove draft posts in production
-      if (!preview && !postIsPublished(post)) {
-        return null
-      }
-      return post
-    })
-    .filter(Boolean)
+  const today = new Date().getTime()
 
-  const externalImageLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`
-  }
+  const posts = postsTable.filter(
+    (post) => preview || (post.Published && post.Date < today)
+  )
 
   return {
     props: {
       preview: preview || false,
       posts,
     },
-    revalidate: 10,
+    revalidate: 5,
   }
 }
 
@@ -94,9 +81,7 @@ const Index = ({ posts = [], preview }) => {
                           {post.Thumb.length > 0 && (
                             <Comp
                               key={post.id}
-                              src={`/api/asset?assetUrl=${encodeURIComponent(
-                                post.Thumb as any
-                              )}&blockId=${post.id}`}
+                              src={post.Thumb}
                               alt={post.Alt}
                               className="cover"
                             />
@@ -121,9 +106,6 @@ const Index = ({ posts = [], preview }) => {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
-                          {/* {post.Date && (
-                            <div className="posted">{getDateStr(post.Date)}</div>
-                          )} */}
                           <h3>
                             <span className={'titleContainer'}>
                               {!post.Published && (
@@ -154,9 +136,7 @@ const Index = ({ posts = [], preview }) => {
                           {post.Thumb.length > 0 && (
                             <Comp
                               key={post.id}
-                              src={`/api/asset?assetUrl=${encodeURIComponent(
-                                post.Thumb as any
-                              )}&blockId=${post.id}`}
+                              src={post.Thumb}
                               alt={post.Alt}
                               className="cover"
                             />

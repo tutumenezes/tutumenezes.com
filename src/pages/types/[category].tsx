@@ -17,31 +17,18 @@ export async function getStaticProps({ params: { category }, preview }) {
 
   const postsTable = await getBlogIndex()
 
-  const posts: any[] = Object.keys(postsTable)
-    .map((category) => {
-      const post = postsTable[category]
+  const today = new Date().getTime()
 
-      post.Type = post.Type || []
+  // viewed without preview mode then we returns 404
+  const posts = postsTable.filter(
+    (p) => (p.Published && p.Date < today) || preview
+  )
 
-      if (!preview && !postIsPublished(post)) {
-        return null
-      }
+  const types = postsTable.map((p) => p.Type).filter(Boolean)
 
-      return post
-    })
-    .filter(Boolean)
+  const allTypes = [].concat.apply([], types).filter(onlyUnique)
 
-  const alltypes: any[] = Object.keys(posts)
-    .map((category) => {
-      const type = posts[category].Type
-
-      return type
-    })
-    .filter(Boolean)
-
-  const types = [].concat.apply([], alltypes).filter(onlyUnique).sort()
-
-  if (types.indexOf(category) == -1) {
+  if (allTypes.indexOf(category) == -1) {
     return {
       notFound: true,
     }
@@ -58,25 +45,19 @@ export async function getStaticProps({ params: { category }, preview }) {
 
 export async function getStaticPaths() {
   const postsTable = await getBlogIndex()
-  // we fallback for any unpublished posts to save build time
-  // for actually published ones
 
-  const types: any[] = Object.keys(postsTable)
-    .map((category) => {
-      const type = postsTable[category].Type
+  const type = postsTable.map((p) => p.Type).filter(Boolean)
 
-      return type
-    })
-    .filter(Boolean)
+  const allTypes = [].concat.apply([], type).filter(onlyUnique)
 
   const paths = []
 
-  types.forEach((id) => {
+  allTypes.filter(onlyUnique).forEach((id) => {
     paths.push(getCategoryLink(id))
   })
 
   return {
-    paths: paths.filter(onlyUnique),
+    paths: paths,
     fallback: true,
   }
 }

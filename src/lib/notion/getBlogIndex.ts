@@ -1,77 +1,110 @@
-import { Sema } from 'async-sema'
-import rpc, { values } from './rpc'
-import getTableData from './getTableData'
-import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
-import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
+import { notion } from './client'
+import { BLOG_INDEX_CACHE } from './server-constants'
+import { getFileUrl } from './utils'
 
-export default async function getBlogIndex(previews = true) {
-  let postsTable: any = null
+const formatValue = (key: string, value) => {
+  switch (key) {
+    case 'Authors':
+      return value.rich_text.map((item) => item.plain_text)
+
+    case 'Slug':
+    case 'CTA':
+    case 'AltText':
+    case 'ogPreview':
+      return value.rich_text.map((item) => item.plain_text).join('')
+
+    case 'Cover':
+    case 'Thumb':
+    case 'ogImage':
+      return value.files.map((item) => getFileUrl(item))[0] || ''
+
+    case 'Date':
+      return new Date(value.date?.start).getTime()
+
+    case 'Owner':
+      return value.people.map((item) => item.id)
+
+    case 'Published':
+      return value.checkbox
+
+    case 'Tags':
+    case 'Project':
+    case 'Type':
+      return value.multi_select.map((item) => item.name)
+
+    case 'Page':
+      return value.title.map((item) => item.plain_text)[0] || ''
+
+    default:
+      return value
+  }
+}
+
+export type BlogTableRow = {
+  id: string
+  Slug?: string
+  Cover?: string
+  Thumb?: string
+  CTA?: string
+  ogPreview?: string
+  Date?: number
+  ogImage?: string
+  AltText?: string
+  Published?: boolean
+  Tags?: string[]
+  Type?: string[]
+  Project?: string[]
+  Page?: string
+}
+
+export default async function getBlogIndex(
+  previews = true
+): Promise<BlogTableRow[]> {
   const useCache = process.env.USE_CACHE === 'true'
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
   if (useCache) {
     try {
-      postsTable = JSON.parse(await readFile(cacheFile, 'utf8'))
+      return JSON.parse(await readFile(cacheFile, 'utf8'))
     } catch (_) {
       /* not fatal */
     }
   }
 
-  if (!postsTable) {
-    try {
-      const data = await rpc('loadPageChunk', {
-        pageId: BLOG_INDEX_ID,
-        limit: 100, // TODO: figure out Notion's way of handling pagination
-        cursor: { stack: [] },
-        chunkNumber: 0,
-        verticalColumns: false,
+  let postsTable: BlogTableRow[] = []
+
+  try {
+    const response = await notion.databases.query({
+      database_id: process.env.NOTION_DATABASE_ID,
+    })
+
+    postsTable = response.results
+      .map((row) => {
+        const newRow: BlogTableRow = { id: row.id }
+
+        Object.entries(row.properties).forEach(([key, value]) => {
+          newRow[key] = formatValue(key, value)
+
+          if (typeof newRow[key] === 'string') {
+            newRow[key] = newRow[key].trim()
+          }
+
+          // fix getStaticProps bug https://github.com/vercel/next.js/discussions/11209
+          if (newRow[key] === undefined) {
+            newRow[key] = null
+          }
+        })
+        return newRow
       })
+      .sort((a, b) => b.Date - a.Date)
+  } catch (err) {
+    console.warn(`Failed to load Notion posts`)
+    return []
+  }
 
-      const rawdata = data
-
-      // Parse table with posts
-      const tableBlock = values(data.recordMap.block).find(
-        (block: any) => block.value.type === 'collection_view'
-      )
-
-      postsTable = await getTableData(tableBlock, true)
-    } catch (err) {
-      console.warn(
-        `Failed to load Notion posts, have you run the create-table script?`
-      )
-      return {}
-    }
-
-    // only get 10 most recent post's previews
-    const postsKeys = Object.keys(postsTable).splice(0, 10)
-
-    const sema = new Sema(3, { capacity: postsKeys.length })
-
-    if (previews) {
-      await Promise.all(
-        postsKeys
-          .sort((a, b) => {
-            const postA = postsTable[a]
-            const postB = postsTable[b]
-            const timeA = postA.Date
-            const timeB = postB.Date
-            return Math.sign(timeB - timeA)
-          })
-          .map(async (postKey) => {
-            await sema.acquire()
-            const post = postsTable[postKey]
-            post.preview = post.id
-              ? await getPostPreview(postsTable[postKey].id)
-              : []
-            sema.release()
-          })
-      )
-    }
-
-    if (useCache) {
-      writeFile(cacheFile, JSON.stringify(postsTable), 'utf8').catch(() => {})
-    }
+  if (useCache) {
+    writeFile(cacheFile, JSON.stringify(postsTable), 'utf8').catch(() => {})
   }
 
   return postsTable
