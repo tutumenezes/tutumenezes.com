@@ -74,6 +74,8 @@ export default async function getBlogIndex(
 
   let postsTable: BlogTableRow[] = []
 
+  const test
+
   try {
     const response = await notion.databases.query({
       database_id: process.env.NOTION_DATABASE_ID,
