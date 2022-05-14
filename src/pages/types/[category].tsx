@@ -5,7 +5,6 @@ import {
   getBlogLink,
   getCategoryLink,
   onlyUnique,
-  postIsPublished,
 } from '../../lib/blog-helpers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { useEffect } from 'react'

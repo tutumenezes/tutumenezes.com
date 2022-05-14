@@ -3,6 +3,7 @@ import Header from '../../components/header'
 import { useRouter } from 'next/router'
 import {
   getBlogLink,
+  getCategoryLink,
   getProjectLink,
   onlyUnique,
   postIsPublished,
@@ -17,35 +18,19 @@ export async function getStaticProps({ params: { project }, preview }) {
 
   const postsTable = await getBlogIndex()
 
-  const posts: any[] = Object.keys(postsTable)
-    .map((project) => {
-      const post = postsTable[project]
+  const today = new Date().getTime()
 
-      post.Project = post.Project || []
+  // viewed without preview mode then we returns 404
+  const posts = postsTable.filter(
+    (p) => (p.Published && p.Date < today) || preview
+  )
 
-      if (!preview && !postIsPublished(post)) {
-        return null
-      }
+  const projects = postsTable.map((p) => p.Project).filter(Boolean)
+  const allProjects = [].concat.apply([], projects).filter(onlyUnique)
 
-      return post
-    })
-    .filter(Boolean)
+  console.log(posts)
 
-  const allprojects: any[] = Object.keys(posts)
-    .map((proj) => {
-      const project = posts[proj].Project
-
-      return project
-    })
-    .filter(Boolean)
-
-  const projects = [].concat.apply([], allprojects).filter(onlyUnique).sort()
-
-  const results = posts.filter((obj) => {
-    return obj.Project === project
-  })
-
-  if (projects.indexOf(project) == -1) {
+  if (allProjects.indexOf(project) == -1) {
     return {
       notFound: true,
     }
@@ -53,7 +38,7 @@ export async function getStaticProps({ params: { project }, preview }) {
     return {
       props: {
         preview: preview || false,
-        results,
+        posts,
       },
       revalidate: 10,
     }
@@ -62,40 +47,34 @@ export async function getStaticProps({ params: { project }, preview }) {
 
 export async function getStaticPaths() {
   const postsTable = await getBlogIndex()
-  // we fallback for any unpublished posts to save build time
-  // for actually published ones
 
-  const projects: any[] = Object.keys(postsTable)
-    .map((proj) => {
-      const project = postsTable[proj].Project
+  const type = postsTable.map((p) => p.Type).filter(Boolean)
 
-      return project
-    })
-    .filter(Boolean)
+  const allTypes = [].concat.apply([], type).filter(onlyUnique)
 
   const paths = []
 
-  projects.forEach((id) => {
+  allTypes.filter(onlyUnique).forEach((id) => {
     paths.push(getProjectLink(id))
   })
 
   return {
-    paths: paths.filter(onlyUnique),
+    paths: paths,
     fallback: true,
   }
 }
 
-const RenderProject = ({ results = [], redirect, preview }) => {
+const RenderProject = ({ posts = [], redirect, preview }) => {
   // Sort by Date: most recent first
-  results.sort((a, b) => b.Date - a.Date)
+  posts.sort((a, b) => b.Date - a.Date)
 
   const router = useRouter()
 
   useEffect(() => {
-    if (redirect && !results) {
+    if (redirect && !posts) {
       router.replace(redirect)
     }
-  }, [redirect, results])
+  }, [redirect, posts])
 
   // If the page is not yet generated, this will be displayed
   // initially until getStaticProps() finishes running
@@ -139,12 +118,10 @@ const RenderProject = ({ results = [], redirect, preview }) => {
           <h1>{router.query.project}</h1>
         </div>
 
-        {results.length === 0 && (
-          <p className={'noPosts'}>Ops! No posts yet.</p>
-        )}
+        {posts.length === 0 && <p className={'noPosts'}>Ops! No posts yet.</p>}
 
         <div className="tag-list tag-post-list">
-          {results.map((post) => {
+          {posts.map((post) => {
             if (post.Project.indexOf(router.query.project) > -1) {
               return (
                 <Link href={getBlogLink(post.Slug)} as={getBlogLink(post.Slug)}>
