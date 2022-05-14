@@ -1,44 +1,49 @@
-import rpc, { values } from './rpc'
+import { notion } from './client'
+import { NotionBlock } from './types'
 
-export default async function getPageData(pageId: string) {
+export type PageBlock = NotionBlock & {
+  children?: PageBlock[]
+}
+
+const loadBlock = async (blockId: string) => {
   // a reasonable size limit for the largest blog post (1MB),
   // as one chunk is about 10KB
   const maximumChunckNumer = 100
+  let chunkNumber = 0
 
+  let data = await notion.blocks.children.list({ block_id: blockId })
+  let blocks = data.results as PageBlock[]
+
+  while (data.has_more && chunkNumber < maximumChunckNumer) {
+    chunkNumber = chunkNumber + 1
+    data = await notion.blocks.children.list({
+      block_id: blockId,
+      start_cursor: data.next_cursor,
+    })
+    blocks = blocks.concat(data.results as PageBlock[])
+  }
+
+  await Promise.all(
+    blocks
+      .filter((b) => b.has_children)
+      .map((block) =>
+        loadBlock(block.id).then((childrenData) => {
+          block.children = childrenData
+        })
+      )
+  )
+
+  return blocks
+}
+
+export default async function getPageData(
+  pageId: string
+): Promise<{ blocks: PageBlock[] }> {
   try {
-    var chunkNumber = 0
-    var data = await loadPageChunk({ pageId, chunkNumber })
-    var blocks = data.recordMap.block
-
-    while (data.cursor.stack.length !== 0 && chunkNumber < maximumChunckNumer) {
-      chunkNumber = chunkNumber + 1
-      data = await loadPageChunk({ pageId, chunkNumber, cursor: data.cursor })
-      blocks = Object.assign(blocks, data.recordMap.block)
-    }
-    const blockArray = values(blocks)
-    if (blockArray[0] && blockArray[0].value.content) {
-      // remove table blocks
-      blockArray.splice(0, 3)
-    }
-    return { blocks: blockArray }
+    const blocks = await loadBlock(pageId)
+    return { blocks }
   } catch (err) {
     console.error(`Failed to load pageData for ${pageId}`, err)
     return { blocks: [] }
   }
-}
-
-export function loadPageChunk({
-  pageId,
-  limit = 30,
-  cursor = { stack: [] },
-  chunkNumber = 0,
-  verticalColumns = false,
-}: any) {
-  return rpc('loadPageChunk', {
-    pageId,
-    limit,
-    cursor,
-    chunkNumber,
-    verticalColumns,
-  })
 }

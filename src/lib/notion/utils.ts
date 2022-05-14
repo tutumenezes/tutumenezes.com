@@ -28,3 +28,13 @@ export function handleError(res: NextApiResponse, error: string | Error) {
     message: 'an error occurred processing request',
   })
 }
+
+type FileOrExternal = {
+  type: 'file' | 'external'
+  external?: { url: string }
+  file?: { url: string }
+}
+
+export const getFileUrl = (file: FileOrExternal) => {
+  return file.type === 'external' ? file.external.url : file.file.url
+}
