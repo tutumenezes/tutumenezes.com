@@ -97,15 +97,32 @@
       }
     }
 
+    ul {
+      list-style-type: disc;
+      padding-left: 1em;
+
+      li {
+        font-family: $font-serif;
+        font-size: $font-size--medium;
+        font-weight: $font-weight--thin;
+        line-height: 1.35em;
+        padding: 0.5em 0;
+        @include themed() {
+          color: t($text);
+        }
+      }
+    }
+
     p {
       font-family: $font-serif;
       font-size: $font-size--medium;
       font-weight: $font-weight--thin;
       line-height: 1.35em;
-      padding: 1em 0;
+      padding: 0.5em 0;
       @include themed() {
         color: t($text);
       }
+
       a {
         text-decoration: underline;
         @include themed() {

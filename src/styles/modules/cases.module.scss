@@ -81,7 +81,7 @@
                 font-weight: $font-weight--bold;
                 text-transform: capitalize;
                 transition: all 0.2s $easing-bezier-fast;
-                text-decoration: underline;
+                text-decoration: none;
 
                 @include desktop {
                   font-size: $font-size--medium;
@@ -124,13 +124,21 @@
           }
           .cover-container {
             background: transparent;
-            width: 24rem;
+            width: 50%;
             height: 100%;
             position: absolute;
             right: 0;
             top: 0;
             bottom: 0;
             margin: auto;
+            overflow: hidden;
+
+            img {
+              width: 100%;
+              height: auto;
+              position: absolute;
+              top: 32px;
+            }
 
             @include mobile {
               display: none;

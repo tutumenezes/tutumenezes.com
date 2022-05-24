@@ -3,7 +3,7 @@
     transform: translate(0);
   }
   50% {
-    transform: translate(0, -10px);
+    transform: translate(0, -32px);
   }
   100% {
     transform: translate(0);
@@ -12,18 +12,18 @@
 
 .cases {
   .content-list {
-    &:hover .postPreview:hover ~ .postPreview:last-child .cover-container {
+    &:hover .postPreview:hover ~ .postPreview:last-child .cover-container img {
       opacity: 0;
     }
 
     .postPreview {
-      .cover-container {
+      .cover-container img {
         transition: opacity 0.2s $easing-bezier-fast,
           transform 10s $easing-bezier-slow;
         opacity: 0;
       }
 
-      .content-container:hover ~ .cover-container {
+      .content-container:hover ~ .cover-container img {
         opacity: 1 !important;
         z-index: 100;
         animation-name: fluctuate;
@@ -31,7 +31,7 @@
         animation-iteration-count: infinite;
       }
 
-      &:last-child .cover-container {
+      &:last-child .cover-container img {
         opacity: 1;
       }
     }
