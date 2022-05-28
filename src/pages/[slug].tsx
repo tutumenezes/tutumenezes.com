@@ -233,7 +233,7 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
           </div>
         )}
 
-        <div className="post-content main-container">
+        <div className="post-content">
           <PageBlocks blocks={post.content} />
         </div>
 

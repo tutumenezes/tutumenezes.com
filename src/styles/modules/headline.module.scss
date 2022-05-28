@@ -17,13 +17,14 @@
     }
 
     p {
-      font-family: $font-serif;
-      font-weight: $font-weight--thin;
+      font-family: $font-serif-title;
+      font-weight: $font-weight--regular;
       line-height: 1.5em;
 
       span {
         display: block;
         a {
+          font-family: $font-serif-title;
           text-decoration: underline;
           &:hover {
             &.futuur-link {
