@@ -1,14 +1,9 @@
 .related-posts {
   padding: 16px;
-  border-radius: 4px;
-
-  @include themed {
-    background-color: t(sublte-bg);
-  }
 
   h3 {
-    font-family: $font-serif;
-    font-weight: $font-weight--thin;
+    font-family: $font-headline;
+    font-weight: $font-weight--bold;
     font-size: $font-size--medium;
     padding: 16px 0;
     text-align: left;
@@ -35,11 +30,12 @@
 
       .titleContainer a {
         display: block;
-        font-family: $font-serif;
+        font-family: $font-headline;
         font-weight: $font-weight--bold;
         text-transform: lowercase;
         transition: all 0.2s $easing-bezier-fast;
         text-decoration: none;
+        text-transform: capitalize;
 
         @include desktop {
           font-size: $font-size--large;
