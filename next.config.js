@@ -58,7 +58,7 @@ module.exports = {
     if (dev || !isServer) return cfg
 
     // we're in build mode so enable shared caching for Notion data
-    process.env.USE_CACHE = 'true'
+    process.env.USE_CACHE = 'false'
 
     const originalEntry = cfg.entry
     cfg.entry = async () => {
