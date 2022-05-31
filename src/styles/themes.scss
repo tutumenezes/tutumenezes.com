@@ -1,4 +1,5 @@
 // Theme Variables
+$primary: 'primary';
 $bg: 'bg';
 $card-bg: 'card-bg';
 $text: 'text';
@@ -11,6 +12,7 @@ $border: 'border';
 //Themes
 $themes: (
   light: (
+    primary: $color-primary,
     bg: linear-gradient(#ffffff, $color-background-light),
     text: $color-high-emphasis,
     text-secondary: $color-medium-emphasis,
@@ -20,6 +22,7 @@ $themes: (
     sublte-bg: $color-sublte-background-light,
   ),
   dark: (
+    primary: $color-primary,
     bg: linear-gradient($color-background-dark, $color-high-emphasis),
     text: $color-light-high-emphasis,
     text-secondary: $color-medium-emphasis,
