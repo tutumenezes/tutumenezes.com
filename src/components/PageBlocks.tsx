@@ -189,11 +189,30 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
         )
 
       case 'video':
-        return block.video.type === 'external' ? (
-          <iframe src={block.video.external.url} />
-        ) : (
-          <video src={block.video.file.url} controls />
-        )
+        if (block.video.type === 'external') {
+          var extURL = ''
+
+          block.video.external.url.indexOf('youtube') > -1 &&
+            (extURL =
+              'https://www.youtube-nocookie.com/embed/' +
+              block.video.external.url.split('v=')[1] +
+              '?controls=0')
+
+          return (
+            <div className="video-container">
+              <iframe
+                src={extURL}
+                className="video-container-iframe"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )
+        } else {
+          return <video src={block.video.file.url} controls />
+        }
 
       default:
         return null
