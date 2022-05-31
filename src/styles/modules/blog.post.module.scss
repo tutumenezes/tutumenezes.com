@@ -429,6 +429,11 @@
     }
   }
 
+  audio {
+    width: 100%;
+    display: block;
+  }
+
   video,
   blockquote,
   p,
@@ -437,7 +442,8 @@
   h3,
   ul,
   ol,
-  .callout {
+  .callout,
+  audio {
     max-width: 50rem;
     margin: 1em auto;
   }
