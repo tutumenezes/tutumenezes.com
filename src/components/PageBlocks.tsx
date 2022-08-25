@@ -1,5 +1,5 @@
 import Slugger from 'github-slugger'
-import React, { ReactNode } from 'react'
+import React, { Fragment, ReactNode } from 'react'
 import { PageBlock } from '../lib/notion/getPageData'
 import {
   BulletedListItemBlock,
@@ -10,6 +10,8 @@ import { getFileUrl } from '../lib/notion/utils'
 
 const renderRichText = (richText: RichText) => {
   return richText?.map((text) => {
+    const key: string = text.plain_text
+
     let value: ReactNode = text.plain_text
     if (text.annotations.bold) {
       value = <b>{value}</b>
@@ -32,7 +34,7 @@ const renderRichText = (richText: RichText) => {
     if (text.href) {
       value = <a href={text.href}>{value}</a>
     }
-    return value
+    return <Fragment key={key}>{value}</Fragment>
   })
 }
 
@@ -46,8 +48,8 @@ const renderHeading = (Tag, richText: RichText, slugger) => {
 }
 
 type ListBlock =
-  | { type: 'bulleted_list'; children: BulletedListItemBlock[] }
-  | { type: 'numbered_list'; children: NumberedListItemBlock[] }
+  | { id: string; type: 'bulleted_list'; children: BulletedListItemBlock[] }
+  | { id: string; type: 'numbered_list'; children: NumberedListItemBlock[] }
 
 type RenderBlock = PageBlock | ListBlock
 
@@ -63,7 +65,7 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
   let list: ListBlock | null = null
   const buildList = (type, block, blockIndex) => {
     if (!list) {
-      list = { type, children: [] }
+      list = { id: `${type}_${block.id}`, type, children: [] }
     }
 
     // TODO imprimir os children, e agrupar os itens comuns p o número ser incremental
@@ -104,7 +106,9 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
         return (
           <ul>
             {block.children.map((item) => (
-              <li>{renderRichText(item.bulleted_list_item.rich_text)}</li>
+              <li key={item.id}>
+                {renderRichText(item.bulleted_list_item.rich_text)}
+              </li>
             ))}
           </ul>
         )
@@ -174,7 +178,9 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
         return (
           <ol>
             {block.children.map((item) => (
-              <li>{renderRichText(item.numbered_list_item?.rich_text)}</li>
+              <li key={item.id}>
+                {renderRichText(item.numbered_list_item?.rich_text)}
+              </li>
             ))}
           </ol>
         )
@@ -221,10 +227,10 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
 
   const renderBlocks = (blocksArray: RenderBlock[]) => {
     return blocksArray?.map((block) => (
-      <>
+      <Fragment key={block.id}>
         {renderBlock(block)}
         {renderBlocks(block.children)}
-      </>
+      </Fragment>
     ))
   }
 
