@@ -4,6 +4,7 @@ import Header from '../components/header'
 import getPageData, { PageBlock } from '../lib/notion/getPageData'
 import React, { FC, useEffect } from 'react'
 import getBlogIndex, { BlogTableRow } from '../lib/notion/getBlogIndex'
+import PreviewMode from '../components/PreviewMode'
 import {
   getBlogLink,
   getDateStr,
@@ -11,7 +12,6 @@ import {
   getProjectLink,
 } from '../lib/blog-helpers'
 import PageBlocks from '../components/PageBlocks'
-import { FiArrowUpRight } from 'react-icons/fi'
 import { Loading } from '../components/Loading'
 
 type PostData = BlogTableRow & {
@@ -108,17 +108,7 @@ const RenderAbout: FC<Props> = ({ post, redirect, preview }) => {
         ogImageAlt={post.AltText}
       />
 
-      {preview && (
-        <div>
-          <div>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview?slug=${post.Slug}`}>
-              <button>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
+      <PreviewMode preview={preview} />
 
       <div className={'blog-post'}>
         <div className="blog-post-header main-container">
