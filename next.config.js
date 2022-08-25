@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 const {
-  NOTION_TOKEN,
-  BLOG_INDEX_ID,
+  NOTION_API_KEY,
+  NOTION_DATABASE_ID,
 } = require('./src/lib/notion/server-constants')
 
 try {
@@ -23,39 +23,47 @@ const warnOrError =
         throw new Error(msg)
       }
 
-if (!NOTION_TOKEN) {
+if (!NOTION_API_KEY) {
   // We aren't able to build or serve images from Notion without the
-  // NOTION_TOKEN being populated
+  // NOTION_API_KEY being populated
   warnOrError(
-    `\nNOTION_TOKEN is missing from env, this will result in an error\n` +
+    `\NOTION_API_KEY is missing from env, this will result in an error\n` +
       `Make sure to provide one before starting Next.js`
   )
 }
 
-if (!BLOG_INDEX_ID) {
+if (!NOTION_DATABASE_ID) {
   // We aren't able to build or serve images from Notion without the
-  // NOTION_TOKEN being populated
+  // NOTION_DATABASE_ID being populated
   warnOrError(
-    `\nBLOG_INDEX_ID is missing from env, this will result in an error\n` +
+    `\NOTION_DATABASE_ID is missing from env, this will result in an error\n` +
       `Make sure to provide one before starting Next.js`
   )
 }
 
 module.exports = {
   images: {
-    domains: ['s3.us-west-2.amazonaws.com'],
+    domains: [
+      's3.us-west-2.amazonaws.com',
+      'drive.google.com',
+      'doc-14-3g-docs.googleusercontent.com',
+      'i.ibb.co',
+    ],
   },
 
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false }
-
-    return config
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/',
+        permanent: true,
+      },
+    ]
   },
 
-  webpack(cfg, { dev, isServer }) {
+  webpack(cfg, { dev }) {
     // only compile build-rss in production server build
-    if (dev || !isServer) return cfg
+    if (dev || cfg.name !== 'server') return cfg
 
     // we're in build mode so enable shared caching for Notion data
     process.env.USE_CACHE = 'false'
