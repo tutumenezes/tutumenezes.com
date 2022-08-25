@@ -1,21 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  if (typeof req.query.token !== 'string') {
-    return res.status(401).json({ message: 'invalid token' })
-  }
-  if (req.query.token !== process.env.NOTION_TOKEN) {
-    return res.status(404).json({ message: 'not authorized' })
-  }
-
-  const postsTable = await getBlogIndex()
-
-  if (!postsTable) {
-    return res.status(401).json({ message: 'Failed to fetch posts' })
+  // Check the secret and next parameters
+  // This secret should only be known to this API route and the CMS
+  if (req.query.secret !== process.env.PREVIEW_TOKEN) {
+    return res.status(401).json({ message: 'Invalid token' })
   }
 
-  res.setPreviewData({})
-  res.writeHead(307, { Location: `/` })
-  res.end()
+  // Enable Preview Mode by setting the cookies
+  const maxAge = 60 * 60 // The preview mode cookies expire
+  res.setPreviewData({}, { maxAge })
+
+  // Redirect to the home
+  res.redirect('/')
 }
