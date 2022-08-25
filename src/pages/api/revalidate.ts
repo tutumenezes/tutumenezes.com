@@ -4,7 +4,8 @@ import { getStaticPaths as types_getStaticPaths } from '../types/[category]'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const startTime = Date.now()
-  console.log(new Date(), '[API] Revalidate Start')
+
+  //console.log(new Date(), '[API] Revalidate Start')
 
   // Check for secret to confirm this is a valid request
   if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
@@ -21,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     await Promise.all(paths.map((path) => res.revalidate(path)))
 
-    console.log(new Date(), '[API] Revalidate End', paths)
+    //console.log(new Date(), '[API] Revalidate End', paths)
 
     return res.json({
       revalidated: true,
