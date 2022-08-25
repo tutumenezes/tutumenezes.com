@@ -6,7 +6,7 @@ import { FiArrowUpRight } from 'react-icons/fi'
 import { getBlogLink, getCategoryLink } from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
-import { textBlock } from '../lib/notion/renderers'
+import PreviewMode from '../components/PreviewMode'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -32,6 +32,8 @@ const Index = ({ posts = [], preview }) => {
   return (
     <>
       <Header titlePre="Home" />
+
+      <PreviewMode preview={preview} />
 
       <div className="main-container">
         <Headline />
