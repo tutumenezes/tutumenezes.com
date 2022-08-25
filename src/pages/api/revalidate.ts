@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getStaticPaths as blog_getStaticPaths } from '../blog/[slug]'
-import { getStaticPaths as autoria_getStaticPaths } from '../autoria/[author]'
-import { getStaticPaths as editorias_getStaticPaths } from '../editorias/[editoria]'
-import { getStaticPaths as tags_getStaticPaths } from '../tags/[category]'
+import { getStaticPaths as blog_getStaticPaths } from '../[slug]'
+import { getStaticPaths as types_getStaticPaths } from '../types/[category]'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const startTime = Date.now()
@@ -17,12 +15,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const paths = [
       '/',
       ...(await blog_getStaticPaths()).paths,
-      '/autoria',
-      ...(await autoria_getStaticPaths()).paths,
-      '/editorias',
-      ...(await editorias_getStaticPaths()).paths,
-      '/tags',
-      ...(await tags_getStaticPaths()).paths,
+      '/types',
+      ...(await types_getStaticPaths()).paths,
     ]
 
     await Promise.all(paths.map((path) => res.revalidate(path)))
