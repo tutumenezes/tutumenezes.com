@@ -15,12 +15,16 @@ const normalizeId = (id) => {
   )}-${id.substr(20)}`
 }
 
-const NOTION_TOKEN = process.env.NOTION_TOKEN
-const BLOG_INDEX_ID = normalizeId(process.env.BLOG_INDEX_ID)
+const NOTION_API_KEY = process.env.NOTION_API_KEY
+const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID
+const NOTION_TOKEN = process.env.NOTION_TOKEN // deprecated
+const BLOG_INDEX_ID = normalizeId(process.env.BLOG_INDEX_ID) // deprecated
 const API_ENDPOINT = 'https://www.notion.so/api/v3'
 const BLOG_INDEX_CACHE = path.resolve('.blog_index_data')
 
 module.exports = {
+  NOTION_API_KEY,
+  NOTION_DATABASE_ID,
   NOTION_TOKEN,
   BLOG_INDEX_ID,
   API_ENDPOINT,
