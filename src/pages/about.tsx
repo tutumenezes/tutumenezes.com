@@ -24,7 +24,9 @@ type PostData = BlogTableRow & {
 export async function getStaticProps({ preview }) {
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex()
-  const post: PostData = postsTable.find((p) => p.Page === 'About')
+  const post: PostData = postsTable.find((p) => p.Page === 'About Me')
+
+  console.log(post)
 
   // Return 404 custom page if the post doesn't exist
   if (!post) {
