@@ -3,7 +3,8 @@
 **Live Example hosted on Vercel**: https://tutumenezes.com/
 
 This is a personal website running on NextJS which pulls the majority of it's dynamic content from a NOTION Database.
-Meanings it's whole backend is resumed to a NOTION database. I've been writing about the process [here](https://tutumenezes.com/building-this-personal-website). 
+
+Meanings it's whole backend is resumed to a NOTION database. I've been writing about the process [here](https://tutumenezes.com/building-this-personal-website).
 
 You can check both the Backlog, Backend (databases) and Bookmarks for the project [here](https://www.notion.so/tutumenezes/tutumenezes-com-9c571887ad47453e82c8d98bcb8e50e6).
 
@@ -12,18 +13,21 @@ But if you're looking for didatic code examples for NextJS + Notion, the project
 
 ##Credits
 
-- JJ Kasper [@ijjk](https://github.com/ijjk/notion-blog) (the basis from which this project has been forked)
+- Harrisson Mendonça [@euharrisson](https://github.com/euharrison) (many code sofistication, oficial SDK implementation and super render engine)
+- JJ Kasper [@ijjk](https://github.com/ijjk/notion-blog) (the basis from which this project has been forked from)
 - Samuel Kraft [@samuel-kraft](https://github.com/samuelkraft/notion-blog-nextjs)
 - Travis Fischer [@transitive-bullshit](https://github.com/transitive-bullshit/nextjs-notion-starter-kit) (really good - and newer - Notion API Reference)
-*edit: updated to the oficial [Notion API](https://developers.notion.com/) launched recently. 
+  \*edit: updated to the oficial [Notion API](https://developers.notion.com/) launched recently.
 
 ## Deploy Setup
 
 1. Clone this repo `git clone https://github.com/tutumenezes/tutumenezes.com`
 2. Configure project with [`vc`](https://vercel.com/download)
-3. Add your `NOTION_TOKEN` and `BLOG_INDEX_ID` as environment variables in [your project](https://vercel.com/docs/integrations?query=envir#project-level-apis/project-based-environment-variables), simply google how to get those values, its rlly easy.
-3. Add your `NOTION_API_KEY` and `NOTION_DATABASE_ID` as environment variables in [your project](https://vercel.com/docs/integrations?query=envir#project-level-
-5. Do final deployment with `vc`
+3. [ DEPRECATED ]Add your `NOTION_TOKEN` and `BLOG_INDEX_ID` as environment variables in [your project](https://vercel.com/docs/integrations?query=envir#project-level-apis/project-based-environment-variables), simply google how to get those values, its rlly easy.
+4. Add your `NOTION_API_KEY` and `NOTION_DATABASE_ID` as environment variables in [your project](https://vercel.com/docs/integrations?query=envir#project-level-
+5. Update PREVIEW_TOKEN and REVALIDATE_TOKEN with randomly generated secrets
+6. [ OPTIONAL ] configure your NEXT_PUBLIC_GA_MEASUREMENT_ID and NEXT_PUBLIC_GTM_DOMAIN for analytics
+7. Do final deployment with `vc`
 
 ## Running Locally
 
@@ -42,3 +46,5 @@ To run the project locally you need to follow steps 1 and 2 of [setup](#deploy-s
 **Deprecation Alert**: steps .2 of both [setup](#deploy-setup) and [running locally](#running-locally) will be soon deprecated and removed from environment variables. `NOTION_TOKEN` and `BLOG_INDEX_ID` will no longer be needed. They've been replaced by the new Oficial Notion SDK method for authentication. No more hacky Cookie scrapping needed. ;)
 
 **Keep in Mind**: This project uses the experimental SSG hooks only available in the Next.js canary branch! The APIs used within this example will change over time. Since it is using a private API and experimental features, use at your own risk as these things could change at any moment.
+
+[UPDATE] Now using Notion 12.1, so a bit safer ;)
