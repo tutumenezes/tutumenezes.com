@@ -102,6 +102,11 @@ const Header = ({
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="500" />
         <meta property="og:image:height" content="500" />
+
+        <meta
+          name="google-site-verification"
+          content="0K2KzYIdzFuEkmH1H934yjBAGDdJfF2aOXtOu4pQ3oA"
+        />
       </Head>
 
       <div className="header-container">
