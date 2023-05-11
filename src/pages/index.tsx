@@ -48,8 +48,8 @@ const Index = ({ posts = [], preview }) => {
               <div className="content-list">
                 {posts.map((post) => {
                   ///////////////////////////////
-                  // MUDE LOOP
-                  if (post.Project == 'mude') {
+                  // Highlight Loop
+                  if (post.Type == 'product') {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
@@ -98,7 +98,7 @@ const Index = ({ posts = [], preview }) => {
             </div>
           </div>
 
-          <div className="cases-wrapper">
+          {/* <div className="cases-wrapper">
             <div className="case-container futuur-cases">
               <div className="content-list">
                 {posts.map((post) => {
@@ -151,7 +151,7 @@ const Index = ({ posts = [], preview }) => {
               </div>
               <div className="bg-container"></div>
             </div>
-          </div>
+          </div> */}
 
           <div className="cases-wrapper">
             <div className="case-container otherWork-cases">
@@ -159,7 +159,7 @@ const Index = ({ posts = [], preview }) => {
                 {posts.map((post) => {
                   ///////////////////////////////
                   // OTHER WORK LOOP
-                  if (post.Project != 'futuur' && post.Project != 'mude') {
+                  if (post.Type == 'feature') {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
