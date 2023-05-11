@@ -48,11 +48,33 @@ const Index = ({ posts = [], preview }) => {
               <div className="content-list">
                 {posts.map((post) => {
                   ///////////////////////////////
-                  // Highlight Loop
+                  // Product Loop
                   if (post.Type == 'product') {
                     return (
                       <div className={'postPreview'} key={post.Slug}>
                         <div className="content-container">
+                          <Link
+                            href={getBlogLink(post.Slug)}
+                            as={getBlogLink(post.Slug)}
+                          >
+                            <a>
+                              {post.Role && (
+                                <div className="post-project">
+                                  {post.Project}
+                                </div>
+                              )}
+                            </a>
+                          </Link>
+                          <Link
+                            href={getBlogLink(post.Slug)}
+                            as={getBlogLink(post.Slug)}
+                          >
+                            <a>
+                              {post.Role && (
+                                <div className="post-role">as {post.Role}</div>
+                              )}
+                            </a>
+                          </Link>
                           <h3>
                             <span className={'titleContainer'}>
                               {!post.Published && (
@@ -68,24 +90,17 @@ const Index = ({ posts = [], preview }) => {
                               </Link>
                             </span>
                           </h3>
-                          <Link
-                            href={getCategoryLink(post.Type)}
-                            as={getCategoryLink(post.Type)}
-                          >
-                            <a>
-                              {post.Type && (
-                                <div className="tag">#{post.Type}</div>
-                              )}
-                            </a>
-                          </Link>
                         </div>
-                        <div className="cover-container">
+                        <div
+                          className="cover-container"
+                          style={{ backgroundColor: post }}
+                        >
                           {post.Thumb.length > 0 && (
                             <Comp
                               key={post.id}
                               src={post.Thumb}
                               alt={post.Alt}
-                              className="cover"
+                              className={post.Project}
                             />
                           )}
                         </div>
@@ -94,71 +109,16 @@ const Index = ({ posts = [], preview }) => {
                   }
                 })}
               </div>
-              <div className="bg-container"></div>
+              {/* <div className="bg-container"></div> */}
             </div>
           </div>
-
-          {/* <div className="cases-wrapper">
-            <div className="case-container futuur-cases">
-              <div className="content-list">
-                {posts.map((post) => {
-                  ///////////////////////////////
-                  // FUTUUR LOOP
-                  if (post.Project == 'futuur') {
-                    return (
-                      <div className={'postPreview'} key={post.Slug}>
-                        <div className="content-container">
-                          <h3>
-                            <span className={'titleContainer'}>
-                              {!post.Published && (
-                                <span className={'draftBadge'}>Draft</span>
-                              )}
-                              <Link
-                                href={getBlogLink(post.Slug)}
-                                as={getBlogLink(post.Slug)}
-                              >
-                                <a>
-                                  {post.Page} <FiArrowUpRight />
-                                </a>
-                              </Link>
-                            </span>
-                          </h3>
-                          <Link
-                            href={getCategoryLink(post.Type)}
-                            as={getCategoryLink(post.Type)}
-                          >
-                            <a>
-                              {post.Type && (
-                                <div className="tag">#{post.Type}</div>
-                              )}
-                            </a>
-                          </Link>
-                        </div>
-                        <div className="cover-container">
-                          {post.Thumb.length > 0 && (
-                            <Comp
-                              key={post.id}
-                              src={post.Thumb}
-                              alt={post.Alt}
-                              className="cover"
-                            />
-                          )}
-                        </div>
-                      </div>
-                    )
-                  }
-                })}
-              </div>
-              <div className="bg-container"></div>
-            </div>
-          </div> */}
 
           <div className="cases-wrapper">
             <div className="case-container otherWork-cases">
               <div className="content-list">
                 {posts.map((post) => {
                   ///////////////////////////////
-                  // OTHER WORK LOOP
+                  // Features Loop
                   if (post.Type == 'feature') {
                     return (
                       <div className={'postPreview'} key={post.Slug}>

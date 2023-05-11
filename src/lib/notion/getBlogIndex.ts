@@ -10,6 +10,8 @@ const formatValue = (key: string, value) => {
 
     case 'Slug':
     case 'CTA':
+    case 'Role':
+    case 'Color':
     case 'AltText':
     case 'ogPreview':
       return value.rich_text.map((item) => item.plain_text).join('')

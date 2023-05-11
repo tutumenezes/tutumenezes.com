@@ -44,7 +44,7 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        flex-direction: column;
+        flex-direction: row;
 
         @include mobile {
           position: relative;
@@ -56,12 +56,7 @@
 
         .postPreview {
           display: flex;
-          justify-content: space-between;
-
-          @include desktop {
-            margin-bottom: 32px;
-            padding-right: 10%;
-          }
+          flex-direction: column-reverse;
 
           @include mobile {
             margin-top: 32px;
@@ -69,29 +64,32 @@
           }
 
           &:first-child {
-            margin-top: unset;
+            margin-right: 32px;
           }
 
           .content-container {
+            .post-project {
+              font-family: $font-sans;
+              font-weight: $font-weight--regular;
+              font-size: $font-size--smallest;
+              color: $color-medium-emphasis;
+            }
+            .post-role {
+              font-family: $font-sans;
+              font-weight: $font-weight--regular;
+              font-size: $font-size--smallest;
+              color: $color-high-emphasis;
+              margin-bottom: 10px;
+            }
             h3 {
               display: inline-block;
 
               .titleContainer a {
                 font-family: $font-serif;
-                font-weight: $font-weight--bold;
-                text-transform: capitalize;
+                font-weight: $font-weight--regular;
                 transition: all 0.2s $easing-bezier-fast;
                 text-decoration: none;
-
-                @include desktop {
-                  font-size: $font-size--medium;
-                  letter-spacing: 0.05em;
-                }
-
-                @include mobile {
-                  font-size: $font-size--medium;
-                  letter-spacing: 0.05em;
-                }
+                font-size: $font-size--smallest;
 
                 svg {
                   position: relative;
@@ -123,15 +121,13 @@
             }
           }
           .cover-container {
-            background: transparent;
-            width: 50%;
-            height: 100%;
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
+            width: 100%;
+            height: 400px;
+            position: relative;
             margin: auto;
             overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: 12px;
 
             img {
               width: 100%;
@@ -140,38 +136,26 @@
               top: 32px;
             }
 
-            @include mobile {
-              display: none;
-            }
+            // @include mobile {
+            //   display: inline-block;
+            // }
           }
-        }
-      }
-      .bg-container {
-        @include desktop {
-          width: 50%;
-          height: auto;
-          padding-top: 56.25%;
-          margin: 0;
         }
       }
 
-      &.mude-cases {
-        .content-list {
-          @include desktop {
-            width: 50%;
-          }
-        }
+      &.Mude {
         .bg-container {
           background-color: $color-project-mude;
         }
       }
 
-      &.futuur-cases {
-        .content-list {
-          @include desktop {
-            width: 50%;
-          }
+      &.powerUp {
+        .bg-container {
+          background-color: $color-project-powerup;
         }
+      }
+
+      &.futuur {
         .bg-container {
           background-color: $color-project-futuur;
         }
