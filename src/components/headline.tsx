@@ -5,20 +5,9 @@ const Headline = () => (
     <div className="container">
       <p>
         <span>
-          Designer at{' '}
-          <ExtLink
-            className="underlined futuur-link"
-            href="https://futuur.com/"
-          >
-            Futuur
-          </ExtLink>{' '}
-          &{' '}
-          <ExtLink className="underlined mude-link" href="https://mude.fit/">
-            Mude
-          </ExtLink>
-          .
+          For 10+ years, I've been designing elegant products and services that
+          solve problems, achieve business goals, and prioritize people's needs.
         </span>
-        <span>Passionate about the creative process.</span>
       </p>
     </div>
   </div>
