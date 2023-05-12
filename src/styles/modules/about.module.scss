@@ -10,12 +10,23 @@
 
 .post-eye {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+
+  @include desktop() {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @include mobile() {
+    flex-direction: column;
+    justify-content: start;
+    align-items: left;
+  }
 
   .eye-content {
-    width: 50%;
+    @include desktop() {
+      width: 50%;
+    }
     p {
       font-family: $font-serif;
       font-weight: $font-weight--regular;
@@ -24,6 +35,8 @@
     }
   }
   .eye-cover-image {
-    width: 50%;
+    @include desktop() {
+      width: 50%;
+    }
   }
 }
