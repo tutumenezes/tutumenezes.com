@@ -1,0 +1,29 @@
+.section-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+  margin-bottom: 32px;
+
+  h4 {
+    font-family: $font-sans;
+    font-weight: $font-weight--medium;
+    font-size: $font-size--nano;
+    @include themed() {
+      color: t($text);
+    }
+    margin: unset;
+  }
+  &::before {
+    // display: inline-block;
+    display: none;
+    content: ' ';
+    height: 1px;
+    width: 16px;
+    margin-right: 4px;
+    @include themed() {
+      background-color: t($text);
+    }
+  }
+}

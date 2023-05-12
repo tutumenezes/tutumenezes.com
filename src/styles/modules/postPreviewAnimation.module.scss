@@ -12,18 +12,18 @@
 
 .cases {
   .content-list {
-    &:hover .postPreview:hover ~ .postPreview:last-child .cover-container img {
-      opacity: 0;
-    }
+    // &:hover .postPreview:hover ~ .postPreview:last-child .cover-container img {
+    //   opacity: 0;
+    // }
 
     .postPreview {
       .cover-container img {
         transition: opacity 0.2s $easing-bezier-fast,
           transform 10s $easing-bezier-slow;
-        opacity: 0;
       }
 
-      .content-container:hover ~ .cover-container img {
+      .content-container:hover ~ .cover-container img,
+      .cover-container:hover img {
         opacity: 1 !important;
         z-index: 100;
         animation-name: fluctuate;
@@ -31,9 +31,9 @@
         animation-iteration-count: infinite;
       }
 
-      &:last-child .cover-container img {
-        opacity: 1;
-      }
+      // &:last-child .cover-container img {
+      //   opacity: 1;
+      // }
     }
   }
 }

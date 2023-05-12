@@ -14,7 +14,7 @@ export default function Footer() {
       <footer className="footer">
         <div className="container">
           <div className="copyright">
-            Written and Built by tutumenezes in 2022 • Hit me up!
+            Written and Built by tutumenezes in 2023 • Hit me up!
           </div>
           <div className="social">
             {twitter && (

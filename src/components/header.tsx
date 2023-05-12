@@ -110,22 +110,25 @@ const Header = ({
       </Head>
 
       <div className="header-container">
-        <h1
-          id="start"
-          onClick={() => scrollToTop()}
-          className={pathname === '/#start' ? 'active' : undefined}
-        >
-          <Link href="/">
-            <a
-              className="site-logo"
-              title={
-                'Tutu Menezes - click here to scroll to top or go to homepage'
-              }
-            >
-              tutu menezes
-            </a>
-          </Link>
-        </h1>
+        <div className="title-wrapper">
+          <h1
+            id="start"
+            onClick={() => scrollToTop()}
+            className={pathname === '/#start' ? 'active' : undefined}
+          >
+            <Link href="/">
+              <a
+                className="site-logo"
+                title={
+                  'Tutu Menezes - click here to scroll to top or go to homepage'
+                }
+              >
+                tutu
+              </a>
+            </Link>
+          </h1>
+          {/* <span>product designer</span> */}
+        </div>
         <Nav />
       </div>
     </header>

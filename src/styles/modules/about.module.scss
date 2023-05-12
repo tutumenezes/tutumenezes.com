@@ -7,3 +7,23 @@
     width: 100%;
   }
 }
+
+.post-eye {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .eye-content {
+    width: 50%;
+    p {
+      font-family: $font-serif;
+      font-weight: $font-weight--regular;
+      line-height: 2em;
+      padding: 0.5em 0;
+    }
+  }
+  .eye-cover-image {
+    width: 50%;
+  }
+}

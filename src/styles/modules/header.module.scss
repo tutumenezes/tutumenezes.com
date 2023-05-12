@@ -1,6 +1,6 @@
 .header {
   margin: 0 auto;
-  position: sticky;
+  // position: sticky;
   top: 0;
   z-index: 100;
   backdrop-filter: blur(2px);
@@ -24,23 +24,29 @@
     width: 100%;
 
     h1 {
-      margin: 16px 0;
+      margin: 0;
       text-align: left;
       a {
-        font-family: $font-headline;
+        font-family: $font-serif;
         font-weight: $font-weight--bold;
         display: block;
         text-align: left;
-        letter-spacing: 0.1em;
         transition: all 0.1s $easing-bezier-fast;
 
         @include desktop {
-          font-size: $font-size--large;
+          font-size: $font-size--small;
         }
         @include mobile {
-          font-size: $font-size--medium;
+          font-size: $font-size--small;
         }
       }
+    }
+    span {
+      display: block;
+      font-family: $font-sans;
+      font-weight: $font-weight--regular;
+      font-size: $font-size--nano;
+      color: $color-medium-emphasis;
     }
   }
 }

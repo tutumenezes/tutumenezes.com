@@ -21,8 +21,8 @@ $color-outline: #bdbdbd;
 //fonts
 //update font-families variables in fonts.scss
 $font-serif: $font-ivyjournal;
-$font-serif-title: $font-utopia;
-$font-headline: $font-utopia-headline;
+$font-serif-title: $font-ivyjournal;
+$font-headline: $font-ivyjournal;
 
 $font-sans: $font-work;
 $font-sans-condensed: $font-work;
@@ -35,6 +35,7 @@ $font-weight--thin: 200;
 
 //font-sizes
 //User variables from variables.media.queries to style font-size
+$font-size--nano: 0.75em;
 $font-size--smallest: 0.875em;
 $font-size--very-small: 1em;
 $font-size--small: 1.125em;

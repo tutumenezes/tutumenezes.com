@@ -227,7 +227,7 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
         </div>
 
         <div className="related-posts main-container">
-          <h3>Read More</h3>
+          <h3>Keep reading</h3>
           <div className="related-posts-list">
             {post.prevPost && (
               <div className="prevPost related-item">

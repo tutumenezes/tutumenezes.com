@@ -23,10 +23,10 @@
 
       a {
         font-family: $font-sans;
-        font-weight: $font-weight--bold;
+        font-weight: $font-weight--medium;
         text-transform: uppercase;
 
-        font-size: $font-size--small;
+        font-size: $font-size--smallest;
 
         @include themed() {
           color: t($text-secondary);

@@ -4,33 +4,43 @@
   .cases-wrapper {
     position: relative;
 
+    &.features,
+    &.more {
+      display: flex;
+
+      @include desktop {
+        width: 100%;
+        flex-direction: row;
+        align-items: baseline;
+        margin: 15vh 0;
+        .case-container {
+          width: 50%;
+        }
+      }
+
+      @include mobile {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin: 16px;
+        .section-title {
+          width: 100%;
+          margin-bottom: 32px;
+        }
+      }
+    }
+
     .case-container {
       display: flex;
       margin: 0;
 
       @include desktop {
-        justify-content: space-between;
+        justify-content: between;
         margin-bottom: 64px;
       }
 
       @include mobile {
         width: 100%;
-        margin: 0 0 128px 0;
-        padding: 0 32px;
-
-        &:before {
-          display: block;
-          content: ' ';
-
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 8px;
-          height: 100%;
-          margin: unset;
-          padding-top: 48px;
-        }
 
         &.mude-cases::before {
           background-color: $color-project-mude;
@@ -48,8 +58,6 @@
 
         @include mobile {
           position: relative;
-          margin: auto;
-          margin-top: 32px;
           flex-wrap: wrap;
           justify-content: flex-start;
         }
@@ -57,29 +65,39 @@
         .postPreview {
           display: flex;
           flex-direction: column-reverse;
+          cursor: pointer;
 
           @include mobile {
+            margin: 64px 16px;
             margin-top: 32px;
             width: unset;
           }
 
-          &:first-child {
-            margin-right: 32px;
+          @include desktop {
+            &:first-child {
+              margin-right: 32px;
+            }
           }
 
           .content-container {
             .post-project {
               font-family: $font-sans;
-              font-weight: $font-weight--regular;
-              font-size: $font-size--smallest;
-              color: $color-medium-emphasis;
+              font-size: $font-size--nano;
+              font-weight: $font-weight--medium;
+              margin-bottom: 4px;
+              @include themed() {
+                color: t($text);
+              }
             }
             .post-role {
               font-family: $font-sans;
+              font-size: $font-size--nano;
               font-weight: $font-weight--regular;
-              font-size: $font-size--smallest;
               color: $color-high-emphasis;
               margin-bottom: 10px;
+              @include themed() {
+                color: t($text-secondary);
+              }
             }
             h3 {
               display: inline-block;
@@ -127,7 +145,7 @@
             margin: auto;
             overflow: hidden;
             border-radius: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
 
             img {
               width: 100%;
@@ -139,6 +157,52 @@
             // @include mobile {
             //   display: inline-block;
             // }
+          }
+        }
+        .feature-section {
+          @include desktop() {
+            margin: 32px 32px;
+          }
+
+          h5 {
+            font-family: $font-sans;
+            font-weight: $font-weight--medium;
+            font-size: $font-size--nano;
+            color: $color-high-emphasis;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            @include themed() {
+              color: t($text-secondary);
+            }
+          }
+          ul {
+            list-style: circle;
+            li {
+              margin-left: 1em;
+              margin-bottom: 1em;
+              h3 span a {
+                font-family: $font-serif;
+                font-weight: $font-weight--regular;
+                transition: all 0.2s $easing-bezier-fast;
+                text-decoration: none;
+                font-size: $font-size--smallest;
+                svg {
+                  position: relative;
+                  width: auto;
+                  transition: all 0.2s $easing-bezier-fast;
+                  height: 14px;
+                }
+                &:hover {
+                  opacity: 0.5;
+                  svg {
+                    transform: scale(1.5);
+                  }
+                  &::after {
+                    opacity: 0.5;
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -162,8 +226,7 @@
       }
 
       &.otherWork-cases {
-        flex-direction: column;
-        padding-top: 64px;
+        flex-direction: column !important;
         margin: unset;
 
         @include mobile {
@@ -172,18 +235,11 @@
 
         .content-list {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           max-width: unset;
           flex-wrap: wrap;
           @include desktop {
             justify-content: flex-start;
-          }
-
-          .postPreview {
-            display: inline-block;
-            @include desktop {
-              width: 50%;
-            }
           }
         }
       }

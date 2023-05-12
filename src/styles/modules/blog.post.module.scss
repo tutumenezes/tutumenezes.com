@@ -10,7 +10,15 @@
       font-family: $font-headline;
       font-weight: $font-weight--bold;
       text-transform: capitalize;
-      font-size: $font-size--extra-large;
+
+      @include desktop() {
+        font-size: $font-size--extra-large;
+      }
+
+      @include mobile() {
+        font-size: $font-size--medium;
+      }
+
       @include themed() {
         color: t($text);
       }
@@ -64,20 +72,27 @@
   .post-content {
     h1 {
       font-family: $font-serif;
-      font-size: $font-size--extra-large;
-      font-weight: $font-weight--thin;
+      font-weight: $font-weight--bold;
       line-height: 1.1em;
       margin: 1em auto;
 
       @include themed() {
         color: t($text);
       }
+
+      @include desktop() {
+        font-size: $font-size--extra-large;
+      }
+
+      @include mobile() {
+        font-size: $font-size--medium;
+      }
     }
 
     h2 {
-      font-family: $font-headline;
-      font-size: $font-size--large;
-      font-weight: $font-weight--thin;
+      font-family: $font-serif;
+      font-size: $font-size--medium;
+      font-weight: $font-weight--bold;
       line-height: 1.1em;
       @include themed() {
         color: t($text);
@@ -85,9 +100,9 @@
     }
 
     h3 {
-      font-family: $font-headline;
-      font-size: $font-size--medium;
-      font-weight: $font-weight--thin;
+      font-family: $font-serif;
+      font-size: $font-size--small;
+      font-weight: $font-weight--bold;
       line-height: 1.1em;
       @include themed() {
         color: t($text);
@@ -110,7 +125,7 @@
         padding: 0.25em 0;
 
         @include desktop {
-          font-size: $font-size--medium;
+          font-size: $font-size--small;
         }
 
         @include mobile {
@@ -126,11 +141,11 @@
     p {
       font-family: $font-serif;
       font-weight: $font-weight--regular;
-      line-height: 1.75em;
+      line-height: 2em;
       padding: 0.5em 0;
 
       @include desktop {
-        font-size: $font-size--medium;
+        font-size: $font-size--small;
       }
 
       @include mobile {

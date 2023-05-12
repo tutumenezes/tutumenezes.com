@@ -1,16 +1,16 @@
 .related-posts {
-  padding: 16px;
+  padding: 16px 0;
 
   h3 {
-    font-family: $font-headline;
-    font-weight: $font-weight--bold;
-    font-size: $font-size--medium;
+    font-family: $font-sans;
+    font-weight: $font-weight--medium;
+    font-size: $font-size--small;
     padding: 16px 0;
     text-align: left;
-    text-transform: uppercase;
     @include themed {
       color: t($text-secondary);
     }
+
     border-bottom: 1px solid $color-outline;
   }
 
@@ -30,20 +30,20 @@
 
       .titleContainer a {
         display: block;
-        font-family: $font-headline;
-        font-weight: $font-weight--bold;
+        font-family: $font-serif;
+        font-weight: $font-weight--medium;
         text-transform: lowercase;
         transition: all 0.2s $easing-bezier-fast;
         text-decoration: none;
         text-transform: capitalize;
 
         @include desktop {
-          font-size: $font-size--large;
+          font-size: $font-size--small;
           letter-spacing: 0.05em;
         }
 
         @include mobile {
-          font-size: $font-size--medium;
+          font-size: $font-size--small;
           letter-spacing: 0.05em;
         }
 

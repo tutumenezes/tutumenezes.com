@@ -156,21 +156,36 @@ const RenderAbout: FC<Props> = ({ post, redirect, preview }) => {
               ''
             )}
           </div>
-          <h1>{post.Page || ''}</h1>
+          {/* <h1>{post.Page || ''}</h1> */}
         </div>
 
-        {post.Cover && (
-          <div className="cover-image">
-            <Comp
-              key={post.id}
-              src={post.Cover}
-              alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
-              className="Cover"
-            />
-          </div>
-        )}
-
         <div className="post-content main-container">
+          <div className="post-eye">
+            <div className="eye-content">
+              <p>
+                Hello there, I'm <s>Arthur</s> Tutu.
+              </p>
+              <p>
+                I am incredibly driven and motivated by ideas that impacts
+                people's lives for the better, and that's what my work and
+                personal life are all about.
+              </p>
+            </div>
+            {post.Cover && (
+              <div className="eye-cover-image">
+                <Comp
+                  key={post.id}
+                  src={post.Cover}
+                  alt={
+                    post.AltText
+                      ? post.AltText
+                      : 'Tutu profile picture - ' + post.Page
+                  }
+                  className="Cover"
+                />
+              </div>
+            )}
+          </div>
           <PageBlocks blocks={post.content} />
         </div>
       </div>

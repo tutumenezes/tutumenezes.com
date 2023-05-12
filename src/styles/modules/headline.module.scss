@@ -8,7 +8,7 @@
 
     @include desktop {
       justify-content: space-between;
-      margin: 128px 0;
+      margin: 15vh 0;
     }
 
     @include mobile {
@@ -17,46 +17,15 @@
     }
 
     p {
-      font-family: $font-serif-title;
+      font-family: $font-serif;
       font-weight: $font-weight--regular;
-      line-height: 1.5em;
-
-      span {
-        display: block;
-        a {
-          font-family: $font-serif-title;
-          text-decoration: underline;
-          &:hover {
-            &.futuur-link {
-              color: $color-project-futuur;
-            }
-            &.mude-link {
-              color: $color-project-mude;
-            }
-          }
-        }
-      }
-
-      @include desktop {
-        font-size: $font-size--medium;
-        text-align: left;
-      }
+      text-align: left;
+      font-size: $font-size--very-small;
+      line-height: 200%;
 
       @include mobile {
-        font-size: $font-size--large;
-        text-align: left;
-
         span {
           display: inline;
-          margin-right: 8px;
-          a {
-            &.futuur-link {
-              text-decoration-color: $color-project-futuur;
-            }
-            &.mude-link {
-              text-decoration-color: $color-project-mude;
-            }
-          }
         }
       }
     }
