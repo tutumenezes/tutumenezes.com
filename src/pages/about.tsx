@@ -114,7 +114,7 @@ const RenderAbout: FC<Props> = ({ post, redirect, preview }) => {
 
       <div className={'blog-post'}>
         <div className="blog-post-header main-container">
-          <div className="breadcrumbs" aria-label="breadcrumbs">
+          {/* <div className="breadcrumbs" aria-label="breadcrumbs">
             {post.Type ? (
               <>
                 <ol>
@@ -155,7 +155,7 @@ const RenderAbout: FC<Props> = ({ post, redirect, preview }) => {
             ) : (
               ''
             )}
-          </div>
+          </div> */}
           {/* <h1>{post.Page || ''}</h1> */}
         </div>
 
