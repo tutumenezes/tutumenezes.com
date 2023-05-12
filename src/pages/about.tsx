@@ -166,7 +166,7 @@ const RenderAbout: FC<Props> = ({ post, redirect, preview }) => {
                 Hello there, I'm <s>Arthur</s> Tutu.
               </p>
               <p>
-                I am incredibly driven and motivated by ideas that impacts
+                I am incredibly driven and motivated by ideas that impact
                 people's lives for the better, and that's what my work and
                 personal life are all about.
               </p>
