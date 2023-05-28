@@ -70,7 +70,8 @@
       width: 100%;
     }
 
-    img {
+    img,
+    .imageContainer {
       width: 100%;
       height: auto;
       top: 0;
@@ -83,7 +84,8 @@
     @include mobile {
       margin-bottom: 32px;
 
-      img {
+      img,
+      .imageContainer {
         height: auto;
         width: 100%;
       }
@@ -273,6 +275,7 @@
 
     video,
     img,
+    .imageContainer,
     .asset-wrapper {
       margin: 0 auto;
       max-width: 100%;

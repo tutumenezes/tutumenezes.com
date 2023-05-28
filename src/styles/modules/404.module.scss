@@ -52,7 +52,8 @@
       border-radius: 12px;
       overflow: hidden;
 
-      div img {
+      div img,
+      .imageContainer {
         background-color: transparent;
       }
     }
