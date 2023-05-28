@@ -1,12 +1,12 @@
 @keyframes fluctuate {
   0% {
-    transform: translate(0);
+    transform: translate(0) scale(1.5);
   }
   50% {
-    transform: translate(0, -32px);
+    transform: translate(0, -32px) scale(1.5);
   }
   100% {
-    transform: translate(0);
+    transform: translate(0) scale(1.5);
   }
 }
 
@@ -17,13 +17,13 @@
     // }
 
     .postPreview {
-      .cover-container img {
+      .cover-container .imageContainer {
         transition: opacity 0.2s $easing-bezier-fast,
-          transform 10s $easing-bezier-slow;
+          transform 20s $easing-bezier-slow;
       }
 
-      .content-container:hover ~ .cover-container img,
-      .cover-container:hover img {
+      .content-container:hover ~ .cover-container .imageContainer,
+      .cover-container:hover .imageContainer {
         opacity: 1 !important;
         z-index: 100;
         animation-name: fluctuate;
