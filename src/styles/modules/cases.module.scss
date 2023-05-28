@@ -147,11 +147,9 @@
             border-radius: 8px;
             margin-bottom: 20px;
 
-            img {
-              width: 100%;
-              height: auto;
-              position: absolute;
-              top: 32px;
+            .imageContainer {
+              top: 128px;
+              transform: scale(1.5);
             }
 
             // @include mobile {

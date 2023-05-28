@@ -7,6 +7,7 @@ import {
   RichText,
 } from '../lib/notion/types'
 import { getFileUrl } from '../lib/notion/utils'
+import { NotionImage } from './NotionImage'
 
 const renderRichText = (richText: RichText) => {
   return richText?.map((text) => {
@@ -162,9 +163,14 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
 
       case 'image':
         return (
-          <img
+          // <img
+          //   src={getFileUrl(block.image)}
+          //   alt={block.image.caption.map((c) => c.plain_text).join('')}
+          // />
+          <NotionImage
             src={getFileUrl(block.image)}
             alt={block.image.caption.map((c) => c.plain_text).join('')}
+            blockId={block.id}
           />
         )
 

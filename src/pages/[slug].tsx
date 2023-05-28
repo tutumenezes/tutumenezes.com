@@ -13,6 +13,7 @@ import {
 } from '../lib/blog-helpers'
 import PageBlocks from '../components/PageBlocks'
 import { FiArrowUpRight } from 'react-icons/fi'
+import { NotionImage } from '../components/NotionImage'
 import { Loading } from '../components/Loading'
 
 type PostData = BlogTableRow & {
@@ -222,11 +223,16 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
 
         {post.Cover && (
           <div className="cover-image">
-            <Comp
+            {/* <Comp
               key={post.id}
               src={post.Cover}
               alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
               className="Cover"
+            /> */}
+            <NotionImage
+              src={post.Cover}
+              alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
+              blockId={post.id}
             />
           </div>
         )}

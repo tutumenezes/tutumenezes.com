@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import Header from '../components/header'
 import Headline from '../components/headline'
-import sectionDivider from '../components/sectionDivider'
 
 import { FiArrowUpRight } from 'react-icons/fi'
 import { getBlogLink, getCategoryLink } from '../lib/blog-helpers'
 
 import getBlogIndex from '../lib/notion/getBlogIndex'
 import PreviewMode from '../components/PreviewMode'
+import { NotionImage } from '../components/NotionImage'
 
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
@@ -104,11 +104,14 @@ const Index = ({ posts = [], preview }) => {
                             style={{ backgroundColor: post.Color }}
                           >
                             {post.Thumb.length > 0 && (
-                              <Comp
-                                key={post.id}
+                              <NotionImage
                                 src={post.Thumb}
-                                alt={post.Alt}
-                                className={post.Project}
+                                alt={
+                                  post.AltText
+                                    ? post.AltText
+                                    : 'cover do post ' + post.Page
+                                }
+                                blockId={post.id}
                               />
                             )}
                           </div>
