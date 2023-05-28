@@ -93,7 +93,6 @@
       font-family: $font-serif;
       font-size: $font-size--medium;
       font-weight: $font-weight--bold;
-      line-height: 1.1em;
       @include themed() {
         color: t($text);
       }
@@ -103,13 +102,13 @@
       font-family: $font-serif;
       font-size: $font-size--small;
       font-weight: $font-weight--bold;
-      line-height: 1.1em;
       @include themed() {
         color: t($text);
       }
     }
 
-    ul {
+    ul,
+    ol {
       list-style-type: disc;
       padding-left: 1em;
 
@@ -145,7 +144,7 @@
       padding: 0.5em 0;
 
       @include desktop {
-        font-size: $font-size--small;
+        font-size: $font-size--medium;
       }
 
       @include mobile {
@@ -459,7 +458,7 @@
   ol,
   .callout,
   audio {
-    max-width: 50rem;
+    max-width: $max-width-global;
     margin: 1em auto;
   }
 }

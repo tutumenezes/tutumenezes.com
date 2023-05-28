@@ -7,7 +7,7 @@
 
   .header-container {
     @include desktop {
-      max-width: 50rem;
+      max-width: $max-width-global;
     }
     @include mobile {
       width: 100%;

@@ -43,7 +43,9 @@ $font-size--medium: 1.5em;
 $font-size--large: 2em;
 $font-size--extra-large: 2.75em;
 
-//line-height
+//max-width:
+$max-width-global: 55rem;
+//common, blog.post.module, header.module, footer.module
 
 //easings
 $easing-bezier-fast: cubic-bezier(0, 0.32, 0.12, 0.44);
