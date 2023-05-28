@@ -11,6 +11,7 @@ const formatValue = (key: string, value) => {
     case 'Slug':
     case 'CTA':
     case 'Role':
+    case 'Estimate':
     case 'Color':
     case 'AltText':
     case 'ogPreview':
@@ -53,6 +54,8 @@ export type BlogTableRow = {
   Date?: number
   ogImage?: string
   AltText?: string
+  Estimate?: string
+  Role?: string
   Published?: boolean
   Tags?: string[]
   Type?: string[]

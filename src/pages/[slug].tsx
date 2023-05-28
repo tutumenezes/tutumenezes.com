@@ -139,7 +139,7 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
   }
 
   // if you don't have a post at this point, and are not
-  // loading one from fallback then  redirect back to the index
+  // loading one from fallback then redirect back to the index
   if (!post) {
     return (
       <div>
@@ -208,7 +208,15 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
             )}
           </div>
           <h1>{post.Page || ''}</h1>
-          {post.Date && <div className="year">{getDateStr(post.Date)}</div>}
+          {post.Role && <div className="role">Role {post.Role}</div>}
+          <div className="post-details">
+            {post.Estimate && (
+              <div className="estimate">{post.Estimate} min read • </div>
+            )}
+            {post.Date && (
+              <div className="year">Year {getDateStr(post.Date)}</div>
+            )}
+          </div>
         </div>
 
         {post.Cover && (
