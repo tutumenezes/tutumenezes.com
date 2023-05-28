@@ -208,14 +208,15 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
             )}
           </div>
           <h1>{post.Page || ''}</h1>
-          {post.Role && <div className="role">Role {post.Role}</div>}
           <div className="post-details">
-            {post.Estimate && (
-              <div className="estimate">{post.Estimate} min read • </div>
-            )}
-            {post.Date && (
-              <div className="year">Year {getDateStr(post.Date)}</div>
-            )}
+            {post.Role && <div className="role">As {post.Role}</div>}
+            <div className="time">
+              {post.Estimate && (
+                <div className="estimate">{post.Estimate} min read</div>
+              )}
+              •
+              {post.Date && <div className="year">{getDateStr(post.Date)}</div>}
+            </div>
           </div>
         </div>
 

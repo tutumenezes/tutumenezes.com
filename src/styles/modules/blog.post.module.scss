@@ -23,14 +23,34 @@
         color: t($text);
       }
     }
-    .year {
-      font-family: $font-sans;
-      font-weight: $font-weight--bold;
-      font-size: $font-size--small;
-      margin-top: 16px;
+    .post-details {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .role {
+        font-family: $font-sans;
+        font-weight: $font-weight--regular;
+        line-height: 2em;
+        padding: 0.5em 0;
+        font-size: $font-size--small;
+      }
+      .time {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: start;
 
-      @include themed() {
-        color: t($text-secondary);
+        font-family: $font-sans;
+        font-size: $font-size--small;
+
+        .estimate {
+          display: inline-block;
+          margin-right: 8px;
+        }
+        .year {
+          display: inline-block;
+          margin-left: 8px;
+        }
       }
     }
   }
