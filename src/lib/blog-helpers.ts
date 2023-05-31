@@ -42,3 +42,13 @@ export const normalizeSlug = (slug) => {
   }
   return startingSlash || endingSlash ? normalizeSlug(slug) : slug
 }
+
+export const getCoverId = (url: string, position: number): string => {
+  const urlParts = url.split('/')
+
+  if (position >= 0 && position < urlParts.length - 1) {
+    return urlParts[position]
+  }
+
+  return ''
+}

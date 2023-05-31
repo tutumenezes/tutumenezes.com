@@ -10,6 +10,7 @@ import {
   getDateStr,
   getCategoryLink,
   getProjectLink,
+  getCoverId,
 } from '../lib/blog-helpers'
 import PageBlocks from '../components/PageBlocks'
 import { FiArrowUpRight } from 'react-icons/fi'
@@ -108,6 +109,8 @@ type Props = {
 }
 
 const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
+  console.log(post)
+
   const router = useRouter()
 
   const Comp = 'img'
@@ -232,7 +235,7 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
             <NotionImage
               src={post.Cover}
               alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
-              blockId={post.id}
+              blockId={getCoverId(post.Cover, 4)}
             />
           </div>
         )}
