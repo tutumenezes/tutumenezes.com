@@ -226,17 +226,17 @@ const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
 
         {post.Cover && (
           <div className="cover-image">
-            {/* <Comp
+            <Comp
               key={post.id}
               src={post.Cover}
               alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
               className="Cover"
-            /> */}
-            <NotionImage
+            />
+            {/* <NotionImage
               src={post.Cover}
               alt={post.AltText ? post.AltText : 'cover do post ' + post.Page}
               blockId={getCoverId(post.Cover, 4)}
-            />
+            /> */}
           </div>
         )}
 

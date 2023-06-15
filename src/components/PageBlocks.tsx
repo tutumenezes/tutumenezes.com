@@ -163,15 +163,16 @@ const PageBlocks = ({ blocks }: PageBlocksProps) => {
 
       case 'image':
         return (
-          // <img
+          <img
+            src={getFileUrl(block.image)}
+            key={block.image.caption.map((c) => c.plain_text).join('')}
+            alt={block.image.caption.map((c) => c.plain_text).join('')}
+          />
+          // <NotionImage
           //   src={getFileUrl(block.image)}
           //   alt={block.image.caption.map((c) => c.plain_text).join('')}
+          //   blockId={block.id}
           // />
-          <NotionImage
-            src={getFileUrl(block.image)}
-            alt={block.image.caption.map((c) => c.plain_text).join('')}
-            blockId={block.id}
-          />
         )
 
       case 'paragraph':
