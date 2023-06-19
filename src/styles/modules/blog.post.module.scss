@@ -64,6 +64,8 @@
   }
   .cover-image {
     position: relative;
+    display: flex;
+    justify-content: center;
 
     @include mobile {
       margin-bottom: 32px;

@@ -109,7 +109,7 @@ type Props = {
 }
 
 const RenderPost: FC<Props> = ({ post, redirect, preview }) => {
-  console.log(post)
+  // console.log(post)
 
   const router = useRouter()
 
