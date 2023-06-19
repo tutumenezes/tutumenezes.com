@@ -22,7 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     await Promise.all(paths.map((path) => res.revalidate(path)))
 
-    // console.log(new Date(), '[API] Revalidate End', paths)
+    //console.log(new Date(), '[API] Revalidate End', paths)
 
     return res.json({
       revalidated: true,
