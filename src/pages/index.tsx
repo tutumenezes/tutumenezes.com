@@ -104,15 +104,25 @@ const Index = ({ posts = [], preview }) => {
                             style={{ backgroundColor: post.Color }}
                           >
                             {post.Thumb.length > 0 && (
-                              <NotionImage
+                              <Comp
+                                key={post.id}
                                 src={post.Thumb}
                                 alt={
                                   post.AltText
                                     ? post.AltText
-                                    : 'cover do post ' + post.Page
+                                    : 'Thumbnail for the post: ' + post.Page
                                 }
-                                blockId={post.id}
+                                className="imageContainer"
                               />
+                              // <NotionImage
+                              //   src={post.Thumb}
+                              //   alt={
+                              //     post.AltText
+                              //       ? post.AltText
+                              //       : 'cover do post ' + post.Page
+                              //   }
+                              //   blockId={post.id}
+                              // />
                             )}
                           </div>
                         </div>

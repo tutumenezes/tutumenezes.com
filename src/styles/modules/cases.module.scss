@@ -148,8 +148,9 @@
             margin-bottom: 20px;
 
             .imageContainer {
-              top: 128px;
-              transform: scale(1.5);
+              top: 32px;
+              width: 100%;
+              // transform: scale(1.5);
             }
 
             // @include mobile {

@@ -1,35 +1,48 @@
 @keyframes fluctuate {
   0% {
-    transform: translate(0) scale(1.5);
+    transform: translate(0) scale(1);
   }
   50% {
-    transform: translate(0, -32px) scale(1.5);
+    transform: translate(0, -64px) scale(1.1);
   }
   100% {
-    transform: translate(0) scale(1.5);
+    transform: translate(0) scale(1);
   }
 }
 
 .cases {
   .content-list {
-    // &:hover .postPreview:hover ~ .postPreview:last-child .cover-container img {
-    //   opacity: 0;
-    // }
-
     .postPreview {
-      .cover-container .imageContainer {
-        transition: opacity 0.2s $easing-bezier-fast,
-          transform 20s $easing-bezier-slow;
+      .cover-container:hover .imageContainer {
+        transform: translate(0, 64px);
       }
 
       .content-container:hover ~ .cover-container .imageContainer,
       .cover-container:hover .imageContainer {
-        opacity: 1 !important;
         z-index: 100;
         animation-name: fluctuate;
-        animation-duration: 5s;
+        animation-duration: 8s;
         animation-iteration-count: infinite;
       }
+
+      // &:hover .postPreview:hover ~ .postPreview:last-child .cover-container img {
+      //   opacity: 0;
+      // }
+
+      // .postPreview {
+      //   .cover-container .imageContainer {
+      //     transition: opacity 0.2s $easing-bezier-fast,
+      //       transform 20s $easing-bezier-slow;
+      //   }
+
+      //   .content-container:hover ~ .cover-container .imageContainer,
+      //   .cover-container:hover .imageContainer {
+      //     opacity: 1 !important;
+      //     z-index: 100;
+      //     animation-name: fluctuate;
+      //     animation-duration: 5s;
+      //     animation-iteration-count: infinite;
+      //   }
 
       // &:last-child .cover-container img {
       //   opacity: 1;
