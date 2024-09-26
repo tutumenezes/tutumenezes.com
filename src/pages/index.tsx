@@ -145,7 +145,7 @@ const Index = ({ posts = [], preview }) => {
                 <div className="feature-section">
                   {/* ///////////////////////////////
                 // TEMPORARy */}
-                  <h5>with Walmart / Formula.Monks</h5>
+                  <h5>with Walmart</h5>
                   <ul>
                     <li className="featurePreview" key="walmart">
                       <h3>
@@ -155,7 +155,7 @@ const Index = ({ posts = [], preview }) => {
                   </ul>
                 </div>
                 <div className="feature-section">
-                  <h5>with PowerUp / OneUp</h5>
+                  <h5>with OneUp</h5>
                   <ul>
                     {posts.map((post) => {
                       if (
