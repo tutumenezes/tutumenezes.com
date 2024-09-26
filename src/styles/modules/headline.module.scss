@@ -23,6 +23,18 @@
       font-size: $font-size--very-small;
       line-height: 200%;
 
+      span {
+        display: inline-block;
+        width: auto;
+      }
+
+      a {
+        margin-left: 5px;
+        display: inline-block;
+        width: auto;
+        transition: all 0.2s $easing-bezier-fast;
+      }
+
       @include mobile {
         span {
           display: inline;

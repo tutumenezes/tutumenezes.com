@@ -136,12 +136,55 @@ const Index = ({ posts = [], preview }) => {
 
           <div className="cases-wrapper features">
             <div className="section-title">
-              <h4>Features & Highlights</h4>
+              <h4>Projects</h4>
             </div>
             <div className="case-container otherWork-cases">
               <div className="content-list">
                 {/* ///////////////////////////////
                 // Features Loop */}
+                <div className="feature-section">
+                  {/* ///////////////////////////////
+                // TEMPORARy */}
+                  <h5>with Walmart / Formula.Monks</h5>
+                  <ul>
+                    <li className="featurePreview" key="walmart">
+                      <h3>
+                        <span className="comingSoonContainer">Coming soon</span>
+                      </h3>
+                    </li>
+                  </ul>
+                </div>
+                <div className="feature-section">
+                  <h5>with PowerUp / OneUp</h5>
+                  <ul>
+                    {posts.map((post) => {
+                      if (
+                        post.Type == 'feature' &&
+                        post.Project == 'powerUp / OneUp'
+                      ) {
+                        return (
+                          <li className={'featurePreview'} key={post.Slug}>
+                            <h3>
+                              <span className={'titleContainer'}>
+                                {!post.Published && (
+                                  <span className={'draftBadge'}>Draft</span>
+                                )}
+                                <Link
+                                  href={getBlogLink(post.Slug)}
+                                  as={getBlogLink(post.Slug)}
+                                >
+                                  <a>
+                                    {post.Page} <FiArrowUpRight />
+                                  </a>
+                                </Link>
+                              </span>
+                            </h3>
+                          </li>
+                        )
+                      }
+                    })}
+                  </ul>
+                </div>
                 <div className="feature-section">
                   <h5>with Mude.fit</h5>
                   <ul>
@@ -209,7 +252,8 @@ const Index = ({ posts = [], preview }) => {
             <div className="section-title">
               <h4>Other</h4>
             </div>
-            <div className="case-container otherWork-cases">
+            {/* // About me */}
+            {/* <div className="case-container otherWork-cases">
               <div className="content-list">
                 <div className="feature-section">
                   <ul>
@@ -227,7 +271,7 @@ const Index = ({ posts = [], preview }) => {
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

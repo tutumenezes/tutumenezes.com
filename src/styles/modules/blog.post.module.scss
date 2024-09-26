@@ -146,11 +146,11 @@
       padding: 0.5em 0;
 
       @include desktop {
-        font-size: $font-size--medium;
+        font-size: $font-size--small;
       }
 
       @include mobile {
-        font-size: $font-size--small;
+        font-size: $font-size--smallest;
       }
 
       @include themed() {

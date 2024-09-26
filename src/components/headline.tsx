@@ -1,13 +1,28 @@
-import ExtLink from '../components/ext-link'
+import Link from 'next/link'
+import ExtLink from './ext-link'
+import { FiArrowUpRight } from 'react-icons/fi'
+
+const uber = 'uber'
+const linkedin = 'linkedin'
 
 const Headline = () => (
   <div className="headline">
     <div className="container">
       <p>
-        <span>
-          For 10+ years, I've been designing elegant products and services that
-          solve problems, achieve business goals, and prioritize people's needs.
-        </span>
+        <span>Product designer at</span>
+
+        {uber && (
+          <a
+            className="uber"
+            href={`https://www.linkedin.com/in/tutumenezes`}
+            title={`${uber}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {' '}
+            Uber <FiArrowUpRight />
+          </a>
+        )}
       </p>
     </div>
   </div>
